@@ -1,0 +1,21 @@
+{
+  "name": "homematch",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "White-label household-services matchmaking platform (negotiation-first, thin-market-viable)",
+  "scripts": {
+    "dev": "wrangler pages dev ./public --compatibility-date=2026-07-01 --d1=DB",
+    "serve": "node --experimental-sqlite scripts/dev-server.mjs",
+    "seed": "node --experimental-sqlite scripts/seed.mjs",
+    "test": "node --experimental-sqlite --test test/*.test.mjs",
+    "check": "for f in $(git ls-files '*.mjs' '*.js' 2>/dev/null || find . -name '*.mjs' -not -path './node_modules/*'); do node --check \"$f\" || exit 1; done"
+  },
+  "dependencies": {
+    "hono": "^4.12.31"
+  },
+  "devDependencies": {
+    "jsdom": "^28.1.0",
+    "wrangler": "^3.80.0"
+  }
+}

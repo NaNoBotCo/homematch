@@ -1,0 +1,24 @@
+name = "homematch"
+main = "src/worker.mjs"
+compatibility_date = "2026-07-01"
+compatibility_flags = ["nodejs_compat"]
+
+# D1 database binding. Create with:
+#   npx wrangler d1 create homematch
+# then paste the returned database_id below and apply migrations:
+#   npx wrangler d1 migrations apply homematch
+[[d1_databases]]
+binding = "DB"
+database_name = "homematch"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+migrations_dir = "migrations"
+
+# R2 bucket for profile photos + (transient) verification documents.
+# Documents are purged after admin review (PDPA minimization, §6).
+# [[r2_buckets]]
+# binding = "MEDIA"
+# bucket_name = "homematch-media"
+
+[vars]
+# SESSION_SECRET must be set as a secret in production, not committed:
+#   npx wrangler secret put SESSION_SECRET

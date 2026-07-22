@@ -1,0 +1,51 @@
+{
+  "id": "chiangmai",
+  "hostname": "chiangmai.homematch.app",
+  "brandName": "HomeMatch Chiang Mai",
+  "theme": {
+    "bg": "#100f0b",
+    "text": "#f0ece2",
+    "accent": "#e2a63d",
+    "muted": "#a89c84",
+    "card": "#181611",
+    "border": "#312a1c"
+  },
+  "locales": ["th", "en"],
+  "defaultLocale": "th",
+  "contactRevealPolicy": "on_acceptance",
+  "feeModel": { "mode": "A", "payer": "customer", "unit": "flat", "amount": 0 },
+  "legalFooter": {
+    "th": "HomeMatch เป็นเพียงพื้นที่จับคู่ ไม่ใช่คู่สัญญาและไม่ใช่นายจ้าง การจ้างงานเป็นข้อตกลงโดยตรงระหว่างผู้ว่าจ้างและผู้ให้บริการ",
+    "en": "HomeMatch is a matching venue only — not a party to any contract and not an employer. Any engagement is agreed directly between customer and worker."
+  },
+  "categories": [
+    { "key": "housekeeper", "label_key": "cat.housekeeper" },
+    { "key": "handyperson", "label_key": "cat.handyperson" },
+    { "key": "gardener", "label_key": "cat.gardener" },
+    { "key": "cook", "label_key": "cat.cook" },
+    { "key": "driver", "label_key": "cat.driver" },
+    { "key": "massage", "label_key": "cat.massage", "wants_certificate": true },
+    { "key": "nanny", "label_key": "cat.nanny" },
+    { "key": "caregiver", "label_key": "cat.caregiver" },
+    { "key": "companion", "label_key": "cat.companion" },
+    { "key": "petcare", "label_key": "cat.petcare" },
+    { "key": "laundry", "label_key": "cat.laundry" },
+    { "key": "pool", "label_key": "cat.pool" },
+    { "key": "aircon", "label_key": "cat.aircon" },
+    { "key": "pest", "label_key": "cat.pest" },
+    { "key": "security", "label_key": "cat.security" },
+    { "key": "tutor", "label_key": "cat.tutor" }
+  ],
+  "zones": [
+    { "key": "old-city", "label_key": "zone.old-city" },
+    { "key": "nimman", "label_key": "zone.nimman" },
+    { "key": "santitham", "label_key": "zone.santitham" },
+    { "key": "chang-khlan", "label_key": "zone.chang-khlan" },
+    { "key": "hang-dong", "label_key": "zone.hang-dong" },
+    { "key": "san-sai", "label_key": "zone.san-sai" },
+    { "key": "mae-rim", "label_key": "zone.mae-rim" },
+    { "key": "san-kamphaeng", "label_key": "zone.san-kamphaeng" },
+    { "key": "saraphi", "label_key": "zone.saraphi" },
+    { "key": "doi-saket", "label_key": "zone.doi-saket" }
+  ]
+}
