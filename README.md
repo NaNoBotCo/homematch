@@ -63,3 +63,13 @@ No. 15 (2024)**, not the spec's MR14 (research in `../baanstaff/docs/LEGAL_RESEA
 
 Phases 1–4 (negotiation + offers, contracts + reviews, fee model + LINE +
 second-tenant proof, escrow/background-checks) are not built here.
+
+
+## Licence
+
+Records, prose and pages: CC BY-SA 4.0. Code: AGPL-3.0-or-later. Anything
+carried in from elsewhere keeps its own terms — see [LICENSE](LICENSE).
+
+**Commercial licence.** If share-alike doesn't fit your use — a corpus, a
+product, a model — a commercial licence is available.
+[Open an issue](https://github.com/NaNoBotCo/homematch/issues) and say what you need.
