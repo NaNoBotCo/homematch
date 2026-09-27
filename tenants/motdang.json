@@ -43,6 +43,23 @@
       "en": "Chiang Rai"
     }
   ],
+  "minisite": {
+    "href_th": "https://motdang.net/sites/many-hands/th/",
+    "href_en": "https://motdang.net/sites/many-hands/",
+    "image": "/sites/many-hands/band.jpg",
+    "kicker": {
+      "th": "มินิไซต์",
+      "en": "Minisite"
+    },
+    "title": {
+      "th": "หลายมือ",
+      "en": "Many Hands"
+    },
+    "line": {
+      "th": "งานสี่แบบ ใช้อย่างไร พื้นที่ คิดค่าจ้าง ภาพจากถนน",
+      "en": "The four kinds of work, how the board works, the areas, rate arithmetic, photos"
+    }
+  },
   "legalFooter": {
     "th": "มดแดงเป็นกระดานประกาศ ผู้จ้างกับผู้รับงานติดต่อและตกลงกันเองโดยตรง ลงชื่อและติดต่อไม่มีค่าใช้จ่าย",
     "en": "Mot Dang is the notice board. The person hiring and the worker contact each other and agree terms directly. Listing and contacting cost nothing."

@@ -50,8 +50,22 @@ export function directoryBody(ctx, workers, { shops = [], shopCounts = {} } = {}
   const shelves = (config.shelfLinks || []).length ? html`
 <p class="muted">${t('nav.shelf')}: ${(config.shelfLinks).map((s, i) => html`${i ? raw(' · ') : ''}<a href="${s.href}">${s[ctx.locale] || s.en}</a>`)}</p>` : ''
 
+  // The operator's minisite for this section, at the very top: its share card behind a scrim.
+  const ms = config.minisite
+  const pick = (o) => (o && (o[ctx.locale] || o.en)) || ''
+  const minisite = ms ? html`
+<a class="minisite" href="${ctx.locale === 'en' ? ms.href_en : ms.href_th}" style="background-image:linear-gradient(90deg,rgba(15,33,27,.94),rgba(15,33,27,.6) 60%,rgba(15,33,27,.2)),url(${ms.image})">
+  <span class="ms-k">${pick(ms.kicker)}</span><span class="ms-t">${pick(ms.title)}</span><span class="ms-l">${pick(ms.line)} →</span>
+</a>
+<style>.minisite{display:block;margin:.5rem 0 1rem;padding:1rem 1.1rem;min-height:7.5rem;border-radius:.75rem;color:#fff6e0;
+text-decoration:none;background-color:#132a24;background-size:cover;background-position:right center}
+.minisite span{display:block}.minisite .ms-k{font-size:.8rem;color:#ffd98a}
+.minisite .ms-t{font-size:1.5rem;font-weight:700;line-height:1.25;margin:.1rem 0 .2rem}
+.minisite .ms-l{font-size:.92rem;max-width:30rem}.minisite:hover .ms-t{text-decoration:underline}</style>` : ''
+
   return html`
 ${tierStyles()}
+${minisite}
 <h1>${t('dir.title', { city: cityName(config, ctx.locale) })}</h1>
 ${config.selfListing ? html`<p class="lede">${t('dir.lede')}</p>` : ''}
 ${cta}
