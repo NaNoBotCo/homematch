@@ -222,6 +222,20 @@ export const en = {
   'admin.photos': 'Photos waiting',
   'unit.kg': 'kg',
   'common.perKg': '/kg',
+  'shops.title': 'Shops and firms',
+  'shops.note': 'From the Mot Dang directory; each opens its own page there.',
+  'shops.all': 'All {n} on Mot Dang',
+  'shops.pickup': 'picks up and delivers',
+  'shops.count': '{n} shops',
+  'shops.laundryOthers': 'Other laundries, not known to pick up',
+  'near.button': 'Near me',
+  'near.asking': 'Asking your phone where you are…',
+  'near.denied': 'No position, so the usual order stays.',
+  'near.done': 'Nearest first, worked out on your phone.',
+  'near.road': 'by road',
+  'near.line': 'straight line',
+  'near.area': 'area',
+  'near.km': 'km',
 }
 
 /** @type {Record<string,string>} */

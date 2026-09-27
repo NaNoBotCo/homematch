@@ -25,6 +25,11 @@ bucket_name = "homematch-media"
 [ai]
 binding = "AI"
 
+# Share cards: Cloudflare's headless Chrome draws each listing's 1200×630
+# card once per version (src/card.mjs); the PNG is kept in MEDIA under cards/.
+[browser]
+binding = "BROWSER"
+
 # The digest: tick() every 30 minutes; it sends the daily one at 08:00
 # Bangkok and an interim one when something needs a look.
 [triggers]

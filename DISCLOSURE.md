@@ -142,3 +142,23 @@ silently wrong.
 - **Limits**: phone browsers' photo pickers often remove GPS before upload,
   so many photos arrive with a date and a camera but no place. Metadata and
   signs are claims the file makes; anyone can edit them.
+
+## Shops, near me, share cards (added 2026-09-27)
+
+- **Shops**: `scripts/import-shops.py` reads mot-dang's canonical records
+  (no network) into the `shop` table: home-cleaning services, landscapers,
+  laundries whose facets or wording say they pick up and deliver, and
+  repair/home records whose name or trade tags name house work (building
+  materials, machine shops, vehicle trim, cafés and electronics are left
+  out). Each row links to its motdang page. A re-import is by hand:
+  `python3 scripts/import-shops.py > /tmp/shops.sql` then
+  `npx wrangler d1 execute homematch --remote --file=/tmp/shops.sql`.
+- **Near me**: the page asks for the reader's position on a tap (or on
+  arrival with `?near=1`) and sorts in the page. Inside the old-city road
+  graph (`motdang.net/data/road_graph.json`) distances are by road, ride
+  mode, one-way streets honoured, snapped onto the largest connected
+  network; elsewhere straight line, and the label says which. People sort by
+  the nearest centre of the areas they chose.
+- **Share cards**: `src/card.mjs`, drawn by Browser Rendering with Sarabun
+  embedded, kept in R2 per version of a listing; `/card/sample.png` shows the
+  design. No renderer → the shelf card.

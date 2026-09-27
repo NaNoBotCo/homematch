@@ -22,7 +22,7 @@ Only runtime dependency is Hono; jsdom + wrangler are dev-only.
 npm install
 npm run seed     # create .data/homematch.sqlite with 12 demo workers
 npm run serve    # http://localhost:4310  (dev tenant answers on 'localhost')
-npm test         # 71 tests (schema, tenant isolation, contrast, i18n, auth,
+npm test         # 77 tests (schema, tenant isolation, contrast, i18n, auth,
                  #  directory filters, verification, a11y, contact-withholding,
                  #  self-listing, base path)
 ```

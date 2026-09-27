@@ -43,7 +43,8 @@ function fakeR2() {
   return {
     m,
     async put(k, v) { m.set(k, new Uint8Array(v)) },
-    async get(k) { return m.has(k) ? { body: m.get(k) } : null },
+    async get(k) { return m.has(k) ? { body: m.get(k), arrayBuffer: async () => m.get(k).buffer.slice(0) } : null },
+    async list({ prefix }) { return { objects: [...m.keys()].filter((k) => k.startsWith(prefix)).map((key) => ({ key })) } },
     async delete(k) { m.delete(k) },
   }
 }
@@ -365,4 +366,89 @@ test('admin page shows what was gleaned, escaped', async () => {
   assert.ok(h.includes('openstreetmap.org/?mlat=18.7883'))
   assert.equal(h.includes('<script>x</script>'), false)
   assert.ok(h.includes('&lt;script&gt;'))
+})
+
+// ── shops, near me, share cards ─────────────────────────────────────────────
+async function withShops(s) {
+  const rows = [
+    ['s1', 'handyperson', 'ช่างเอ ซ่อมบ้าน', 'A Repair', 'https://motdang.net/cm/p/a-1.html', 18.79, 98.99, '081-111-1111', null, 'old-city', 0, 5],
+    ['s2', 'handyperson', 'ช่างบี', null, 'https://motdang.net/cm/p/b-2.html', 18.85, 99.03, null, null, 'san-sai', 0, 9],
+    ['s3', 'laundry', 'วอชดรอป', 'Washdrop', 'https://motdang.net/cm/p/w-3.html', 18.80, 98.97, null, null, 'nimman', 1, 1],
+  ]
+  for (const r of rows)
+    await s.db.run(`INSERT INTO shop(id, category, name_th, name_en, url, lat, lon, phone, line_url, zone, pickup, rank, operator_id, province)
+      VALUES (?,?,?,?,?,?,?,?,?,?,?,?, 'motdang', 'cm')`, ...r)
+  return s
+}
+
+test('shops: a count per work type, then rows under the people, with the shelf link', async () => {
+  const { app, env } = await withShops(await setup())
+  let d = doc(await (await get(app, env, '/')).text())
+  assert.ok(d.querySelector(`.shops a[href="${BASE}/?category=handyperson"]`))
+  d = doc(await (await get(app, env, '/?category=handyperson')).text())
+  const links = [...d.querySelectorAll('#shoplist li > a:first-child')].map((a) => a.getAttribute('href'))
+  assert.deepEqual(links, ['https://motdang.net/cm/p/b-2.html', 'https://motdang.net/cm/p/a-1.html'], 'by rank')
+  assert.ok(d.querySelector('#shoplist a[href="tel:0811111111"]'))
+  assert.ok(d.querySelector('a[href="https://motdang.net/cm/repair/home/"]'))
+  assert.ok(d.querySelector('#nearme'))
+  d = doc(await (await get(app, env, '/?category=handyperson&zone=old-city')).text())
+  assert.equal(d.querySelectorAll('#shoplist li').length, 1)
+  d = doc(await (await get(app, env, '/?category=laundry')).text())
+  assert.ok(d.querySelector('#shoplist .chip'), 'pickup chip')
+})
+
+test('shops.json: compact rows for the near-me sort; unknown work type is empty', async () => {
+  const { app, env } = await withShops(await setup())
+  const rows = await (await get(app, env, '/shops.json?category=handyperson')).json()
+  assert.equal(rows.length, 2)
+  assert.deepEqual(rows.find((r) => r[0].endsWith('a-1.html')).slice(3, 5), [18.79, 98.99])
+  assert.deepEqual(await (await get(app, env, '/shops.json?category=massage')).json(), [])
+})
+
+test('near me: the script ships, with the road graph address and no position in any link', async () => {
+  const { app, env } = await setup()
+  const h = await (await get(app, env, '/?near=1')).text()
+  assert.ok(h.includes('road_graph.json'))
+  assert.ok(h.includes('getCurrentPosition'))
+  const d = doc(h)
+  for (const a of d.querySelectorAll('a[href]')) assert.equal(/lat=|lon=|position/.test(a.getAttribute('href')), false)
+})
+
+test('people cards carry their areas for the near-me sort', async () => {
+  const { app, env } = await setup()
+  await post(app, env, '/join', GOOD)
+  const d = doc(await (await get(app, env, '/')).text())
+  assert.equal(d.querySelector('#people li').dataset.pts, '18.7883,98.9853')
+})
+
+test('share card: served from storage; og:image points at it; no renderer → the shelf card', async () => {
+  const { db, app, env } = await setup()
+  await post(app, env, '/join', GOOD)
+  const w = await db.get('SELECT id FROM worker_profile')
+  // no BROWSER binding: the page keeps the shelf card and /card redirects to it
+  let h = await (await get(app, env, `/w/${w.id}`)).text()
+  assert.ok(h.includes('og/shelf-cm-home-services.png'))
+  let r = await get(app, env, `/card/${w.id}.png`)
+  assert.equal(r.status, 302)
+  // with a renderer, a stored card is served as is
+  const { cardFacts, cardHash } = await import('../src/card.mjs')
+  const { makeT } = await import('../src/i18n/index.mjs')
+  const { getWorker } = await import('../src/repo.mjs')
+  const full = await getWorker(db, 'motdang', w.id)
+  const key = `cards/${w.id}/${cardHash(cardFacts(full, makeT('th', 'motdang'), makeT('en', 'motdang'), undefined))}.png`
+  await env.MEDIA.put(key, new Uint8Array([0x89, 0x50, 0x4e, 0x47]))
+  env.BROWSER = {}
+  h = await (await get(app, env, `/w/${w.id}`)).text()
+  assert.ok(h.includes(`/home-help/card/${w.id}.png`))
+  r = await get(app, env, `/card/${w.id}.png`)
+  assert.equal(r.status, 200)
+  assert.equal(r.headers.get('content-type'), 'image/png')
+})
+
+test('card HTML: self-contained, escaped, Thai and English', async () => {
+  const { cardHtml } = await import('../src/card.mjs')
+  const h = cardHtml({ name: '<b>นก</b>', workTh: ['แม่บ้าน'], workEn: ['Housekeeper'], areas: ['เมืองเก่า'], photo: null }, null)
+  assert.ok(h.includes('&lt;b&gt;นก'))
+  assert.equal(/src="https?:|href="https?:|url\(https?:/.test(h), false, 'no network fetches')
+  assert.ok(h.includes('Housekeeper') && h.includes('มดแดง Mot Dang'))
 })
