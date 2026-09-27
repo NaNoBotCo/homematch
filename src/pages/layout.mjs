@@ -56,6 +56,11 @@ form.listing .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hi
 table.adm{border-collapse:collapse;width:100%;font-size:.9rem}
 table.adm td,table.adm th{border-bottom:1px solid var(--border);padding:.4rem;text-align:left;vertical-align:top}
 .adm form{display:inline}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr));gap:.5rem;margin:.5rem 0}
+.gallery img{width:100%;height:auto;border-radius:.6rem;border:1px solid var(--border);background:var(--card)}
+.thumbs{display:flex;flex-wrap:wrap;gap:.6rem;margin:.4rem 0}
+.thumb{display:flex;flex-direction:column;gap:.3rem;max-width:11rem}
+.thumb img{width:100%;height:auto;border-radius:.5rem;border:1px solid var(--border)}
 `
 
 /** Render a full HTML document. `ctx` = { config, t, locale, path, base }.

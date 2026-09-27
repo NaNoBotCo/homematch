@@ -134,7 +134,7 @@ export const en = {
 
   // join / edit form
   'join.title': 'List yourself',
-  'join.intro': 'Fill this in. The team checks each listing before it goes on the site. People who want to hire you contact you by the LINE or phone you give here.',
+  'join.intro': 'Fill this in. Each listing is checked before it shows. People who want to hire you contact you by the LINE or phone you give here.',
   'join.name': 'Name to show',
   'join.name.hint': 'A nickname is fine.',
   'join.services': 'Work you do',
@@ -174,7 +174,6 @@ export const en = {
 
   // after sending, and the private edit page
   'done.title': 'Received',
-  'done.body': 'The team checks your listing before it goes on the site.',
   'done.link': 'Your private link',
   'done.link.hint': 'Keep this link. It opens your listing to change or remove it. Anyone with the link can do the same, so do not post it.',
   'done.saveLine': 'Send it to myself on LINE',
@@ -186,7 +185,7 @@ export const en = {
   'edit.view': 'See your page',
   'edit.save': 'Save changes',
   'edit.saved': 'Saved.',
-  'edit.saved.review': 'Saved. Your name or contact changed, so the team checks it again before it shows.',
+  'edit.saved.review': 'Saved. A person looks at it again before it shows.',
   'edit.remove': 'Remove my listing',
   'edit.remove.hint': 'This deletes your listing and everything you typed here.',
   'edit.removed': 'Your listing is deleted.',
@@ -207,6 +206,22 @@ export const en = {
   'admin.hide': 'Take down',
   'admin.delete': 'Delete',
   'admin.none': 'None.',
+  'done.live': 'Your listing is on the site.',
+  'done.held': 'A person looks at your listing before it shows.',
+  'join.photos': 'Photos of your work',
+  'join.photos.hint': 'Up to 4: a cleaned room, a garden, a repair, folded laundry. No people and no children in any photo; a photo with a person in it is refused.',
+  'photo.added': '{n} photo(s) added.',
+  'photo.held': '{n} photo(s) wait for a person to look before they show.',
+  'photo.refused.person': '{n} photo(s) showed a person and were not added.',
+  'photo.refused.other': '{n} photo(s) could not be used and were not added. JPEG or PNG, up to 4 MB.',
+  'photo.limit': 'Up to {n} photos; the rest were not added.',
+  'photo.remove': 'Remove this photo',
+  'photo.alt': 'Work photo {n}',
+  'photo.pending': 'waiting for a check',
+  'profile.photos': 'Work',
+  'admin.photos': 'Photos waiting',
+  'unit.kg': 'kg',
+  'common.perKg': '/kg',
 }
 
 /** @type {Record<string,string>} */

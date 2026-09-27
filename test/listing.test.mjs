@@ -19,10 +19,12 @@ const mdConfig = () => JSON.parse(readFileSync(join(ROOT, 'tenants', 'motdang.js
 const HOST = 'motdang.test'
 const BASE = '/home-help'
 const ENV = { BASE_PATH: BASE, ADMIN_KEY: 'k-admin-test', SESSION_SECRET: 's' }
+// an operator that approves every listing by hand: the Phase-1 behaviour
+const manual = (c) => ({ ...c, autoApprove: false })
 
-async function setup() {
+async function setup({ auto = false } = {}) {
   const db = freshDb()
-  const config = mdConfig()
+  const config = auto ? mdConfig() : manual(mdConfig())
   await makeOperator(db, 'motdang', { hostname: HOST, config })
   await syncTaxonomy(db, 'motdang', config)
   return { db, app: createApp(() => db) }
@@ -71,7 +73,7 @@ test('motdang tenant config is valid and passes AAA contrast', () => {
   assertConfigValid(mdConfig())
 })
 
-test('join creates a PENDING listing: not in the directory, profile 404', async () => {
+test('manual operator: join creates a PENDING listing, not in the directory, profile 404', async () => {
   const { db, app } = await setup()
   const { token, html } = await joinGood(app)
   assert.ok(html.includes(`https://${HOST}${BASE}/edit/${token}`), 'absolute edit link under the base')
@@ -113,7 +115,7 @@ test('indexable opt-in drops the noindex', async () => {
   assert.equal(p.querySelector('meta[name="robots"]'), null)
 })
 
-test('edit link: opens, saves, re-reviews on contact change, removes', async () => {
+test('manual operator: edit link opens, saves, re-reviews, removes', async () => {
   const { db, app } = await setup()
   const { token } = await joinGood(app)
   const { id } = await db.get('SELECT id FROM worker_profile')
@@ -124,12 +126,8 @@ test('edit link: opens, saves, re-reviews on contact change, removes', async () 
   assert.equal(doc(page.html).querySelector('#f-line').value, 'noknok.cm')
   assert.equal(page.res.headers.get('referrer-policy'), 'no-referrer')
 
-  // about change only: stays live
-  let r = await req(app, `/edit/${token}`, { method: 'POST', form: { ...GOOD, about_th: 'ใหม่' } })
-  assert.equal(r.status, 303)
-  assert.equal((await db.get('SELECT status FROM worker_profile')).status, 'live')
-  // contact change: back to pending
-  r = await req(app, `/edit/${token}`, { method: 'POST', form: { ...GOOD, contact_phone: '0899999999' } })
+  // an edit goes back to waiting for the operator
+  let r = await req(app, `/edit/${token}`, { method: 'POST', form: { ...GOOD, contact_phone: '0899999999' } })
   assert.equal(r.headers.get('location'), `${BASE}/edit/${token}?saved=review`)
   assert.equal((await db.get('SELECT status FROM worker_profile')).status, 'pending')
 

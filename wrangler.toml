@@ -15,11 +15,20 @@ database_name = "homematch"
 database_id = "cb29c007-2d9d-41ca-826e-be8c725fc50c"
 migrations_dir = "migrations"
 
-# R2 bucket for profile photos + (transient) verification documents.
-# Documents are purged after admin review (PDPA minimization, §6).
-# [[r2_buckets]]
-# binding = "MEDIA"
-# bucket_name = "homematch-media"
+# Photos of the work. Only photos that passed the check are stored; a refused
+# photo never reaches the bucket. Served through the Worker, never listable.
+[[r2_buckets]]
+binding = "MEDIA"
+bucket_name = "homematch-media"
+
+# Workers AI: Llama Guard on listing text, Mistral Small on photos.
+[ai]
+binding = "AI"
+
+# The digest: tick() every 30 minutes; it sends the daily one at 08:00
+# Bangkok and an interim one when something needs a look.
+[triggers]
+crons = ["*/30 * * * *"]
 
 # motdang.net/home-help — this Worker answers the path by route; the site
 # Worker (mot-dang-site, route motdang.net/*) keeps every other path. The more
@@ -30,7 +39,7 @@ zone_name = "motdang.net"
 
 [vars]
 BASE_PATH = "/home-help"
-# New and re-reviewed listings are mailed here through Resend.
+# The approval bot's digest goes here through Resend.
 ALERT_TO = "nan@motdang.net"
 ALERT_FROM = "มดแดง Mot Dang <nan@motdang.net>"
 

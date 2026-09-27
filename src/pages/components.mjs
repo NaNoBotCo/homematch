@@ -63,5 +63,5 @@ export function workerCard(ctx, w, labels) {
 }
 
 export function unitKey(unit) {
-  return { hour: 'common.perHour', visit: 'common.perVisit', day: 'common.perDay', month: 'common.perMonth' }[unit] || 'common.perVisit'
+  return { hour: 'common.perHour', visit: 'common.perVisit', day: 'common.perDay', month: 'common.perMonth', kg: 'common.perKg' }[unit] || 'common.perVisit'
 }
