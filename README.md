@@ -22,8 +22,9 @@ Only runtime dependency is Hono; jsdom + wrangler are dev-only.
 npm install
 npm run seed     # create .data/homematch.sqlite with 12 demo workers
 npm run serve    # http://localhost:4310  (dev tenant answers on 'localhost')
-npm test         # 35 tests (schema, tenant isolation, contrast, i18n, auth,
-                 #  directory filters, verification, a11y, contact-withholding)
+npm test         # 46 tests (schema, tenant isolation, contrast, i18n, auth,
+                 #  directory filters, verification, a11y, contact-withholding,
+                 #  self-listing, base path)
 ```
 
 `npm run dev` uses `wrangler pages dev` against D1 (needs the Cloudflare
@@ -45,6 +46,20 @@ src/
   pages/          layout + directory + profile + components (server render)
 scripts/          dev-server, seed
 test/             behavioural suites (§11)
+```
+
+## Mounted on motdang.net
+
+`tenants/motdang.json` runs at **motdang.net/home-help** — a Worker route more
+specific than the site Worker's `motdang.net/*`. `BASE_PATH=/home-help` is
+stripped in `src/worker.mjs`; pages print every link under it. That tenant has
+self-listing on: `/join`, the private `/edit/<token>` link, and `/admin`.
+
+```bash
+BASE_PATH=/home-help ADMIN_KEY=dev npm run serve   # tenant answers on 127.0.0.1
+node scripts/operator-sql.mjs motdang > /tmp/op.sql # install/refresh the operator row
+npx wrangler d1 execute homematch --remote --file=/tmp/op.sql
+npx wrangler deploy                                 # needs workers_routes on the zone
 ```
 
 ## White-label

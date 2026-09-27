@@ -38,9 +38,9 @@ silently wrong.
   `{ purge: { r2Key } }`; the caller must delete it in production.
 - **The message-body redaction pass** (phone/LINE pattern scrub) is a **Phase 1**
   item — Phase 0 has no threads, so there is nothing to redact yet. When built,
-  it ships with the debug/dump flag the spec requires (§6, §11.5). Disclosed
-  honestly: a determined pair routes around any redaction; we don't fight it,
-  we just don't subsidize it pre-match (§8).
+  it ships with the debug/dump flag the spec requires (§6, §11.5). A
+  determined pair routes around any redaction; the design does not fight it or
+  subsidize it pre-match (§8).
 - **Offer state machine, contracts, reviews, fee model, LINE notifications** are
   Phases 1–3, not built here.
 - **Deployment**: `wrangler.toml` + `src/worker.mjs` are ready but deploying
@@ -72,3 +72,26 @@ silently wrong.
   monetizing; the fee-mode switch exists so the answer is a config change.
 - **PDPA**: the verify-then-purge pattern is built; a per-tenant privacy policy
   + consent flow still needs to ship before public launch.
+
+## Self-listing (added 2026-09-27, live at motdang.net/home-help)
+
+- **What it is**: workers list themselves at `/join`; the listing waits as
+  `pending` until the operator approves it at `/admin` (HTTP Basic, password =
+  the `ADMIN_KEY` secret). Readers contact the worker by the LINE ID or phone
+  the worker typed — the tenant's `contactRevealPolicy` is `public`. No
+  offers, no relay, no fee, no document handling.
+- **Private edit link**: shown once after sending; only its sha256 is stored.
+  Changing the name or contact on a live listing sends it back to `pending`.
+  "Remove my listing" deletes the rows.
+- **Guards**: consent checkbox; a hidden honeypot field; cross-site POSTs are
+  refused; five sends per connection per 24 h (the connection is stored as a
+  salted hash). Profiles carry `noindex` unless the worker ticks the box.
+- **Alerts**: a new or re-reviewed listing mails `ALERT_TO` through Resend when
+  `RESEND_KEY` is set.
+- **Tiers and reply times are off** on this tenant (`showTiers`, `showReply`
+  false): nothing is verified and nothing is relayed, so there is no tier or
+  reply time to show.
+- **Agency licensing**: this is the listings-board shape
+  (`../baanstaff/docs/LEGAL_RESEARCH.md` §4 point 2). Matching, recommending,
+  negotiating for either side, or holding worker documents are the features
+  §4 point 3 lists as licensable territory; none of them runs on this tenant.

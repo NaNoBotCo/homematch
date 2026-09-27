@@ -48,6 +48,13 @@ export async function seed(dbPath = DB_PATH) {
     'chiangmai', 'localhost', config.brandName, JSON.stringify(config))
   await syncTaxonomy(db, 'chiangmai', config)
 
+  // The motdang tenant answers on 127.0.0.1 locally (serve with
+  // BASE_PATH=/home-help). It gets no demo workers: list through /join.
+  const md = JSON.parse(readFileSync(join(ROOT, 'tenants', 'motdang.json'), 'utf8'))
+  await db.run('INSERT INTO operator(id, hostname, brand_name, config_json) VALUES (?,?,?,?)',
+    'motdang', '127.0.0.1', md.brandName, JSON.stringify(md))
+  await syncTaxonomy(db, 'motdang', md)
+
   let n = 0
   for (const d of DEMO) {
     const uid = randomUUID()
