@@ -39,6 +39,10 @@ form.listing input[type=text],form.listing input[type=tel],form.listing input[ty
   width:100%;max-width:28rem;min-height:44px;padding:.5rem .6rem;border:1px solid var(--border);border-radius:.5rem;
   background:var(--card);color:var(--text);font:inherit}
 form.listing textarea{min-height:6rem}
+form.listing input[type=file]{display:block;width:100%;max-width:28rem;min-height:44px;padding:.5rem;border:1px dashed var(--border);
+  border-radius:.5rem;background:var(--card);color:var(--text);font:inherit}
+form.listing input[type=file]::file-selector-button{min-height:36px;margin-right:.6rem;padding:.3rem .8rem;border:1px solid var(--accent);
+  border-radius:.5rem;background:var(--accent);color:var(--bg);font:inherit;font-weight:700;cursor:pointer}
 form.listing .checks{display:flex;flex-wrap:wrap;gap:.35rem}
 form.listing .check{display:inline-flex;align-items:center;gap:.45rem;min-height:44px;padding:.3rem .7rem;
   border:1px solid var(--border);border-radius:.6rem;background:var(--card);cursor:pointer}
