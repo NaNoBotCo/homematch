@@ -2,15 +2,17 @@ name = "homematch"
 main = "src/worker.mjs"
 compatibility_date = "2026-07-01"
 compatibility_flags = ["nodejs_compat"]
+workers_dev = false
 
-# D1 database binding. Create with:
-#   npx wrangler d1 create homematch
-# then paste the returned database_id below and apply migrations:
-#   npx wrangler d1 migrations apply homematch
+# D1 database binding. Migrations:
+#   npx wrangler d1 migrations apply homematch --remote
+# Operator rows (one per tenant file):
+#   node scripts/operator-sql.mjs motdang > /tmp/op.sql
+#   npx wrangler d1 execute homematch --remote --file=/tmp/op.sql
 [[d1_databases]]
 binding = "DB"
 database_name = "homematch"
-database_id = "REPLACE_WITH_D1_DATABASE_ID"
+database_id = "cb29c007-2d9d-41ca-826e-be8c725fc50c"
 migrations_dir = "migrations"
 
 # R2 bucket for profile photos + (transient) verification documents.
@@ -19,6 +21,20 @@ migrations_dir = "migrations"
 # binding = "MEDIA"
 # bucket_name = "homematch-media"
 
+# motdang.net/home-help — this Worker answers the path by route; the site
+# Worker (mot-dang-site, route motdang.net/*) keeps every other path. The more
+# specific route wins. BASE_PATH is stripped before the app sees the request.
+[[routes]]
+pattern = "motdang.net/home-help*"
+zone_name = "motdang.net"
+
 [vars]
-# SESSION_SECRET must be set as a secret in production, not committed:
-#   npx wrangler secret put SESSION_SECRET
+BASE_PATH = "/home-help"
+# New and re-reviewed listings are mailed here through Resend.
+ALERT_TO = "nan@motdang.net"
+ALERT_FROM = "มดแดง Mot Dang <nan@motdang.net>"
+
+# Secrets, set with `npx wrangler secret put <NAME>`, never in this file:
+#   SESSION_SECRET  salt for the per-connection daily cap
+#   ADMIN_KEY       password for /admin (any user name)
+#   RESEND_KEY      Resend sending key for motdang.net; unset = no alert mail

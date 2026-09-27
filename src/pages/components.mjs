@@ -33,16 +33,23 @@ export function tierBadge(t, tier) {
   return html`<span class="tier" title="${t('tier.explain')}"><span class="g" aria-hidden="true">${t('tier.' + tier + '.glyph')}</span>${t('tier.' + tier)}</span>`
 }
 
-/** Compact worker card for the directory. `labels` = {cat:fn, zone:fn}. */
-export function workerCard(t, w, labels) {
+/** Compact worker card for the directory. `labels` = {cat:fn, zone:fn}.
+ *  Tier badge and reply line show unless the operator turns them off
+ *  (showTiers / showReply false) — an operator that verifies nothing and
+ *  relays no messages has nothing true to put there. */
+export function workerCard(ctx, w, labels) {
+  const { t, config } = ctx
+  const base = ctx.base || ''
+  const showTiers = config.showTiers !== false
+  const showReply = config.showReply !== false
   const cats = w.categories.map((c) => html`<span class="chip">${labels.cat(c)}</span>`)
   const reply = w.reply_bucket ? t('reply.' + w.reply_bucket) : t('reply.none')
   const rate = w.rates && w.rates[0]
   return html`
 <li class="wcard">
   <div style="display:flex;justify-content:space-between;gap:.5rem;align-items:start">
-    <h3><a href="/w/${w.id}">${w.display_name || t('cat.' + w.headline_category)}</a></h3>
-    ${tierBadge(t, w.verification_tier)}
+    <h3><a href="${base}/w/${w.id}">${w.display_name || t('cat.' + w.headline_category)}</a></h3>
+    ${showTiers ? tierBadge(t, w.verification_tier) : ''}
   </div>
   <div class="chips">${cats}</div>
   <p class="muted" style="margin:.25rem 0">
@@ -50,7 +57,7 @@ export function workerCard(t, w, labels) {
     ${w.live_in_possible ? raw(' · ') + t('common.liveIn') : ''}
   </p>
   ${rate ? html`<p style="margin:.25rem 0">${t('common.baht')}${rate.amount ?? '—'} ${t(unitKey(rate.unit))}${rate.negotiable ? raw(' · ') + t('common.negotiable') : ''}</p>` : ''}
-  <p class="muted" style="font-size:.82rem;margin:.25rem 0">${reply}</p>
+  ${showReply ? html`<p class="muted" style="font-size:.82rem;margin:.25rem 0">${reply}</p>` : ''}
   ${w.assisted ? html`<span class="assisted">${t('dir.assisted')}</span>` : ''}
 </li>`
 }
