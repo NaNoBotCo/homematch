@@ -13,11 +13,14 @@ import {
   listWorkers, getWorker, createListing, findByEditToken, updateListing, removeListing,
   setListingStatus, listByStatus, countAttempt, sha256, logEvent, screenHistory,
   addPhoto, listPhotos, getPhoto, deletePhoto, setPhotoStatus, heldPhotos, photosNear,
+  listShops, countShops, shopsCompact,
 } from './repo.mjs'
 import { exifBlock, readExif, nearestZone, km } from './lib/exif.mjs'
 import { screen, rules } from './lib/screen.mjs'
 import { clean, lookAt, readText, MAX_PHOTOS } from './lib/photos.mjs'
 import { runDigest } from './digest.mjs'
+import { cardFacts, cardHash, cardHtml, drawCard } from './card.mjs'
+import { toBase64 } from './lib/photos.mjs'
 import { randomUUID } from 'node:crypto'
 import { page } from './pages/layout.mjs'
 import { directoryBody } from './pages/directory.mjs'
@@ -88,8 +91,11 @@ export function createApp(getDb) {
     }
     const workers = await listWorkers(ctx.db, ctx.operatorId, filters)
     const filtered = Object.values(filters).some(Boolean)
+    const known = (ctx.config.categories || []).some((k) => k.key === filters.category)
+    const shopCounts = await countShops(ctx.db, ctx.operatorId, filters.zone || null)
+    const shops = known ? await listShops(ctx.db, ctx.operatorId, { category: filters.category, zone: filters.zone }) : []
     return render(c, {
-      title: ctx.t('dir.title', { city: '' }).trim(), body: directoryBody(ctx, workers),
+      title: ctx.t('dir.title', { city: '' }).trim(), body: directoryBody(ctx, workers, { shops, shopCounts }),
       canonical: filtered ? null : '/', description: ctx.config.selfListing ? ctx.t('dir.lede') : null,
     })
   })
@@ -103,6 +109,7 @@ export function createApp(getDb) {
     const zones = w.zones.map((k) => ctx.t('zone.' + k)).join(', ')
     return render(c, {
       title: w.display_name, body: profileBody(ctx, w), canonical: `/w/${w.id}`,
+      ogImage: c.env && c.env.BROWSER ? `${ctx.origin}${ctx.base}/card/${w.id}.png` : null,
       description: `${cats} · ${zones}`,
       robots: ctx.config.selfListing && !w.indexable ? 'noindex' : null,
     })
@@ -174,6 +181,7 @@ export function createApp(getDb) {
       live = false
       await logEvent(ctx.db, ctx.operatorId, 'hold', { workerId: id, ipHash: ip, name: values.display_name, detail: { reasons: ['sexual-photo'], categories: values.categories } })
     }
+    if (live) warmCard(c, ctx, id)
     c.header('Cache-Control', 'no-store')
     c.header('Referrer-Policy', 'no-referrer')
     return render(c, {
@@ -226,6 +234,7 @@ export function createApp(getDb) {
       if (report.sexual)
         await logEvent(ctx.db, ctx.operatorId, 'edit-hold', { workerId: w.id, ipHash: ip, name: values.display_name, detail: { reasons: ['sexual-photo'], categories: values.categories } })
     }
+    warmCard(c, ctx, w.id)
     const q = new URLSearchParams({ saved: review || report?.sexual ? 'review' : '1' })
     if (report) for (const [k, v] of Object.entries(report)) if (v && k !== 'sexual') q.set('p' + k, String(v))
     return c.redirect(`${ctx.base}/edit/${token}?${q}`, 303)
@@ -255,6 +264,32 @@ export function createApp(getDb) {
       await logEvent(ctx.db, ctx.operatorId, 'remove', { workerId: w.id, ipHash: ipHash(c), name: w.display_name })
     }
     return render(c, { title: ctx.t('edit.removed'), robots: 'noindex', body: removedBody(ctx) })
+  })
+
+  // every shop in a work type, compact, for the reader's own near-me sort
+  app.get('/shops.json', async (c) => {
+    const ctx = c.get('ctx')
+    const cat = ctx.query.category
+    if (!(ctx.config.categories || []).some((k) => k.key === cat)) return c.json([])
+    c.header('Cache-Control', 'public, max-age=600')
+    return c.json(await shopsCompact(ctx.db, ctx.operatorId, cat))
+  })
+
+  // share card: drawn once per version of a listing, then served from R2
+  app.get('/card/:file', async (c) => {
+    const ctx = c.get('ctx')
+    const id = c.req.param('file').replace(/\.png$/, '')
+    // the design, with made-up content, drawn once and kept
+    if (id === 'sample') {
+      const png = await sampleCard(c, ctx).catch((e) => { console.error('card', String(e?.stack || e)); return null })
+      return png ? new Response(png, { headers: { 'Content-Type': 'image/png', 'Cache-Control': 'public, max-age=86400' } }) : c.notFound()
+    }
+    const w = await getWorker(ctx.db, ctx.operatorId, id)
+    const fallback = () => c.redirect(ctx.config.ogImage || `${ctx.base}/`, 302)
+    if (!w || !w.active) return c.notFound()
+    const png = await ensureCard(c, ctx, w).catch((e) => { console.error('card', String(e?.stack || e)); return null })
+    if (!png) return fallback()
+    return new Response(png, { headers: { 'Content-Type': 'image/png', 'Cache-Control': 'public, max-age=3600' } })
   })
 
   // ── operator moderation ───────────────────────────────────────────────────
@@ -295,7 +330,7 @@ export function createApp(getDb) {
     const p = await getPhoto(ctx.db, ctx.operatorId, c.req.param('id'))
     if (!p) return c.notFound()
     const action = c.req.param('action')
-    if (action === 'approve') await setPhotoStatus(ctx.db, ctx.operatorId, p.id, 'live')
+    if (action === 'approve') { await setPhotoStatus(ctx.db, ctx.operatorId, p.id, 'live'); warmCard(c, ctx, p.worker_id) }
     else if (action === 'delete') await dropPhoto(c, ctx, p)
     else return c.notFound()
     await logEvent(ctx.db, ctx.operatorId, `admin-photo-${action}`, { workerId: p.worker_id })
@@ -320,7 +355,7 @@ export function createApp(getDb) {
     const id = c.req.param('id')
     const action = c.req.param('action')
     const w = await getWorker(ctx.db, ctx.operatorId, id)
-    if (action === 'approve') await setListingStatus(ctx.db, ctx.operatorId, id, 'live')
+    if (action === 'approve') { await setListingStatus(ctx.db, ctx.operatorId, id, 'live'); warmCard(c, ctx, id) }
     else if (action === 'hide') await setListingStatus(ctx.db, ctx.operatorId, id, 'hidden')
     else if (action === 'delete') await removeWithPhotos(c, ctx, id)
     else return c.notFound()
@@ -511,4 +546,51 @@ async function gleanText(c, ctx, cl, meta, values) {
     categories: values?.categories || [], rates: [] })
   for (const why of r.reasons.filter((x) => !x.startsWith('link-in-text'))) meta.flags.push('photo-text:' + why)
   meta.holdForText = meta.flags.some((f) => f.startsWith('photo-shows-') || f.startsWith('photo-text:'))
+}
+
+/** The card for a listing's current version: from R2, or drawn now and
+ *  stored. Older versions of the card are deleted. Returns PNG bytes or null
+ *  when there is no renderer. */
+async function ensureCard(c, ctx, w) {
+  const env = c.env || {}
+  const bucket = env.MEDIA
+  if (!bucket || !env.BROWSER) return null
+  const photos = (await listPhotos(ctx.db, ctx.operatorId, w.id)).filter((p) => p.status === 'live')
+  const facts = cardFacts(w, makeT('th', ctx.operatorId), makeT('en', ctx.operatorId), photos[0]?.id)
+  const key = `cards/${w.id}/${cardHash(facts)}.png`
+  const have = await bucket.get(key)
+  if (have) return new Uint8Array(await have.arrayBuffer())
+  let photoUrl = null
+  if (photos[0]) {
+    const obj = await bucket.get(photos[0].r2_key)
+    if (obj) photoUrl = `data:${photos[0].mime};base64,${toBase64(new Uint8Array(await obj.arrayBuffer()))}`
+  }
+  const png = await drawCard(env.BROWSER, cardHtml(facts, photoUrl))
+  await bucket.put(key, png, { httpMetadata: { contentType: 'image/png' } })
+  const old = await bucket.list({ prefix: `cards/${w.id}/` })
+  for (const o of old.objects || []) if (o.key !== key) await bucket.delete(o.key)
+  return png
+}
+
+/** Draw the card now, after the response, so the first share of a new or
+ *  changed listing does not wait on the browser. */
+function warmCard(c, ctx, workerId) {
+  const job = getWorker(ctx.db, ctx.operatorId, workerId)
+    .then((w) => (w && w.active ? ensureCard(c, ctx, w) : null)).catch(() => null)
+  try { c.executionCtx.waitUntil(job) } catch { /* node: no execution context */ }
+}
+
+async function sampleCard(c, ctx) {
+  const env = c.env || {}
+  if (!env.MEDIA || !env.BROWSER) return null
+  const tTh = makeT('th', ctx.operatorId), tEn = makeT('en', ctx.operatorId)
+  const facts = { name: 'ตัวอย่าง · Sample', workTh: ['แม่บ้าน', 'ซักรีด รับ-ส่งถึงบ้าน'].map(String),
+    workEn: [tEn('cat.housekeeper').split(' · ')[0], tEn('cat.laundry').split(' · ')[0]],
+    areas: [tTh('zone.old-city'), tTh('zone.santitham')], photo: null }
+  const key = `cards/sample/${cardHash(facts)}.png`
+  const have = await env.MEDIA.get(key)
+  if (have) return new Uint8Array(await have.arrayBuffer())
+  const png = await drawCard(env.BROWSER, cardHtml(facts, null))
+  await env.MEDIA.put(key, png, { httpMetadata: { contentType: 'image/png' } })
+  return png
 }

@@ -317,3 +317,25 @@ export async function heldPhotos(db, operatorId) {
     `SELECT p.*, u.display_name FROM worker_photo p JOIN worker_profile w ON w.id=p.worker_id
        JOIN app_user u ON u.id=w.user_id WHERE p.operator_id=? AND p.status='held' ORDER BY p.created_at`, operatorId)
 }
+
+// ── shops from the Mot Dang directory (0008) ────────────────────────────────
+export async function listShops(db, operatorId, { category, zone }, limit = 30) {
+  const where = ['operator_id=?', 'category=?']
+  const params = [operatorId, category]
+  if (zone) { where.push('zone=?'); params.push(zone) }
+  return db.all(`SELECT * FROM shop WHERE ${where.join(' AND ')} ORDER BY pickup DESC, rank DESC, name_th LIMIT ?`, ...params, limit)
+}
+export async function countShops(db, operatorId, zone = null) {
+  const rows = await db.all(
+    `SELECT category, COUNT(*) AS n FROM shop WHERE operator_id=?${zone ? ' AND zone=?' : ''} GROUP BY category`,
+    ...(zone ? [operatorId, zone] : [operatorId]))
+  return Object.fromEntries(rows.map((r) => [r.category, r.n]))
+}
+/** Every shop in a category as compact rows, for the reader's own
+ *  near-me sort: [url, name_th, name_en, lat, lon, phone, zone, pickup]. */
+export async function shopsCompact(db, operatorId, category) {
+  const rows = await db.all(
+    'SELECT url, name_th, name_en, lat, lon, phone, zone, pickup FROM shop WHERE operator_id=? AND category=? AND lat IS NOT NULL',
+    operatorId, category)
+  return rows.map((r) => [r.url, r.name_th, r.name_en, r.lat, r.lon, r.phone, r.zone, r.pickup])
+}

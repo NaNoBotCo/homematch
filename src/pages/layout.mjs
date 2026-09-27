@@ -60,6 +60,12 @@ form.listing .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hi
 table.adm{border-collapse:collapse;width:100%;font-size:.9rem}
 table.adm td,table.adm th{border-bottom:1px solid var(--border);padding:.4rem;text-align:left;vertical-align:top}
 .adm form{display:inline}
+.shops{margin-top:1.5rem}
+.shoplist{list-style:none;padding:0;margin:.5rem 0;display:grid;gap:.35rem}
+.shoplist li{padding:.45rem 0;border-bottom:1px solid var(--border);display:flex;flex-wrap:wrap;gap:.3rem .5rem;align-items:baseline}
+.shoplist a:first-child{font-weight:700}
+.shoplist .call{margin-left:auto;min-height:44px;display:inline-flex;align-items:center}
+.near{margin:.25rem 0 .75rem}
 .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr));gap:.5rem;margin:.5rem 0}
 .gallery img{width:100%;height:auto;border-radius:.6rem;border:1px solid var(--border);background:var(--card)}
 .thumbs{display:flex;flex-wrap:wrap;gap:.6rem;margin:.4rem 0}
@@ -70,7 +76,7 @@ table.adm td,table.adm th{border-bottom:1px solid var(--border);padding:.4rem;te
 /** Render a full HTML document. `ctx` = { config, t, locale, path, base }.
  *  `robots` sets the robots meta (e.g. 'noindex'); `canonical` is a path under
  *  the base; `description` fills the meta description and og:description. */
-export function page(ctx, { title, body, robots, canonical, description }) {
+export function page(ctx, { title, body, robots, canonical, description, ogImage }) {
   const { config, t, locale } = ctx
   const base = ctx.base || ''
   const th = config.theme
@@ -94,7 +100,7 @@ ${robots ? html`<meta name="robots" content="${robots}">` : ''}
 ${canon ? html`<link rel="canonical" href="${canon}">` : ''}
 <meta property="og:title" content="${fullTitle}">
 ${description ? html`<meta property="og:description" content="${description}">` : ''}
-${config.ogImage ? html`<meta property="og:image" content="${config.ogImage}"><meta name="twitter:card" content="summary_large_image">` : ''}
+${ogImage || config.ogImage ? html`<meta property="og:image" content="${ogImage || config.ogImage}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">` : ''}
 ${canon ? html`<meta property="og:url" content="${canon}">` : ''}
 <meta name="color-scheme" content="${scheme}">
 <style>${raw(BASE_CSS)}</style>

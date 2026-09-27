@@ -46,7 +46,7 @@ export function workerCard(ctx, w, labels) {
   const reply = w.reply_bucket ? t('reply.' + w.reply_bucket) : t('reply.none')
   const rate = w.rates && w.rates[0]
   return html`
-<li class="wcard">
+<li class="wcard" data-pts="${zonePoints(config, w.zones)}">
   <div style="display:flex;justify-content:space-between;gap:.5rem;align-items:start">
     <h3><a href="${base}/w/${w.id}">${w.display_name || t('cat.' + w.headline_category)}</a></h3>
     ${showTiers ? tierBadge(t, w.verification_tier) : ''}
@@ -64,4 +64,10 @@ export function workerCard(ctx, w, labels) {
 
 export function unitKey(unit) {
   return { hour: 'common.perHour', visit: 'common.perVisit', day: 'common.perDay', month: 'common.perMonth', kg: 'common.perKg' }[unit] || 'common.perVisit'
+}
+
+/** "lat,lon;lat,lon" for a worker's areas, for the near-me sort. */
+export function zonePoints(config, zones) {
+  const at = new Map((config.zones || []).filter((z) => Array.isArray(z.center)).map((z) => [z.key, z.center]))
+  return zones.map((z) => at.get(z)).filter(Boolean).map((c) => c.join(',')).join(';')
 }

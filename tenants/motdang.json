@@ -196,5 +196,24 @@
     }
   },
   "autoApprove": true,
-  "photos": true
+  "photos": true,
+  "shelves": {
+    "housekeeper": {
+      "cm": "https://motdang.net/cm/tag/home-cleaning.html",
+      "cr": "https://motdang.net/cr/tag/home-cleaning.html"
+    },
+    "gardener": {
+      "cm": "https://motdang.net/cm/home-services/landscaper/",
+      "cr": "https://motdang.net/cr/home-services/landscaper/"
+    },
+    "laundry": {
+      "cm": "https://motdang.net/cm/essentials/laundry/",
+      "cr": "https://motdang.net/cr/essentials/laundry/"
+    },
+    "handyperson": {
+      "cm": "https://motdang.net/cm/repair/home/",
+      "cr": "https://motdang.net/cr/repair/home/"
+    }
+  },
+  "roadGraph": "https://motdang.net/data/road_graph.json"
 }
