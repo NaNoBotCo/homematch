@@ -20,10 +20,11 @@ const HOST = 'motdang.test'
 const BASE = '/home-help'
 const GPS_JPG = readFileSync(join(ROOT, 'test/fixtures/gps.jpg'))
 const TEXT_PNG = readFileSync(join(ROOT, 'test/fixtures/text.png'))
+const PHONE_JPG = readFileSync(join(ROOT, 'test/fixtures/phone.jpg'))
 
 /** Fake Workers AI. `guard` = Llama Guard label; `photo` = {people, nudity,
  *  sexual, text_or_qr, count}. */
-function fakeAI({ guard = 'safe', photo = {} } = {}) {
+function fakeAI({ guard = 'safe', photo = {}, read = {} } = {}) {
   const calls = []
   return {
     calls,
@@ -32,6 +33,7 @@ function fakeAI({ guard = 'safe', photo = {} } = {}) {
       if (model.includes('llama-guard')) return { response: '\n\n' + guard }
       const q = input.messages[0].content[0].text
       if (q.startsWith('How many')) return { response: String(photo.count ?? 0) }
+      if (q.startsWith('Transcribe')) return { response: JSON.stringify({ text: [], phones: [], line_ids: [], urls: [], qr: false, shop_names: [], places: [], ...read }) }
       return { response: { people: false, children: false, nudity: false, sexual: false, text_or_qr: false, what: 'clean kitchen', ...photo } }
     },
   }
@@ -218,7 +220,7 @@ test('not an image, or too many: refused or cut', async () => {
 test('removing a listing deletes its photos from storage', async () => {
   const { db, app, env } = await setup()
   const html = await (await post(app, env, '/join', GOOD, { files: [['k.jpg', GPS_JPG, 'image/jpeg']] })).text()
-  assert.equal(env.MEDIA.m.size, 1)
+  assert.equal(env.MEDIA.m.size, 2, 'the public copy and the private EXIF block')
   const token = doc(html).querySelector('a.secret').getAttribute('href').split('/edit/')[1]
   await post(app, env, `/edit/${token}/remove`, {})
   assert.equal(env.MEDIA.m.size, 0)
@@ -289,4 +291,78 @@ test('probing is logged: honeypot, cross-site, wrong admin password', async () =
 test('quote() flattens a stranger\'s text for mail', () => {
   assert.equal(quote('a\nb​c‮'), '"a b c"')
   assert.equal(quote('x'.repeat(100)).length, 50)
+})
+
+test('photo metadata: kept privately, gleaned, stripped from the public copy', async () => {
+  const { db, app, env } = await setup()
+  await post(app, env, '/join', GOOD, { files: [['k.jpg', PHONE_JPG, 'image/jpeg']] })
+  const p = await db.get('SELECT * FROM worker_photo')
+  assert.equal(p.lat, 18.7883)
+  assert.equal(p.lon, 98.9853)
+  assert.equal(p.taken_at, '2026-09-20 10:11:12')
+  assert.equal(p.device, 'samsung SM-A546E')
+  assert.equal(p.near_zone, 'old-city')
+  assert.equal(p.near_km, 0)
+  assert.equal(p.meta_source, 'upload')
+  assert.ok(p.meta_key.startsWith('meta/'))
+  assert.ok(Buffer.from(env.MEDIA.m.get(p.meta_key)).length > 20, 'raw EXIF block kept')
+  assert.equal(Buffer.from(env.MEDIA.m.get(p.r2_key)).includes(Buffer.from('SM-A546E')), false, 'public copy carries none of it')
+  const pub = Buffer.from(await (await get(app, env, `/photo/${p.id}`)).arrayBuffer())
+  assert.equal(pub.includes(Buffer.from('Exif')), false)
+  const sent = []
+  const op = { id: 'motdang', config: JSON.parse(readFileSync(join(ROOT, 'tenants', 'motdang.json'), 'utf8')) }
+  const r = await runDigest(db, env, op, new Date(), { force: 'interim', sender: async (_e, s, t) => (sent.push(t), { ok: true }) })
+  assert.match(r.text, /openstreetmap\.org\/\?mlat=18\.7883/)
+  assert.match(r.text, /2026-09-20/)
+})
+
+test('photo metadata sent by the browser beside a redrawn photo', async () => {
+  const { db, app, env } = await setup()
+  const { exifBlock } = await import('../src/lib/exif.mjs')
+  const block = Buffer.from(exifBlock(new Uint8Array(PHONE_JPG))).toString('base64')
+  const stripped = Buffer.from(stripJpeg(new Uint8Array(PHONE_JPG)))
+  await post(app, env, '/join', { ...GOOD, photo_exif: block }, { files: [['photo1.jpg', stripped, 'image/jpeg']] })
+  const p = await db.get('SELECT * FROM worker_photo')
+  assert.equal(p.meta_source, 'browser')
+  assert.equal(p.near_zone, 'old-city')
+})
+
+test('photo far from the areas the worker chose is flagged; no GPS is flagged', async () => {
+  const { db, app, env } = await setup()
+  await post(app, env, '/join', { ...GOOD, zones: ['chiang-rai'] }, { files: [['k.jpg', PHONE_JPG, 'image/jpeg']] })
+  let ev = await db.get("SELECT detail FROM listing_event WHERE kind IN ('photo-ok','photo-hold')")
+  assert.match(ev.detail, /km-from-their-areas/)
+  const s = await setup()
+  await post(s.app, s.env, '/join', GOOD, { files: [['k.jpg', stripJpeg(new Uint8Array(PHONE_JPG)), 'image/jpeg']] })
+  ev = await s.db.get("SELECT detail FROM listing_event WHERE kind IN ('photo-ok','photo-hold')")
+  assert.match(ev.detail, /no-location/)
+})
+
+test('writing in a photo: kept, and another phone number holds the photo', async () => {
+  const { db, app, env } = await setup({ AI: fakeAI({ read: { text: ['ร้านซักรีดสะอาด', 'โทร 089-999-9999'], phones: ['089-999-9999'], shop_names: ['ร้านซักรีดสะอาด'] } }) })
+  await post(app, env, '/join', GOOD, { files: [['sign.jpg', PHONE_JPG, 'image/jpeg']] })
+  const p = await db.get('SELECT status, seen_text FROM worker_photo')
+  assert.equal(p.status, 'held')
+  assert.deepEqual(JSON.parse(p.seen_text).shop_names, ['ร้านซักรีดสะอาด'])
+  // the listing's own number on its own shop sign is fine
+  const s = await setup({ AI: fakeAI({ read: { text: ['โทร 081-234-5678'], phones: ['081-234-5678'] } }) })
+  await post(s.app, s.env, '/join', GOOD, { files: [['sign.jpg', PHONE_JPG, 'image/jpeg']] })
+  assert.equal((await s.db.get('SELECT status FROM worker_photo')).status, 'live')
+})
+
+test('writing in a photo runs through the word rules', async () => {
+  const { db, app, env } = await setup({ AI: fakeAI({ read: { text: ['รับจัดหางานแม่บ้าน ค่าหัว'] } }) })
+  await post(app, env, '/join', GOOD, { files: [['sign.jpg', PHONE_JPG, 'image/jpeg']] })
+  assert.equal((await db.get('SELECT status FROM worker_photo')).status, 'held')
+  assert.match((await db.get("SELECT detail FROM listing_event WHERE kind='photo-hold'")).detail, /photo-text:agency/)
+})
+
+test('admin page shows what was gleaned, escaped', async () => {
+  const { db, app, env } = await setup({ AI: fakeAI({ read: { shop_names: ['<script>x</script>'], text: ['<b>hi</b>'] } }) })
+  await post(app, env, '/join', GOOD, { files: [['k.jpg', PHONE_JPG, 'image/jpeg']] })
+  const h = await (await get(app, env, '/admin', { authorization: 'Basic ' + btoa('n:k') })).text()
+  assert.ok(h.includes('samsung SM-A546E'))
+  assert.ok(h.includes('openstreetmap.org/?mlat=18.7883'))
+  assert.equal(h.includes('<script>x</script>'), false)
+  assert.ok(h.includes('&lt;script&gt;'))
 })

@@ -68,47 +68,91 @@
   "zones": [
     {
       "key": "old-city",
-      "label_key": "zone.old-city"
+      "label_key": "zone.old-city",
+      "center": [
+        18.7883,
+        98.9853
+      ]
     },
     {
       "key": "nimman",
-      "label_key": "zone.nimman"
+      "label_key": "zone.nimman",
+      "center": [
+        18.799,
+        98.968
+      ]
     },
     {
       "key": "santitham",
-      "label_key": "zone.santitham"
+      "label_key": "zone.santitham",
+      "center": [
+        18.803,
+        98.979
+      ]
     },
     {
       "key": "chang-khlan",
-      "label_key": "zone.chang-khlan"
+      "label_key": "zone.chang-khlan",
+      "center": [
+        18.778,
+        99.0
+      ]
     },
     {
       "key": "hang-dong",
-      "label_key": "zone.hang-dong"
+      "label_key": "zone.hang-dong",
+      "center": [
+        18.687,
+        98.918
+      ]
     },
     {
       "key": "san-sai",
-      "label_key": "zone.san-sai"
+      "label_key": "zone.san-sai",
+      "center": [
+        18.85,
+        99.035
+      ]
     },
     {
       "key": "mae-rim",
-      "label_key": "zone.mae-rim"
+      "label_key": "zone.mae-rim",
+      "center": [
+        18.915,
+        98.944
+      ]
     },
     {
       "key": "san-kamphaeng",
-      "label_key": "zone.san-kamphaeng"
+      "label_key": "zone.san-kamphaeng",
+      "center": [
+        18.744,
+        99.12
+      ]
     },
     {
       "key": "saraphi",
-      "label_key": "zone.saraphi"
+      "label_key": "zone.saraphi",
+      "center": [
+        18.707,
+        99.036
+      ]
     },
     {
       "key": "doi-saket",
-      "label_key": "zone.doi-saket"
+      "label_key": "zone.doi-saket",
+      "center": [
+        18.874,
+        99.133
+      ]
     },
     {
       "key": "chiang-rai",
-      "label_key": "zone.chiang-rai"
+      "label_key": "zone.chiang-rai",
+      "center": [
+        19.9105,
+        99.8406
+      ]
     }
   ],
   "strings": {
