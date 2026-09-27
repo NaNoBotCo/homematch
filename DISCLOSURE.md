@@ -110,7 +110,7 @@ silently wrong.
   MB, 4 per listing. EXIF, XMP, IPTC, comments and PNG text chunks are
   stripped before storage. Mistral Small 3.1 answers two questions per photo —
   a JSON classification and a head count. Any person, child, nudity or sexual
-  content refuses the photo and it is never stored; nudity also sends the
+  content refuses the photo, and the code drops it before the storage call; nudity also sends the
   listing back to waiting and holds that connection's next listings for 7
   days. An unreadable answer or a model error refuses. Text or a QR code
   holds the photo for the operator. The browser redraws photos at 1600 px
