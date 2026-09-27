@@ -209,7 +209,7 @@ export const en = {
   'done.live': 'Your listing is on the site.',
   'done.held': 'A person looks at your listing before it shows.',
   'join.photos': 'Photos of your work',
-  'join.photos.hint': 'Up to 4: a cleaned room, a garden, a repair, folded laundry. No people and no children in any photo; a photo with a person in it is refused.',
+  'join.photos.hint': 'Up to 4: a cleaned room, a garden, a repair, folded laundry. No people and no children in any photo; a photo with a person in it is refused. Mot Dang keeps the date, place and any writing in each photo; they are not shown on the site.',
   'photo.added': '{n} photo(s) added.',
   'photo.held': '{n} photo(s) wait for a person to look before they show.',
   'photo.refused.person': '{n} photo(s) showed a person and were not added.',

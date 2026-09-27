@@ -277,10 +277,25 @@ export async function selfListingOperators(db) {
 }
 
 // ── photos ──────────────────────────────────────────────────────────────────
-export async function addPhoto(db, operatorId, workerId, { id, key, mime, status, what, sort }) {
+export async function addPhoto(db, operatorId, workerId, { id, key, mime, status, what, sort, meta = {} }) {
   await db.run(
-    'INSERT INTO worker_photo(id, worker_id, operator_id, r2_key, sort, status, mime, what, created_at) VALUES (?,?,?,?,?,?,?,?,?)',
-    id, workerId, operatorId, key, sort ?? 0, status, mime, what ?? null, now())
+    `INSERT INTO worker_photo(id, worker_id, operator_id, r2_key, sort, status, mime, what, created_at,
+       lat, lon, alt, taken_at, device, meta_key, meta_source, near_zone, near_km, seen_text)
+     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+    id, workerId, operatorId, key, sort ?? 0, status, mime, what ?? null, now(),
+    meta.lat ?? null, meta.lon ?? null, meta.alt ?? null, meta.takenAt ?? null, meta.device ?? null,
+    meta.key ?? null, meta.source ?? null, meta.nearZone ?? null, meta.nearKm ?? null,
+    meta.seen ? JSON.stringify(meta.seen) : null)
+}
+
+/** Photos on OTHER listings taken within `m` metres of a point. */
+export async function photosNear(db, operatorId, workerId, lat, lon, m = 150) {
+  const d = m / 111320
+  const rows = await db.all(
+    `SELECT id, worker_id, lat, lon FROM worker_photo WHERE operator_id=? AND worker_id<>? AND lat IS NOT NULL
+       AND lat BETWEEN ? AND ? AND lon BETWEEN ? AND ?`,
+    operatorId, workerId, lat - d, lat + d, lon - d * 1.1, lon + d * 1.1)
+  return rows
 }
 export async function listPhotos(db, operatorId, workerId) {
   return db.all('SELECT * FROM worker_photo WHERE operator_id=? AND worker_id=? ORDER BY sort, created_at', operatorId, workerId)
@@ -291,6 +306,7 @@ export async function getPhoto(db, operatorId, photoId) {
       WHERE p.operator_id=? AND p.id=?`, operatorId, photoId)
 }
 export async function deletePhoto(db, operatorId, photoId) {
+  // the caller removes r2_key and meta_key from the bucket
   await db.run('DELETE FROM worker_photo WHERE operator_id=? AND id=?', operatorId, photoId)
 }
 export async function setPhotoStatus(db, operatorId, photoId, status) {

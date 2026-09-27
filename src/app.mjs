@@ -12,10 +12,11 @@ import { makeT, registerOverride } from './i18n/index.mjs'
 import {
   listWorkers, getWorker, createListing, findByEditToken, updateListing, removeListing,
   setListingStatus, listByStatus, countAttempt, sha256, logEvent, screenHistory,
-  addPhoto, listPhotos, getPhoto, deletePhoto, setPhotoStatus, heldPhotos,
+  addPhoto, listPhotos, getPhoto, deletePhoto, setPhotoStatus, heldPhotos, photosNear,
 } from './repo.mjs'
-import { screen } from './lib/screen.mjs'
-import { clean, lookAt, MAX_PHOTOS } from './lib/photos.mjs'
+import { exifBlock, readExif, nearestZone, km } from './lib/exif.mjs'
+import { screen, rules } from './lib/screen.mjs'
+import { clean, lookAt, readText, MAX_PHOTOS } from './lib/photos.mjs'
 import { runDigest } from './digest.mjs'
 import { randomUUID } from 'node:crypto'
 import { page } from './pages/layout.mjs'
@@ -167,7 +168,7 @@ export function createApp(getDb) {
     const { id, token } = await createListing(ctx.db, ctx.operatorId, ctx.config,
       { ...values, status: verdict.decision === 'approve' ? 'live' : 'pending' })
     await logVerdict(ctx, verdict, '', { workerId: id, ipHash: ip, values })
-    const photos = ctx.config.photos ? await takePhotos(c, ctx, id, body.photos, 0) : null
+    const photos = ctx.config.photos ? await takePhotos(c, ctx, id, body.photos, 0, body.photo_exif, values) : null
     let live = verdict.decision === 'approve'
     if (photos?.sexual) {
       live = false
@@ -221,7 +222,7 @@ export function createApp(getDb) {
       const drop = new Set([].concat(body.remove_photo ?? []).map(String))
       const have = await listPhotos(ctx.db, ctx.operatorId, w.id)
       for (const p of have) if (drop.has(p.id)) await dropPhoto(c, ctx, p)
-      report = await takePhotos(c, ctx, w.id, body.photos, have.length - have.filter((p) => drop.has(p.id)).length)
+      report = await takePhotos(c, ctx, w.id, body.photos, have.length - have.filter((p) => drop.has(p.id)).length, body.photo_exif, values)
       if (report.sexual)
         await logEvent(ctx.db, ctx.operatorId, 'edit-hold', { workerId: w.id, ipHash: ip, name: values.display_name, detail: { reasons: ['sexual-photo'], categories: values.categories } })
     }
@@ -278,6 +279,7 @@ export function createApp(getDb) {
     const [pending, live, hidden] = await Promise.all(
       ['pending', 'live', 'hidden'].map((s) => listByStatus(ctx.db, ctx.operatorId, s)))
     const photos = await heldPhotos(ctx.db, ctx.operatorId)
+    for (const w of [...pending, ...live, ...hidden]) w.photos = await listPhotos(ctx.db, ctx.operatorId, w.id)
     return render(c, { title: ctx.t('admin.title'), robots: 'noindex', body: adminBody(ctx, { pending, live, hidden, photos }) })
   })
 
@@ -371,16 +373,22 @@ async function logVerdict(ctx, verdict, prefix, { workerId, ipHash, values }) {
 /** Check and store uploaded photos for a listing that already has `have`.
  *  Returns { added, held, person, other, over }. A refused photo is not
  *  stored anywhere. */
-async function takePhotos(c, ctx, workerId, files, have) {
-  const list = [].concat(files ?? []).filter((f) => f && typeof f === 'object' && typeof f.arrayBuffer === 'function' && f.size > 0)
+async function takePhotos(c, ctx, workerId, files, have, exifFields, values) {
+  const all = [].concat(files ?? [])
+  const sent = [].concat(exifFields ?? [])
+  const list = []
+  all.forEach((f, i) => {
+    if (f && typeof f === 'object' && typeof f.arrayBuffer === 'function' && f.size > 0) list.push({ f, sentExif: sent[i] })
+  })
   const r = { added: 0, held: 0, person: 0, other: 0, over: 0 }
   if (!list.length) return r
   const room = Math.max(0, MAX_PHOTOS - have)
   r.over = Math.max(0, list.length - room)
   const bucket = c.env && c.env.MEDIA
   let sort = have
-  for (const f of list.slice(0, room)) {
-    const cl = clean(await f.arrayBuffer())
+  for (const { f, sentExif } of list.slice(0, room)) {
+    const orig = new Uint8Array(await f.arrayBuffer())
+    const cl = clean(orig)
     if (cl.error) { r.other++; await logEvent(ctx.db, ctx.operatorId, 'photo-refuse', { workerId, detail: { why: cl.error } }); continue }
     const look = await lookAt(c.env && c.env.AI, cl.bytes, cl.kind)
     if (look.verdict === 'refuse') {
@@ -397,10 +405,16 @@ async function takePhotos(c, ctx, workerId, files, have) {
     const mime = cl.kind === 'png' ? 'image/png' : 'image/jpeg'
     const key = `${ctx.operatorId}/${workerId}/${id}.${cl.kind === 'png' ? 'png' : 'jpg'}`
     await bucket.put(key, cl.bytes, { httpMetadata: { contentType: mime } })
-    const status = look.verdict === 'hold' ? 'held' : 'live'
-    await addPhoto(ctx.db, ctx.operatorId, workerId, { id, key, mime, status, what: look.what, sort: sort++ })
+    const meta = await glean(c, ctx, workerId, id, orig, sentExif, values)
+    await gleanText(c, ctx, cl, meta, values)
+    const status = look.verdict === 'hold' || meta.holdForText ? 'held' : 'live'
+    await addPhoto(ctx.db, ctx.operatorId, workerId, { id, key, mime, status, what: look.what, sort: sort++, meta })
     status === 'held' ? r.held++ : r.added++
-    await logEvent(ctx.db, ctx.operatorId, status === 'held' ? 'photo-hold' : 'photo-ok', { workerId, detail: { what: look.what, why: look.why } })
+    await logEvent(ctx.db, ctx.operatorId, status === 'held' ? 'photo-hold' : 'photo-ok', {
+      workerId, name: values?.display_name,
+      detail: { what: look.what, why: look.why, takenAt: meta.takenAt, device: meta.device, lat: meta.lat, lon: meta.lon,
+        nearZone: meta.nearZone, nearKm: meta.nearKm, flags: meta.flags, seen: meta.seen },
+    })
   }
   return r
 }
@@ -408,6 +422,7 @@ async function takePhotos(c, ctx, workerId, files, have) {
 async function dropPhoto(c, ctx, p) {
   const bucket = c.env && c.env.MEDIA
   if (bucket) await bucket.delete(p.r2_key)
+  if (bucket && p.meta_key) await bucket.delete(p.meta_key)
   await deletePhoto(ctx.db, ctx.operatorId, p.id)
 }
 
@@ -432,4 +447,68 @@ function reportFromQuery(q) {
   const r = {}
   for (const k of ['added', 'held', 'person', 'other', 'over']) if (q['p' + k]) r[k] = Number(q['p' + k]) || 0
   return Object.keys(r).length ? r : null
+}
+
+/** What a photo's own metadata says, kept for the operator. The EXIF comes
+ *  from the uploaded file when it still carries one; when the browser redrew
+ *  the photo first, from the block the page sent beside it (base64, capped at
+ *  64 KB). The raw block goes to meta/ in the bucket; the parsed fields and
+ *  what they suggest go to the row. None of it is served publicly. */
+async function glean(c, ctx, workerId, photoId, orig, sentExif, values) {
+  let block = exifBlock(orig), source = block ? 'upload' : null
+  if (!block && typeof sentExif === 'string' && sentExif.length > 8 && sentExif.length < 90000) {
+    try {
+      const bin = atob(sentExif)
+      const b = new Uint8Array(bin.length)
+      for (let i = 0; i < bin.length; i++) b[i] = bin.charCodeAt(i)
+      block = b; source = 'browser'
+    } catch { block = null }
+  }
+  const e = readExif(block)
+  const meta = { ...e, source: block ? source : null, flags: [] }
+  const bucket = c.env && c.env.MEDIA
+  if (block && bucket) {
+    meta.key = `meta/${ctx.operatorId}/${workerId}/${photoId}.exif`
+    await bucket.put(meta.key, block, { httpMetadata: { contentType: 'application/octet-stream' } })
+  }
+  const zones = ctx.config.zones || []
+  if (e.lat != null) {
+    const near = nearestZone(zones, e.lat, e.lon)
+    if (near) { meta.nearZone = near.zone; meta.nearKm = near.km }
+    // how far from the areas the worker said they work in
+    const chosen = zones.filter((z) => (values?.zones || []).includes(z.key) && Array.isArray(z.center))
+    if (chosen.length) {
+      const d = Math.min(...chosen.map((z) => km(e.lat, e.lon, z.center[0], z.center[1])))
+      if (d > 15) meta.flags.push(`${Math.round(d)}km-from-their-areas`)
+    }
+    const others = await photosNear(ctx.db, ctx.operatorId, workerId, e.lat, e.lon)
+    const listings = new Set(others.map((o) => o.worker_id)).size
+    if (listings) meta.flags.push(`same-spot-as-${listings}-other-listing(s)`)
+  } else meta.flags.push('no-location')
+  if (e.takenAt && Date.parse(e.takenAt.replace(' ', 'T') + 'Z') < Date.now() - 2 * 365 * 86400000) meta.flags.push('taken-over-2-years-ago')
+  if (!block) meta.flags.push('no-metadata')
+  return meta
+}
+
+/** Read the writing in a photo and weigh it: a phone or LINE ID that is not
+ *  the listing's own, a web address or QR code, and the same word rules the
+ *  listing text passes. Adds to meta.flags; a hit also holds the photo. */
+async function gleanText(c, ctx, cl, meta, values) {
+  const seen = await readText(c.env && c.env.AI, cl.bytes, cl.kind)
+  if (!seen) { meta.flags.push('text-unread'); return }
+  const any = seen.text.length || seen.phones.length || seen.line_ids.length || seen.urls.length || seen.qr
+  if (!any) return
+  meta.seen = seen
+  const digits = (x) => String(x).replace(/\D/g, '').replace(/^66/, '0')
+  const own = digits(values?.contact_phone || '')
+  const otherPhones = seen.phones.filter((p) => digits(p).length >= 9 && digits(p) !== own)
+  if (otherPhones.length) meta.flags.push('photo-shows-another-phone')
+  const ownLine = String(values?.contact_line || '').toLowerCase().replace(/^@/, '')
+  if (seen.line_ids.some((l) => l.toLowerCase().replace(/^@/, '') !== ownLine)) meta.flags.push('photo-shows-another-line-id')
+  if (seen.urls.length) meta.flags.push('photo-shows-a-web-address')
+  if (seen.qr) meta.flags.push('photo-shows-a-qr-code')
+  const r = rules({ display_name: '', about_th: seen.text.join(' '), about_en: [...seen.shop_names, ...seen.places].join(' '),
+    categories: values?.categories || [], rates: [] })
+  for (const why of r.reasons.filter((x) => !x.startsWith('link-in-text'))) meta.flags.push('photo-text:' + why)
+  meta.holdForText = meta.flags.some((f) => f.startsWith('photo-shows-') || f.startsWith('photo-text:'))
 }

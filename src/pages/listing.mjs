@@ -199,6 +199,20 @@ export function removedBody(ctx) {
 }
 
 /** Operator moderation list. Buttons POST to /admin/<id>/<action>. */
+/** One line per photo for the operator: when, what camera, where, what it
+ *  says, and what that suggests. Strangers' text, escaped by html``. */
+function photoMeta(ctx, p) {
+  const bits = []
+  if (p.taken_at) bits.push(p.taken_at.slice(0, 16))
+  if (p.device) bits.push(p.device)
+  if (p.lat != null) bits.push(html`<a href="https://www.openstreetmap.org/?mlat=${p.lat}&mlon=${p.lon}#map=17/${p.lat}/${p.lon}" rel="noreferrer">${p.near_zone ? ctx.t('zone.' + p.near_zone) + ' ' + p.near_km + ' km' : p.lat + ',' + p.lon}</a>`)
+  else bits.push('no location')
+  let seen = null
+  try { seen = p.seen_text ? JSON.parse(p.seen_text) : null } catch {}
+  const words = seen ? [...seen.shop_names, ...seen.places, ...seen.phones, ...seen.line_ids, ...seen.urls, ...seen.text].slice(0, 12) : []
+  return html`<div class="muted" style="font-size:.82rem">${p.what ? p.what + ' · ' : ''}${bits.map((b, i) => html`${i ? ' · ' : ''}${b}`)}${words.length ? html`<br>text: ${words.join(' | ')}` : ''}</div>`
+}
+
 export function adminBody(ctx, { pending, live, hidden, photos = [] }) {
   const { t } = ctx
   const base = ctx.base || ''
@@ -207,7 +221,8 @@ export function adminBody(ctx, { pending, live, hidden, photos = [] }) {
   <td><strong>${w.display_name}</strong><br><span class="muted">${w.categories.map((c) => t('cat.' + c)).join(', ')}</span><br>
     <span class="muted">${w.zones.map((z) => t('zone.' + z)).join(', ')}</span></td>
   <td>${w.contact_line ? html`LINE ${w.contact_line}<br>` : ''}${w.contact_phone ? formatPhone(w.contact_phone) : ''}</td>
-  <td>${w.about_th || ''}${w.about_th && w.about_en ? html`<br>` : ''}${w.about_en || ''}</td>
+  <td>${w.about_th || ''}${w.about_th && w.about_en ? html`<br>` : ''}${w.about_en || ''}
+    ${(w.photos || []).map((p) => html`<div style="display:flex;gap:.4rem;margin-top:.3rem"><img src="${base}/admin/photo/${p.id}" alt="" loading="lazy" style="width:4rem;height:auto;border-radius:.3rem">${photoMeta(ctx, p)}</div>`)}</td>
   <td>${w.updated_at || w.created_at}${w.indexable ? html`<br><span class="muted">index</span>` : ''}</td>
   <td>${actions.map(([a, label]) => html`<form method="post" action="${base}/admin/${w.id}/${a}"><button class="btn" type="submit">${label}</button></form> `)}
     ${w.status === 'live' ? html`<a href="${base}/w/${w.id}">→</a>` : ''}</td>
@@ -224,7 +239,7 @@ ${table(live, [['hide', t('admin.hide')]])}
 <h2>${t('admin.photos')} (${photos.length})</h2>
 ${photos.length ? html`<div class="thumbs">${photos.map((p) => html`
   <div class="thumb"><img src="${base}/admin/photo/${p.id}" alt="${p.what || ''}" loading="lazy">
-    <span>${p.display_name} · ${p.what || ''}</span>
+    <span>${p.display_name}</span>${photoMeta(ctx, p)}
     <form method="post" action="${base}/admin/photo/${p.id}/approve"><button class="btn" type="submit">${t('admin.approve')}</button></form>
     <form method="post" action="${base}/admin/photo/${p.id}/delete"><button class="btn" type="submit">${t('admin.delete')}</button></form></div>`)}</div>`
   : html`<p class="muted">${t('admin.none')}</p>`}
@@ -234,17 +249,24 @@ ${table(hidden, [['approve', t('admin.approve')], ['delete', t('admin.delete')]]
 
 // Before a form with photos is sent, redraw each photo at most 1600 px wide as
 // a JPEG: a phone's 4 MB original becomes a few hundred KB over a rural
-// connection, and the redraw carries no EXIF. The server strips metadata again
-// and checks every photo either way; without JavaScript the originals go up.
+// connection. The redraw drops the photo's EXIF, so the page first copies the
+// EXIF block out of each original JPEG and sends it beside the photo, in a
+// photo_exif field in the same order; the server keeps it privately and the
+// public copy carries none. Without JavaScript the originals go up whole.
 const SHRINK_JS = `<script>
 (function(){var f=document.querySelector('form.listing');if(!f||!window.DataTransfer||!HTMLCanvasElement.prototype.toBlob)return;
+function exif(file){return file.slice(0,262144).arrayBuffer().then(function(ab){var b=new Uint8Array(ab),i=2;
+if(b[0]!==255||b[1]!==216)return'';while(i+4<=b.length&&b[i]===255){var m=b[i+1],n=(b[i+2]<<8)|b[i+3];if(m===218||n<2)break;
+if(m===225&&b[i+4]===69&&b[i+5]===120&&b[i+6]===105&&b[i+7]===102){var s='',e=b.subarray(i+10,Math.min(b.length,i+2+n,i+10+65536));
+for(var k=0;k<e.length;k+=32768)s+=String.fromCharCode.apply(null,e.subarray(k,k+32768));return btoa(s);}i+=2+n;}return'';}).catch(function(){return''});}
 var busy=false;f.addEventListener('submit',function(e){var inp=f.querySelector('input[type=file]');
 if(busy||!inp||!inp.files.length)return;e.preventDefault();busy=true;var max=+inp.dataset.max||4;
-var files=[].slice.call(inp.files,0,max),dt=new DataTransfer(),left=files.length;
-function done(){if(--left===0){inp.files=dt.files;f.submit();}}
-files.forEach(function(file,i){var url=URL.createObjectURL(file),im=new Image();
+var files=[].slice.call(inp.files,0,max),out=new Array(files.length),metas=new Array(files.length),left=files.length;
+function done(){if(--left)return;var dt=new DataTransfer();out.forEach(function(x){if(x)dt.items.add(x)});inp.files=dt.files;
+metas.forEach(function(m,i){if(!out[i])return;var h=document.createElement('input');h.type='hidden';h.name='photo_exif';h.value=m||'';f.appendChild(h)});f.submit();}
+files.forEach(function(file,i){exif(file).then(function(m){metas[i]=m;var url=URL.createObjectURL(file),im=new Image();
 im.onload=function(){var s=Math.min(1,1600/Math.max(im.width,im.height)),c=document.createElement('canvas');
 c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);c.getContext('2d').drawImage(im,0,0,c.width,c.height);
-c.toBlob(function(b){URL.revokeObjectURL(url);if(b)dt.items.add(new File([b],'photo'+(i+1)+'.jpg',{type:'image/jpeg'}));done();},'image/jpeg',0.82);};
-im.onerror=function(){URL.revokeObjectURL(url);dt.items.add(file);done();};im.src=url;});});})();
+c.toBlob(function(b){URL.revokeObjectURL(url);out[i]=b?new File([b],'photo'+(i+1)+'.jpg',{type:'image/jpeg'}):file;done();},'image/jpeg',0.82);};
+im.onerror=function(){URL.revokeObjectURL(url);out[i]=file;done();};im.src=url;});});});})();
 </script>`

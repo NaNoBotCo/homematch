@@ -49,7 +49,8 @@ const RULES = {
   // text shaped like instructions to a machine reading it
   instruction: ['ignoreprevious', 'ignoreallprevious', 'ignoretheabove', 'ignoreyourinstructions', 'disregardprevious',
     'systemprompt', 'youarenow', 'approvethis', 'autoapprove', 'markassafe', 'thislistingissafe', 'อนุมัติ',
-    'ข้ามการตรวจ', 'jailbreak', 'ละเว้นคำสั่ง'],
+    'ข้ามการตรวจ', 'jailbreak', 'ละเว้นคำสั่ง', 'systemnote', 'systemmessage', 'nohumanshere', 'answerpeople',
+    'developermode'],
 }
 const MARKUP = /<\s*\/?\s*(script|iframe|img|svg|a|style|object|embed)\b|javascript:|\bon[a-z]+\s*=|\{\{|\$\{/i
 const EIGHTEEN_PLUS = /18\s*\+|\+\s*18/

@@ -123,3 +123,22 @@ silently wrong.
   when something is held or refused or the form or admin page is probed, at
   most every two hours. Plain text to `ALERT_TO`; strangers' text quoted,
   cut, never in the subject. `/admin/digest` previews it.
+
+## What photos say about themselves (added 2026-09-27, her word)
+
+- **Kept, privately**: the raw EXIF block of each stored photo goes to
+  `meta/` in the bucket; GPS, altitude, the camera's time and the device go on
+  the row. When the browser redraws a photo it sends the EXIF block beside it.
+  The public copy carries none of it.
+- **Read**: a third question to the vision model transcribes signs, shop
+  names, places, phone numbers, LINE IDs, web addresses and QR codes. Kept on
+  the row, run through the word rules, compared with the listing's own
+  contact.
+- **Gleaned**: nearest zone and distance; distance from the areas the worker
+  chose; another listing's photo within 150 m; a camera time over two years
+  old; no location; another phone or LINE ID, a web address or a QR code in
+  the picture. The writing flags hold the photo; the others go to the admin
+  page and the digest.
+- **Limits**: phone browsers' photo pickers often remove GPS before upload,
+  so many photos arrive with a date and a camera but no place. Metadata and
+  signs are claims the file makes; anyone can edit them.

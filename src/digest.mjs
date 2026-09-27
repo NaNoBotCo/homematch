@@ -79,6 +79,16 @@ export function compose({ kind, config, operatorId, events, counts, from, to, ad
     lines.push(`Photos: ${photoOk} shown · ${photoHeld} held for you${photoHeld ? ' at ' + adminUrl : ''} · ` +
       `refused ${refused.length} (person ${nRef('person')}, nudity/sexual ${nRef('sexual')}, other ${refused.length - nRef('person') - nRef('sexual')})`)
     lines.push('  Refused photos are not stored; nothing to delete.')
+    const kept = by(['photo-ok', 'photo-hold'])
+    for (const e of kept) {
+      const d = detail(e) || {}
+      const where = d.lat != null ? `${d.nearZone ? t('zone.' + d.nearZone) + ' ' + d.nearKm + ' km' : ''} https://www.openstreetmap.org/?mlat=${d.lat}&mlon=${d.lon}` : 'no location'
+      const seen = d.seen ? [...(d.seen.shop_names || []), ...(d.seen.places || []), ...(d.seen.phones || [])].slice(0, 4) : []
+      lines.push(`  • ${quote(e.name, 24)} ${e.kind === 'photo-hold' ? 'HELD ' : ''}${quote(d.what, 30)} · ${d.takenAt ? d.takenAt.slice(0, 10) + ' · ' : ''}` +
+        `${d.device ? quote(d.device, 24) + ' · ' : ''}${where}` +
+        `${seen.length ? ' · reads ' + seen.map((x) => quote(x, 30)).join(' ') : ''}` +
+        `${(d.flags || []).length ? ' · ' + d.flags.join(', ') : ''}`)
+    }
   }
   const removed = by('remove').length
   const admin = by(['admin-approve', 'admin-hide', 'admin-delete'])
