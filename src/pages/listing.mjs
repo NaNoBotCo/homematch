@@ -5,6 +5,7 @@
 import { html, raw } from '../lib/html.mjs'
 import { operatorCategories, operatorZones } from '../lib/taxonomy.mjs'
 import { LANGS, ENGAGEMENTS, UNITS, formatPhone } from '../lib/listing.mjs'
+import { MAX_PHOTOS } from '../lib/photos.mjs'
 
 const FIELD_OF = {
   'err.name': 'f-name', 'err.categories': 'f-categories', 'err.zones': 'f-zones',
@@ -19,7 +20,7 @@ function checks(name, options, chosen) {
 }
 
 /** The form. `mode` is 'join' or 'edit'; `action` the POST target. */
-export function listingForm(ctx, { values = {}, errors = [], mode = 'join', action }) {
+export function listingForm(ctx, { values = {}, errors = [], mode = 'join', action, photos = [], token = '' }) {
   const { config, t } = ctx
   const bad = new Set(errors)
   const inv = (...keys) => (keys.some((k) => bad.has(k)) ? raw(' aria-invalid="true"') : '')
@@ -33,7 +34,7 @@ ${errors.length ? html`
   <strong>${t('join.errors')}</strong>
   <ul>${errors.map((e) => html`<li><a href="#${FIELD_OF[e] || 'main'}">${t(e)}</a></li>`)}</ul>
 </div>` : ''}
-<form class="listing" method="post" action="${action}" accept-charset="utf-8">
+<form class="listing" method="post" action="${action}" accept-charset="utf-8" enctype="multipart/form-data">
   <div class="field">
     <label for="f-name">${t('join.name')}</label>
     <p class="hint" id="h-name">${t('join.name.hint')}</p>
@@ -109,6 +110,19 @@ ${errors.length ? html`
     <textarea id="f-about-en" name="about_en" maxlength="600" lang="en">${values.about_en ?? ''}</textarea>
   </div>
 
+  ${ctx.config.photos ? html`
+  <fieldset id="f-photos">
+    <legend>${t('join.photos')} <span class="muted">(${t('common.optional')})</span></legend>
+    <p class="hint" id="h-photos">${t('join.photos.hint')}</p>
+    ${photos.length ? html`<div class="thumbs">${photos.map((p, i) => html`
+      <label class="thumb"><img src="${ctx.base}/edit/${token}/photo/${p.id}" alt="${t('photo.alt', { n: i + 1 })}" loading="lazy">
+        ${p.status === 'held' ? html`<span class="muted">${t('photo.pending')}</span>` : ''}
+        <span class="check"><input type="checkbox" name="remove_photo" value="${p.id}"> ${t('photo.remove')}</span></label>`)}</div>` : ''}
+    ${photos.length < MAX_PHOTOS ? html`<label class="check" style="margin-top:.4rem">
+      <input type="file" name="photos" accept="image/jpeg,image/png,image/*" multiple aria-describedby="h-photos" data-max="${MAX_PHOTOS - photos.length}">
+      ${t('join.photos')}</label>` : ''}
+  </fieldset>` : ''}
+
   <fieldset>
     <legend>${t('join.indexable')}</legend>
     <p class="hint" id="h-index">${t('join.indexable.hint')}</p>
@@ -122,7 +136,8 @@ ${errors.length ? html`
   <div class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
 
   <button class="btn primary" type="submit">${mode === 'edit' ? t('edit.save') : t('join.submit')}</button>
-</form>`
+</form>
+${ctx.config.photos ? raw(SHRINK_JS) : ''}`
 }
 
 export function joinBody(ctx, opts) {
@@ -130,13 +145,27 @@ export function joinBody(ctx, opts) {
   return html`<h1>${t('join.title')}</h1><p>${t('join.intro')}</p>${listingForm(ctx, opts)}`
 }
 
-/** After a first send: the private link, shown once. */
-export function doneBody(ctx, editUrl) {
+/** Photo outcome lines, from a report {added, held, person, other, over}. */
+export function photoReport(t, r) {
+  if (!r) return ''
+  const lines = []
+  if (r.added) lines.push(t('photo.added', { n: r.added }))
+  if (r.held) lines.push(t('photo.held', { n: r.held }))
+  if (r.person) lines.push(t('photo.refused.person', { n: r.person }))
+  if (r.other) lines.push(t('photo.refused.other', { n: r.other }))
+  if (r.over) lines.push(t('photo.limit', { n: MAX_PHOTOS }))
+  return lines.length ? html`<ul>${lines.map((l) => html`<li>${l}</li>`)}</ul>` : ''
+}
+
+/** After a first send: where the listing stands, and the private link,
+ *  shown once. The bot's reasons for a hold are not shown. */
+export function doneBody(ctx, editUrl, { live = false, workerId = null, photos = null } = {}) {
   const { t } = ctx
   const share = `https://line.me/R/share?text=${encodeURIComponent(t('done.link') + ' ' + editUrl)}`
   return html`
 <h1>${t('done.title')}</h1>
-<p>${t('done.body')}</p>
+<p>${live ? t('done.live') : t('done.held')}${live && workerId ? html` <a href="${ctx.base}/w/${workerId}">${t('edit.view')}</a>` : ''}</p>
+${photoReport(t, photos)}
 <section class="notice" aria-labelledby="link-h">
   <h2 id="link-h" style="margin-top:0">${t('done.link')}</h2>
   <p>${t('done.link.hint')}</p>
@@ -146,15 +175,15 @@ export function doneBody(ctx, editUrl) {
 }
 
 /** The private edit page: status, the form, and remove. */
-export function editBody(ctx, w, { values, errors = [], saved, token }) {
+export function editBody(ctx, w, { values, errors = [], saved, token, photos = [], report = null }) {
   const { t } = ctx
   const base = ctx.base || ''
   return html`
 <h1>${t('edit.title')}</h1>
-${saved ? html`<div class="notice" role="status">${saved === 'review' ? t('edit.saved.review') : t('edit.saved')}</div>` : ''}
+${saved ? html`<div class="notice" role="status">${saved === 'review' ? t('edit.saved.review') : t('edit.saved')}${photoReport(t, report)}</div>` : ''}
 <p><strong>${t('edit.status')}:</strong> ${t('edit.status.' + (w.status || 'pending'))}
 ${w.status === 'live' ? html` · <a href="${base}/w/${w.id}">${t('edit.view')}</a>` : ''}</p>
-${listingForm(ctx, { values, errors, mode: 'edit', action: `${base}/edit/${token}` })}
+${listingForm(ctx, { values, errors, mode: 'edit', action: `${base}/edit/${token}`, photos, token })}
 <form method="post" action="${base}/edit/${token}/remove" style="margin-top:2rem">
   <p class="muted">${t('edit.remove.hint')}</p>
   <button class="btn" type="submit">${t('edit.remove')}</button>
@@ -168,7 +197,7 @@ export function removedBody(ctx) {
 }
 
 /** Operator moderation list. Buttons POST to /admin/<id>/<action>. */
-export function adminBody(ctx, { pending, live, hidden }) {
+export function adminBody(ctx, { pending, live, hidden, photos = [] }) {
   const { t } = ctx
   const base = ctx.base || ''
   const row = (w, actions) => html`
@@ -190,6 +219,30 @@ export function adminBody(ctx, { pending, live, hidden }) {
 ${table(pending, [['approve', t('admin.approve')], ['delete', t('admin.delete')]])}
 <h2>${t('admin.live')} (${live.length})</h2>
 ${table(live, [['hide', t('admin.hide')]])}
+<h2>${t('admin.photos')} (${photos.length})</h2>
+${photos.length ? html`<div class="thumbs">${photos.map((p) => html`
+  <div class="thumb"><img src="${base}/admin/photo/${p.id}" alt="${p.what || ''}" loading="lazy">
+    <span>${p.display_name} · ${p.what || ''}</span>
+    <form method="post" action="${base}/admin/photo/${p.id}/approve"><button class="btn" type="submit">${t('admin.approve')}</button></form>
+    <form method="post" action="${base}/admin/photo/${p.id}/delete"><button class="btn" type="submit">${t('admin.delete')}</button></form></div>`)}</div>`
+  : html`<p class="muted">${t('admin.none')}</p>`}
 <h2>${t('admin.hidden')} (${hidden.length})</h2>
 ${table(hidden, [['approve', t('admin.approve')], ['delete', t('admin.delete')]])}`
 }
+
+// Before a form with photos is sent, redraw each photo at most 1600 px wide as
+// a JPEG: a phone's 4 MB original becomes a few hundred KB over a rural
+// connection, and the redraw carries no EXIF. The server strips metadata again
+// and checks every photo either way; without JavaScript the originals go up.
+const SHRINK_JS = `<script>
+(function(){var f=document.querySelector('form.listing');if(!f||!window.DataTransfer||!HTMLCanvasElement.prototype.toBlob)return;
+var busy=false;f.addEventListener('submit',function(e){var inp=f.querySelector('input[type=file]');
+if(busy||!inp||!inp.files.length)return;e.preventDefault();busy=true;var max=+inp.dataset.max||4;
+var files=[].slice.call(inp.files,0,max),dt=new DataTransfer(),left=files.length;
+function done(){if(--left===0){inp.files=dt.files;f.submit();}}
+files.forEach(function(file,i){var url=URL.createObjectURL(file),im=new Image();
+im.onload=function(){var s=Math.min(1,1600/Math.max(im.width,im.height)),c=document.createElement('canvas');
+c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);c.getContext('2d').drawImage(im,0,0,c.width,c.height);
+c.toBlob(function(b){URL.revokeObjectURL(url);if(b)dt.items.add(new File([b],'photo'+(i+1)+'.jpg',{type:'image/jpeg'}));done();},'image/jpeg',0.82);};
+im.onerror=function(){URL.revokeObjectURL(url);dt.items.add(file);done();};im.src=url;});});})();
+</script>`

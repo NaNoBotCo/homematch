@@ -104,8 +104,9 @@ export const newToken = () => randomBytes(24).toString('base64url')
 
 const STATUS_ACTIVE = { pending: 0, live: 1, hidden: 0 }
 
-/** Create a pending self-listing. `input` is a validated listing (see
- *  lib/listing.mjs). Returns { id, token }. */
+/** Create a self-listing. `input` is a validated listing (see
+ *  lib/listing.mjs); input.status 'live' when the bot approved it, else it
+ *  waits as 'pending'. Returns { id, token }. */
 export async function createListing(db, operatorId, config, input) {
   const userId = randomUUID()
   await db.run(
@@ -113,10 +114,11 @@ export async function createListing(db, operatorId, config, input) {
     userId, operatorId, input.display_name)
   const id = await createWorker(db, operatorId, config, { ...input, userId, active: false })
   const token = newToken()
+  const status = input.status === 'live' ? 'live' : 'pending'
   await db.run(
-    `UPDATE worker_profile SET status='pending', contact_line=?, contact_phone=?, indexable=?,
+    `UPDATE worker_profile SET status=?, active=?, contact_line=?, contact_phone=?, indexable=?,
        edit_hash=?, consent_at=? WHERE operator_id=? AND id=?`,
-    input.contact_line, input.contact_phone, input.indexable ? 1 : 0,
+    status, STATUS_ACTIVE[status], input.contact_line, input.contact_phone, input.indexable ? 1 : 0,
     sha256(token), now(), operatorId, id)
   return { id, token }
 }
@@ -129,9 +131,9 @@ export async function findByEditToken(db, operatorId, token) {
   return row ? getWorker(db, operatorId, row.id) : null
 }
 
-/** Replace a listing's fields and child rows. Returns { review } — true when
- *  the name or contact changed on a listing that was live, which sends it back
- *  to 'pending'. */
+/** Replace a listing's fields and child rows. Returns { review, status }.
+ *  With input.status (the bot's verdict) that decides; without it, a name or
+ *  contact change on a live listing sends it back to 'pending'. */
 export async function updateListing(db, operatorId, config, workerId, input) {
   const v = validateWorkerCategories(config, input.categories, {})
   if (!v.ok) { const e = new Error('invalid categories'); e.details = v.errors; throw e }
@@ -140,8 +142,14 @@ export async function updateListing(db, operatorId, config, workerId, input) {
   const changed = cur.display_name !== input.display_name ||
     (cur.contact_line || null) !== (input.contact_line || null) ||
     (cur.contact_phone || null) !== (input.contact_phone || null)
-  const review = changed && cur.status === 'live'
-  const status = review ? 'pending' : cur.status
+  let review = changed && cur.status === 'live'
+  let status = review ? 'pending' : cur.status
+  // the bot's verdict, when there is one; a listing the operator took down
+  // stays down whatever its owner edits
+  if (input.status && cur.status !== 'hidden') {
+    status = input.status
+    review = status === 'pending'
+  }
   await db.run('UPDATE app_user SET display_name=? WHERE operator_id=? AND id=?',
     input.display_name, operatorId, cur.user_id)
   const headline = input.categories[0]
@@ -165,7 +173,7 @@ export async function updateListing(db, operatorId, config, workerId, input) {
     await db.run(
       'INSERT INTO rate_card(id, worker_id, operator_id, category_key, amount, unit, negotiable) VALUES (?,?,?,?,?,?,?)',
       randomUUID(), workerId, operatorId, r.category_key, r.amount ?? null, r.unit, r.negotiable === false ? 0 : 1)
-  return { review }
+  return { review, status }
 }
 
 async function deleteChildren(db, operatorId, workerId) {
@@ -214,3 +222,82 @@ export async function countAttempt(db, operatorId, ipHash) {
 }
 
 export { sha256 }
+
+// ── approval bot + digest (0006) ────────────────────────────────────────────
+
+/** Append one event. `detail` is stored as JSON. */
+export async function logEvent(db, operatorId, kind, { workerId = null, ipHash = null, name = null, detail = null } = {}) {
+  await db.run(
+    'INSERT INTO listing_event(operator_id, at, kind, worker_id, ip_hash, name, detail) VALUES (?,?,?,?,?,?,?)',
+    operatorId, now(), kind, workerId, ipHash, name, detail == null ? null : JSON.stringify(detail))
+}
+
+/** What the bot knows about a sender and a contact before it decides.
+ *  sameContact = other listings carrying this phone or LINE ID;
+ *  sameSender = listings this connection sent in the last 24 h. */
+export async function screenHistory(db, operatorId, { phone, line, ipHash, excludeId = null }) {
+  const c = await db.get(
+    `SELECT COUNT(*) AS n FROM worker_profile WHERE operator_id=? AND id IS NOT ?
+       AND ((? IS NOT NULL AND contact_phone=?) OR (? IS NOT NULL AND lower(contact_line)=lower(?)))`,
+    operatorId, excludeId, phone, phone, line, line)
+  const s = ipHash ? await db.get(
+    `SELECT COUNT(*) AS n FROM listing_event WHERE operator_id=? AND ip_hash=? AND kind IN ('approve','hold')
+       AND at >= datetime('now','-1 day')`, operatorId, ipHash) : { n: 0 }
+  // a connection that sent a sexual photo in the last 7 days
+  const x = ipHash ? await db.get(
+    `SELECT COUNT(*) AS n FROM listing_event WHERE operator_id=? AND ip_hash=? AND kind='photo-refuse'
+       AND detail LIKE '%"why":"sexual"%' AND at >= datetime('now','-7 days')`, operatorId, ipHash) : { n: 0 }
+  return { sameContact: c?.n ?? 0, sameSender: s?.n ?? 0, sexualPhoto: x?.n ?? 0 }
+}
+
+export async function eventsAfter(db, operatorId, afterId) {
+  return db.all('SELECT * FROM listing_event WHERE operator_id=? AND id>? ORDER BY id', operatorId, afterId)
+}
+
+export async function digestState(db, operatorId, kind) {
+  return (await db.get('SELECT * FROM digest_state WHERE operator_id=? AND kind=?', operatorId, kind))
+    ?? { operator_id: operatorId, kind, last_event_id: 0, sent_at: null }
+}
+
+export async function saveDigestState(db, operatorId, kind, lastEventId, sentAt) {
+  await db.run(
+    `INSERT INTO digest_state(operator_id, kind, last_event_id, sent_at) VALUES (?,?,?,?)
+     ON CONFLICT(operator_id, kind) DO UPDATE SET last_event_id=excluded.last_event_id, sent_at=excluded.sent_at`,
+    operatorId, kind, lastEventId, sentAt)
+}
+
+export async function statusCounts(db, operatorId) {
+  const rows = await db.all('SELECT status, COUNT(*) AS n FROM worker_profile WHERE operator_id=? GROUP BY status', operatorId)
+  return Object.fromEntries(rows.map((r) => [r.status, r.n]))
+}
+
+export async function selfListingOperators(db) {
+  const rows = await db.all('SELECT id, config_json FROM operator')
+  return rows.map((r) => ({ id: r.id, config: JSON.parse(r.config_json) })).filter((o) => o.config.selfListing)
+}
+
+// ── photos ──────────────────────────────────────────────────────────────────
+export async function addPhoto(db, operatorId, workerId, { id, key, mime, status, what, sort }) {
+  await db.run(
+    'INSERT INTO worker_photo(id, worker_id, operator_id, r2_key, sort, status, mime, what, created_at) VALUES (?,?,?,?,?,?,?,?,?)',
+    id, workerId, operatorId, key, sort ?? 0, status, mime, what ?? null, now())
+}
+export async function listPhotos(db, operatorId, workerId) {
+  return db.all('SELECT * FROM worker_photo WHERE operator_id=? AND worker_id=? ORDER BY sort, created_at', operatorId, workerId)
+}
+export async function getPhoto(db, operatorId, photoId) {
+  return db.get(
+    `SELECT p.*, w.active AS worker_active FROM worker_photo p JOIN worker_profile w ON w.id=p.worker_id
+      WHERE p.operator_id=? AND p.id=?`, operatorId, photoId)
+}
+export async function deletePhoto(db, operatorId, photoId) {
+  await db.run('DELETE FROM worker_photo WHERE operator_id=? AND id=?', operatorId, photoId)
+}
+export async function setPhotoStatus(db, operatorId, photoId, status) {
+  await db.run('UPDATE worker_photo SET status=? WHERE operator_id=? AND id=?', status, operatorId, photoId)
+}
+export async function heldPhotos(db, operatorId) {
+  return db.all(
+    `SELECT p.*, u.display_name FROM worker_photo p JOIN worker_profile w ON w.id=p.worker_id
+       JOIN app_user u ON u.id=w.user_id WHERE p.operator_id=? AND p.status='held' ORDER BY p.created_at`, operatorId)
+}

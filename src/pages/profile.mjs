@@ -43,6 +43,7 @@ ${w.engagements && w.engagements.length ? html`
 ${w.license_number ? html`<p><strong>${t('profile.license')}:</strong> ${w.license_number}</p>` : ''}
 ${w.certificate_note ? html`<p><strong>${t('profile.certificate')}:</strong> ${w.certificate_note}</p>` : ''}
 
+${gallery(ctx, w)}
 ${contactBlock(ctx, w)}
 `
 }
@@ -73,4 +74,13 @@ function contactBlock(ctx, w) {
   <p class="muted">${t('profile.contactHidden')}</p>
   <button class="btn" type="button" disabled aria-disabled="true">${t('profile.message', { name: w.display_name || '' })}</button>
 </div>`
+}
+
+function gallery(ctx, w) {
+  const photos = (w.photos || []).filter((p) => p.status === 'live')
+  if (!photos.length) return ''
+  const { t } = ctx
+  return html`
+<h2>${t('profile.photos')}</h2>
+<div class="gallery">${photos.map((p, i) => html`<img src="${ctx.base}/photo/${p.id}" alt="${t('photo.alt', { n: i + 1 })}" loading="lazy" decoding="async">`)}</div>`
 }

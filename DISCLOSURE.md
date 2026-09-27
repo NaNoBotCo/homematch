@@ -95,3 +95,31 @@ silently wrong.
   (`../baanstaff/docs/LEGAL_RESEARCH.md` §4 point 2). Matching, recommending,
   negotiating for either side, or holding worker documents are the features
   §4 point 3 lists as licensable territory; none of them runs on this tenant.
+
+## The approval bot, photos, the digest (added 2026-09-27)
+
+- **Listings** are approved by `src/lib/screen.mjs` on tenants with
+  `autoApprove`. Rules first (sex-work and scam words, agency signals, links,
+  markup, instruction-shaped text, hidden characters, business names, rate
+  outliers, non-Thai phones, a contact already on another listing, three or
+  more listings from one connection in a day, a sexual photo from the same
+  connection in 7 days). Then Llama Guard 3 on Workers AI, which can only turn
+  an approve into a hold. A hold waits for the operator; the sender is not
+  told why. Every edit is screened again.
+- **Photos** (`src/lib/photos.mjs`, tenant `photos`): JPEG or PNG by bytes, 4
+  MB, 4 per listing. EXIF, XMP, IPTC, comments and PNG text chunks are
+  stripped before storage. Mistral Small 3.1 answers two questions per photo —
+  a JSON classification and a head count. Any person, child, nudity or sexual
+  content refuses the photo and it is never stored; nudity also sends the
+  listing back to waiting and holds that connection's next listings for 7
+  days. An unreadable answer or a model error refuses. Text or a QR code
+  holds the photo for the operator. The browser redraws photos at 1600 px
+  before upload when JavaScript runs.
+- **What the checks are not**: word lists and a model are a filter, not a
+  guarantee. A determined sender can word around the rules; the model can
+  miss. The digest, the report link on each page and the operator's take-down
+  are the backstop.
+- **Digest** (`src/digest.mjs`): daily at 08:00 Bangkok, and between those
+  when something is held or refused or the form or admin page is probed, at
+  most every two hours. Plain text to `ALERT_TO`; strangers' text quoted,
+  cut, never in the subject. `/admin/digest` previews it.

@@ -9,6 +9,7 @@
 // app.mjs stay root-relative.
 import { createApp } from './app.mjs'
 import { d1Db } from './db.mjs'
+import { tick } from './digest.mjs'
 
 const app = createApp((env) => d1Db(env.DB))
 
@@ -32,5 +33,9 @@ export default {
       request = new Request(url, request)
     }
     return app.fetch(request, env, ctx)
+  },
+  // the digest clock (wrangler.toml [triggers])
+  scheduled(event, env, ctx) {
+    ctx.waitUntil(tick(d1Db(env.DB), env, new Date(event.scheduledTime)))
   },
 }

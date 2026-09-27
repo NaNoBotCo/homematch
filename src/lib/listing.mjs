@@ -6,7 +6,7 @@ import { operatorCategories, operatorZones } from './taxonomy.mjs'
 
 export const LANGS = ['th', 'en', 'my', 'shan']
 export const ENGAGEMENTS = ['task', 'short', 'long']
-export const UNITS = ['hour', 'visit', 'day', 'month']
+export const UNITS = ['hour', 'visit', 'day', 'month', 'kg']
 
 const list = (v) => (v == null ? [] : Array.isArray(v) ? v : [v]).map(String)
 const text = (v, max) => String(v ?? '').replace(/\s+/g, ' ').trim().slice(0, max)
