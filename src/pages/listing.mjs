@@ -118,9 +118,11 @@ ${errors.length ? html`
       <label class="thumb"><img src="${ctx.base}/edit/${token}/photo/${p.id}" alt="${t('photo.alt', { n: i + 1 })}" loading="lazy">
         ${p.status === 'held' ? html`<span class="muted">${t('photo.pending')}</span>` : ''}
         <span class="check"><input type="checkbox" name="remove_photo" value="${p.id}"> ${t('photo.remove')}</span></label>`)}</div>` : ''}
-    ${photos.length < MAX_PHOTOS ? html`<label class="check" style="margin-top:.4rem">
-      <input type="file" name="photos" accept="image/jpeg,image/png,image/*" multiple aria-describedby="h-photos" data-max="${MAX_PHOTOS - photos.length}">
-      ${t('join.photos')}</label>` : ''}
+    ${photos.length < MAX_PHOTOS ? html`<div class="field" style="margin-top:.4rem">
+      <label for="f-photo-files">${t('join.photos')}</label>
+      <input type="file" id="f-photo-files" name="photos" accept="image/jpeg,image/png,image/*" multiple
+        aria-describedby="h-photos" data-max="${MAX_PHOTOS - photos.length}">
+    </div>` : ''}
   </fieldset>` : ''}
 
   <fieldset>
