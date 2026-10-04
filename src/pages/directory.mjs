@@ -31,7 +31,7 @@ function chipRow(base, t, label, query, key, options) {
   return html`<div class="row"><span class="lbl" id="f-${key}">${label}</span><span role="group" aria-labelledby="f-${key}" class="chips">${chips}</span></div>`
 }
 
-export function directoryBody(ctx, workers, { shops = [], shopCounts = {} } = {}) {
+export function directoryBody(ctx, workers, { shops = [], shopCounts = {}, businesses = [] } = {}) {
   const { config, t, query } = ctx
   const base = ctx.base || ''
   const catOpts = operatorCategories(config).map((c) => ({ value: c.key, label: t(c.label_key) }))
@@ -81,6 +81,7 @@ ${ctx.config.roadGraph || shops.length ? html`<p class="near"><button class="btn
 ${workers.length === 0
   ? html`<div class="wcard"><p>${t('dir.empty')}</p><p class="muted">${t('dir.emptyHint')}</p></div>`
   : html`<ul class="card-list" id="people">${workers.map((w) => workerCard(ctx, w, labels))}</ul>`}
+${businessSection(ctx, businesses)}
 ${shopSection(ctx, shops, shopCounts)}
 ${shelves}
 ${raw(NEAR_JS(ctx))}
@@ -115,6 +116,39 @@ function shopSection(ctx, shops, counts) {
 ${shops.length ? html`<ul class="shoplist" id="shoplist" data-cat="${cat}">${shops.map((s) => shopRow(ctx, s))}</ul>` : ''}
 ${shelf(cat) ? html`<p><a href="${shelf(cat)}">${cat === 'laundry' ? t('shops.laundryOthers') : t('shops.all', { n })} →</a></p>` : ''}
 </section>`
+}
+
+/** Businesses that state their own prices or terms: each fact in the
+ *  business's words, with the page it came from and the date read. */
+export function businessSection(ctx, rows) {
+  if (!rows.length) return ''
+  const { t } = ctx
+  return html`<section class="shops biz" aria-labelledby="biz-h">
+<h2 id="biz-h">${t('biz.title')} <span class="muted">(${rows.length})</span></h2>
+<p class="muted">${t('biz.note')}</p>
+<ul class="shoplist bizlist">${rows.map((b) => businessRow(ctx, b))}</ul>
+</section>`
+}
+
+const FIELD_ORDER = ['price', 'minimum', 'zones', 'booking', 'languages', 'hours', 'services']
+
+export function businessRow(ctx, b) {
+  const { t } = ctx
+  const name = ctx.locale === 'en' && b.name_en ? b.name_en : b.name_th || b.name_en
+  const facts = [...b.facts].sort((x, y) => FIELD_ORDER.indexOf(x.field) - FIELD_ORDER.indexOf(y.field))
+  const prices = facts.filter((f) => f.field === 'price' && f.thb).slice(0, 1)
+  const priceQuotes = facts.filter((f) => f.field === 'price').slice(0, 3)
+  const rest = [...priceQuotes, ...facts.filter((f) => f.field !== 'price')]
+  const unit = (u) => (u && t('biz.unit.' + u) !== 'biz.unit.' + u ? t('biz.unit.' + u) : '')
+  const when = facts.map((f) => f.date).filter(Boolean).sort().pop()
+  const host = (u) => { try { return new URL(u).hostname.replace(/^www\./, '') } catch { return '' } }
+  const src = facts.find((f) => f.url)
+  return html`<li><a href="${b.url}">${name}</a>
+  ${b.zone ? html`<span class="muted">· ${t('zone.' + b.zone)}</span>` : b.province === 'cr' ? html`<span class="muted">· ${t('zone.chiang-rai')}</span>` : ''}
+  ${prices.map((f) => html`<span class="chip">${f.thb.toLocaleString('en-US')} ฿${unit(f.unit) ? ' / ' + unit(f.unit) : ''}</span>`)}
+  ${b.phone ? html`<a class="call" href="tel:${firstPhone(b.phone)}" rel="nofollow">${String(b.phone).split(/[,/]/)[0].trim()}</a>` : ''}
+  <span class="facts">${rest.map((f) => html`<span class="fact"><span class="muted">${t('biz.field.' + f.field)}:</span> “${f.quote}”</span>`)}
+  ${src ? html`<span class="muted src">${t('biz.source', { host: host(src.url), date: when || '' })} <a href="${src.url}" rel="nofollow">${t('biz.page')}</a></span>` : ''}</span></li>`
 }
 
 export function shopRow(ctx, s) {

@@ -66,6 +66,8 @@ table.adm td,table.adm th{border-bottom:1px solid var(--border);padding:.4rem;te
 .shoplist a:first-child{font-weight:700}
 .shoplist .call{margin-left:auto;min-height:44px;display:inline-flex;align-items:center}
 .near{margin:.25rem 0 .75rem}
+.bizlist .facts{flex-basis:100%;display:flex;flex-direction:column;gap:.15rem;font-size:.92rem}
+.bizlist .src{font-size:.82rem}
 .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr));gap:.5rem;margin:.5rem 0}
 .gallery img{width:100%;height:auto;border-radius:.6rem;border:1px solid var(--border);background:var(--card)}
 .thumbs{display:flex;flex-wrap:wrap;gap:.6rem;margin:.4rem 0}
@@ -114,6 +116,7 @@ ${canon ? html`<meta property="og:url" content="${canon}">` : ''}
   <nav class="site" aria-label="${locale === 'th' ? 'เมนูหลัก' : 'Primary'}">
     ${navLink('/', t('nav.directory'), ctx.path === '/')}
     ${config.selfListing ? navLink('/join', t('nav.join'), ctx.path === '/join') : ''}
+    ${navLink('/wage', t('nav.wage'), ctx.path === '/wage' || ctx.path === '/agreement')}
     ${navLink('/how', t('page.how.title'), ctx.path === '/how')}
     <a class="btn" href="${qsToggle}" rel="nofollow" lang="${other}">${other === 'th' ? 'ไทย' : other.toUpperCase()}</a>
   </nav>
