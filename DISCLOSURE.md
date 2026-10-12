@@ -162,3 +162,31 @@ silently wrong.
 - **Share cards**: `src/card.mjs`, drawn by Browser Rendering with Sarabun
   embedded, kept in R2 per version of a listing; `/card/sample.png` shows the
   design. No renderer → the shelf card.
+
+## Wage page, agreement, businesses strand (added 2026-10-04, not deployed)
+
+- **/wage**: minimum pay for a household worker by area and pay basis
+  (`src/lib/wage.mjs`). Rates from Wage Committee Notification No. 14 (in
+  force 1 July 2025; read on mol.go.th 2026-10-04, still the latest listed):
+  Mueang Chiang Mai 380, rest of Chiang Mai 357, Chiang Rai 352 baht a day.
+  A day-paid worker earns the full daily rate however few hours (clause 19).
+  The monthly floor shown, daily rate × 30, is this code's reading of LPA
+  s.56(1) and s.68; no DLPW worked example was found. No hourly minimum-wage
+  notification was found, so there is no hourly basis.
+- **/agreement**: the bilingual agreement, Thai beside English, numbers
+  carried from /wage, blanks for hand-filling, print stylesheet
+  (`src/lib/agreement.mjs`). Maternity follows LPA s.41/s.59 as amended by
+  LPA (No. 9), in force 7 Dec 2025 (120 days, 60 paid); MR15 applies those
+  sections, and no DLPW statement on domestic workers and the amendment was
+  found. Nothing typed on either page is stored.
+- **Businesses strand**: `data/businesses.json` (from
+  `scripts/businesses-from-research.py`) carries what 77 businesses state on
+  their own pages, each fact with its words, page and date read. The import
+  merges facts onto Mot Dang rows, re-files a row by the work its own pages
+  name, adds businesses with no Mot Dang record as `source='web'` rows that
+  link to their own page, and leaves out 104 ids the research found
+  misfiled (farm-supply shops, car washes, shoe cleaners, metal workshops).
+  Migration 0009 adds `source`, `facts`, `website` to `shop`. The directory
+  shows these rows above the shop list when a work type is chosen.
+- **Scope note**: a worker employed by a cleaning company and sent to a home
+  is under the full Labour Protection Act, not MR15 (DLPW explanation).

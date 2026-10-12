@@ -325,6 +325,22 @@ export async function listShops(db, operatorId, { category, zone }, limit = 30) 
   if (zone) { where.push('zone=?'); params.push(zone) }
   return db.all(`SELECT * FROM shop WHERE ${where.join(' AND ')} ORDER BY pickup DESC, rank DESC, name_th LIMIT ?`, ...params, limit)
 }
+/** Businesses in a work type that state their own prices or terms (0009),
+ *  facts parsed. Zone-filtered rows keep the province-wide ones (zone NULL). */
+export async function listBusinesses(db, operatorId, { category, zone }, limit = 40) {
+  // No work type: every type's businesses, for a board with nobody on it yet.
+  const where = ['operator_id=?', 'facts IS NOT NULL']
+  const params = [operatorId]
+  if (category) { where.push('category=?'); params.push(category) }
+  if (zone) { where.push('(zone=? OR (zone IS NULL AND province=?))'); params.push(zone, zone === 'chiang-rai' ? 'cr' : 'cm') }
+  const rows = await db.all(`SELECT * FROM shop WHERE ${where.join(' AND ')} ORDER BY rank DESC, name_th LIMIT ?`, ...params, limit)
+  return rows.map((r) => {
+    let facts = []
+    try { facts = JSON.parse(r.facts) || [] } catch {}
+    return { ...r, facts }
+  }).filter((r) => r.facts.length)
+    .sort((x, y) => (y.facts.some((f) => f.field === 'price') ? 1 : 0) - (x.facts.some((f) => f.field === 'price') ? 1 : 0))
+}
 export async function countShops(db, operatorId, zone = null) {
   const rows = await db.all(
     `SELECT category, COUNT(*) AS n FROM shop WHERE operator_id=?${zone ? ' AND zone=?' : ''} GROUP BY category`,

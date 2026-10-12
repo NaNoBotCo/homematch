@@ -1,0 +1,3131 @@
+{
+ "_meta": {
+  "built": "2026-10-04",
+  "from": "homehelp_businesses.json",
+  "businesses": 77,
+  "misfiled": 104,
+  "method": "Facts each business states on its own website, Facebook or LINE page, or its own listing on a booking platform; each with the words, the page and the date read."
+ },
+ "businesses": [
+  {
+   "motdang_id": "cm-curated-fb-launderyth",
+   "name": "Launderyth (Laundery) - Laundry Delivery",
+   "name_th": "ซัก อบ รีด ดิลิเวอรี่ / บริษัท ลอนดรีดิลิเวอรี จำกัด",
+   "kind": "laundry",
+   "province": "cm",
+   "website": "https://launderyth.com/index_th.php",
+   "facebook": "https://www.facebook.com/Launderyth",
+   "phone": "064-796-3168",
+   "facts": [
+    {
+     "field": "price",
+     "quote": "บริการ ซัก 149 บาท ต่อ กิโลกรัม ... บริการขั้นต่ำ 3 กิโลกรัม",
+     "url": "https://launderyth.com/pricing_cnx_th.php",
+     "date": "2026-10-04",
+     "value": "Express 6-7 h: wash 149 THB/kg, iron 89 THB/kg, min 3 kg",
+     "thb": 149,
+     "unit": "kg"
+    },
+    {
+     "field": "price",
+     "quote": "บริการ ซัก 79 บาท ต่อ กิโลกรัม บริการ รีด 59 บาท / กิโลกรัม",
+     "url": "https://launderyth.com/pricing_cnx_th.php",
+     "date": "2026-10-04",
+     "value": "1-day: wash 79 THB/kg, iron 59 THB/kg, min 4 kg",
+     "thb": 79,
+     "unit": "kg"
+    },
+    {
+     "field": "price",
+     "quote": "บริการ ซัก 59 บาท ต่อ กิโลกรัม บริการ รีด 55 บาท / กิโลกรัม",
+     "url": "https://launderyth.com/pricing_cnx_th.php",
+     "date": "2026-10-04",
+     "value": "2-day: wash 59 THB/kg, iron 55 THB/kg, min 5 kg",
+     "thb": 59,
+     "unit": "kg"
+    },
+    {
+     "field": "minimum",
+     "quote": "บริการขั้นต่ำ 3 กิโลกรัม",
+     "url": "https://launderyth.com/pricing_cnx_th.php",
+     "date": "2026-10-04",
+     "value": "3 kg (express) / 4 kg (1-day) / 5 kg (2-day)"
+    },
+    {
+     "field": "price",
+     "quote": "*ราคานี้ยังไม่รวมภาษีมูลค่าเพิ่ม 7%* บริการรับ-ส่งฟรี ในพื้นที่ให้บริการ",
+     "url": "https://launderyth.com/pricing_cnx_th.php",
+     "date": "2026-10-04",
+     "value": "Prices exclude 7% VAT; pickup/delivery free in service area"
+    },
+    {
+     "field": "zones",
+     "quote": "ตัวเมืองเชียงใหม่, นิมมานฯ, ป่าตัน, ช้างเผือก, และพื้นที่ใกล้เคียง",
+     "url": "https://launderyth.com/pricing_cnx_th.php",
+     "date": "2026-10-04",
+     "value": "Chiang Mai city, Nimman, Pa Tan, Chang Phueak and nearby"
+    },
+    {
+     "field": "booking",
+     "quote": "เพียงกรอกฟอร์มผ่านหน้าเว็บไซต์ เลือกวันและเวลาเข้ารับและส่งคืน",
+     "url": "https://launderyth.com/index_th.php",
+     "date": "2026-10-04",
+     "value": "Online booking form on website"
+    },
+    {
+     "field": "hours",
+     "quote": "เปิดบริการทุกวัน",
+     "url": "https://launderyth.com/pricing_cnx_th.php",
+     "date": "2026-10-04",
+     "value": "Open every day"
+    },
+    {
+     "field": "languages",
+     "quote": "ภาษา ไทย อังกฤษ",
+     "url": "https://launderyth.com/pricing_cnx_th.php",
+     "date": "2026-10-04",
+     "value": "Thai, English"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-curated-laundry-17711",
+   "name": "WashDrop (Chiang Mai)",
+   "name_th": "วอชดรอป",
+   "kind": "laundry",
+   "province": "cm",
+   "website": "https://www.washdrop.com/laundry-chiang-mai/",
+   "facts": [
+    {
+     "field": "price",
+     "quote": "Economy 3 Days ฿ 79 / kg ... Ironing THB 19 per piece",
+     "url": "https://www.washdrop.com/pricing/?region=cnx",
+     "date": "2026-10-04",
+     "value": "Economy (3 days) 79 THB/kg; ironing 19 THB/piece",
+     "thb": 79,
+     "unit": "kg"
+    },
+    {
+     "field": "price",
+     "quote": "Standard Next Day ฿ 109 / kg ... Ironing THB 25 per piece",
+     "url": "https://www.washdrop.com/pricing/?region=cnx",
+     "date": "2026-10-04",
+     "value": "Standard (next day) 109 THB/kg; ironing 25 THB/piece",
+     "thb": 109,
+     "unit": "kg"
+    },
+    {
+     "field": "price",
+     "quote": "Express Same Day ฿ 209 / kg ... Ironing THB 39 per piece",
+     "url": "https://www.washdrop.com/pricing/?region=cnx",
+     "date": "2026-10-04",
+     "value": "Express (same day) 209 THB/kg; ironing 39 THB/piece",
+     "thb": 209,
+     "unit": "kg"
+    },
+    {
+     "field": "minimum",
+     "quote": "Our service has a minimum charge of THB 399.",
+     "url": "https://www.washdrop.com/pricing/?region=cnx",
+     "date": "2026-10-04",
+     "value": "Minimum charge 399 THB",
+     "thb": 399,
+     "unit": "job"
+    },
+    {
+     "field": "zones",
+     "quote": "free collection and delivery for all orders collected within the highlighted zones",
+     "url": "https://www.washdrop.com/pricing/?region=cnx",
+     "date": "2026-10-04",
+     "value": "Free collection/delivery inside highlighted map zones; outside on quote"
+    },
+    {
+     "field": "zones",
+     "quote": "เราบริการรับและการจัดส่งเสื้อผ้าของลูกค้าทุกที่ ที่อยู่ในเชียงใหม่",
+     "url": "https://www.washdrop.com/th/laundry-chiang-mai/",
+     "date": "2026-10-04",
+     "value": "Pickup anywhere in Chiang Mai"
+    },
+    {
+     "field": "booking",
+     "quote": "LINE Facebook Messenger WhatsApp Telegram อีเมล",
+     "url": "https://www.washdrop.com/th/laundry-chiang-mai/",
+     "date": "2026-10-04",
+     "value": "Web order, app; chat via LINE, Messenger, WhatsApp, Telegram, email"
+    },
+    {
+     "field": "languages",
+     "quote": "English ภาษาไทย dansk Deutsch español ... 简体中文",
+     "url": "https://www.washdrop.com/pricing/?region=cnx",
+     "date": "2026-10-04",
+     "value": "Site in 16 languages incl. English, Thai, Chinese, Japanese, Korean, Russian"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-curated-laundry-17712",
+   "name": "Easy Wash (delivery)",
+   "name_th": "อีซี่วอส เดลิเวอรี่ / Easy Wash ซักผ้าห่ม ปอกหมอน รับ-ส่ง ถึงบ้านคุณ เชียงใหม่",
+   "kind": "laundry",
+   "province": "cm",
+   "facebook": "https://www.facebook.com/easywashchiangmai/",
+   "phone": "081-887-1085",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "ซักผ้าห่ม ปอกหมอน รับ-ส่ง ถึงบ้านคุณ เชียงใหม่",
+     "url": "https://www.facebook.com/easywashchiangmai/",
+     "date": "2026-10-04",
+     "value": "Laundry with pickup/delivery to home (duvets, pillowcases)"
+    },
+    {
+     "field": "booking",
+     "quote": "081 887 1085",
+     "url": "https://www.facebook.com/easywashchiangmai/",
+     "date": "2026-10-04",
+     "value": "Phone 081 887 1085"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-ovt-3fa44eea-366b-484e-9847-a69cd2551620",
+   "name": "Laundry Delivery ซักอบรีดเชียงใหม่",
+   "kind": "laundry",
+   "province": "cm",
+   "facebook": "https://www.facebook.com/102408485845548",
+   "phone": "082-556-1616",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "บริการซักอบรีด รับส่งฟรี",
+     "url": "https://www.facebook.com/102408485845548",
+     "date": "2026-10-04",
+     "value": "Laundry with free pickup/delivery"
+    },
+    {
+     "field": "zones",
+     "quote": "4/17 หมู่ 9 ต.ป่าแดด อ.เมือง จ.เชียงใหม่",
+     "url": "https://www.facebook.com/102408485845548",
+     "date": "2026-10-04",
+     "value": "Based Pa Daet, Mueang Chiang Mai (address only; zone not stated)"
+    },
+    {
+     "field": "booking",
+     "quote": "082 556 1616",
+     "url": "https://www.facebook.com/102408485845548",
+     "date": "2026-10-04",
+     "value": "Phone 082 556 1616"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cr-curated-fb-laundryhousepj",
+   "name": "Laundry House Chiang Rai",
+   "name_th": "เรือนซักรีด เชียงราย บริการรับส่ง",
+   "kind": "laundry",
+   "province": "cr",
+   "facebook": "https://www.facebook.com/laundryhousePJ",
+   "phone": "065-953-9526",
+   "facts": [
+    {
+     "field": "hours",
+     "quote": "เปิดให้บริการทุกวัน 8:00 - 17:00 น.",
+     "url": "https://www.facebook.com/laundryhousePJ",
+     "date": "2022-02-22",
+     "value": "Daily 08:00-17:00"
+    },
+    {
+     "field": "services",
+     "quote": "รับซักผ้าขนาดเล็กขนาดใหญ่ 🚛 บริการนัดรับส่ง",
+     "url": "https://www.facebook.com/laundryhousePJ",
+     "date": "2022-02-22",
+     "value": "Small and large items; pickup/delivery by appointment"
+    },
+    {
+     "field": "booking",
+     "quote": "📞 087 359 5405 หรือ 065 953 8626",
+     "url": "https://www.facebook.com/laundryhousePJ",
+     "date": "2022-02-22",
+     "value": "Phone 087 359 5405 or 065 953 8626; FB inbox"
+    },
+    {
+     "field": "zones",
+     "quote": "Amphoe Chiang Saen, Chiang Rai, Thailand",
+     "url": "https://www.facebook.com/laundryhousePJ",
+     "date": "2026-10-04",
+     "value": "Address: Chiang Saen district, Chiang Rai"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-ovt-1f72b4a4-17c8-453e-8d94-657f50b99859",
+   "name": "Klean & Klear (Chiang Mai - Lamphun - Lampang branch)",
+   "name_th": "บริษัท คลีนแอนด์เคลียร์ จำกัด",
+   "kind": "cleaning",
+   "province": "cm",
+   "website": "http://www.kleanandklear.co.th/",
+   "facebook": "https://www.facebook.com/100212984981815",
+   "line": "@Kleanandklear",
+   "phone": "062-940-1551",
+   "facts": [
+    {
+     "field": "price",
+     "quote": "แม่บ้านทำความสะอาด ... ราคาเริ่มต้น 3,999 / 4 ครั้ง",
+     "url": "https://kleanandklear.co.th/promotion/",
+     "date": "2026-10-04",
+     "value": "Maid cleaning package from 3,999 THB per 4 visits (monthly promo)",
+     "thb": 3999,
+     "unit": "month"
+    },
+    {
+     "field": "price",
+     "quote": "BIG CLEANING บริการทำความสะอาด ราคาเริ่มต้น 3,500 บาท",
+     "url": "https://kleanandklear.co.th/promotion/",
+     "date": "2026-10-04",
+     "value": "Big Cleaning from 3,500 THB",
+     "thb": 3500,
+     "unit": "job"
+    },
+    {
+     "field": "services",
+     "quote": "ดูแลบ้าน ล้างแอร์ ล้างเครื่องซักผ้า",
+     "url": "https://kleanandklear.co.th/promotion/",
+     "date": "2026-10-04",
+     "value": "Homes, condos, offices; one-off and monthly; aircon and washing-machine cleaning listed"
+    },
+    {
+     "field": "booking",
+     "quote": "Line : https://lin.ee/d6OLpqL หรือ @918vyyoy Tel : 062-940-1551",
+     "url": "https://www.facebook.com/100212984981815",
+     "date": "2026-10-04",
+     "value": "LINE @Kleanandklear; call centre 095 139 9777; CM branch FB lists 062-940-1551 and lin.ee/d6OLpqL"
+    },
+    {
+     "field": "hours",
+     "quote": "Always open",
+     "url": "https://www.facebook.com/100212984981815",
+     "date": "2026-10-04",
+     "value": "Always open (FB page setting)"
+    },
+    {
+     "field": "languages",
+     "quote": "TH EN CN",
+     "url": "https://kleanandklear.co.th/service/",
+     "date": "2026-10-04",
+     "value": "Website in Thai, English, Chinese"
+    },
+    {
+     "field": "zones",
+     "quote": "ติดต่อเรา 28 สาขาทั่วประเทศ",
+     "url": "https://kleanandklear.co.th/contact/",
+     "date": "2026-10-04",
+     "value": "HQ San Sai, Chiang Mai; 28 branches nationwide (promo prices are company-wide, not CM-specific)"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-ovt-2db8da2f-7711-4df1-869e-2ffd61371fd4",
+   "name": "Bliss Clean & Care",
+   "name_th": "บริษัท บลิส คลีน แอนด์ แคร์ จำกัด",
+   "kind": "cleaning",
+   "province": "cm",
+   "website": "https://www.blisscleanandcare.com/",
+   "facebook": "https://www.facebook.com/1857927191142327",
+   "line": "https://lin.ee/87srlka",
+   "phone": "094-618-6650",
+   "facts": [
+    {
+     "field": "price",
+     "quote": "Half-Day Clean – 1,000THB (+7%VAT)",
+     "url": "https://www.blisscleanandcare.com/services/residential-services/one-time-cleaning",
+     "date": "2026-10-04",
+     "value": "One-time half-day clean 1,000 THB + 7% VAT",
+     "thb": 1000,
+     "unit": "visit"
+    },
+    {
+     "field": "price",
+     "quote": "Full-Day Clean – 1,400THB (+7%VAT)",
+     "url": "https://www.blisscleanandcare.com/services/residential-services/one-time-cleaning",
+     "date": "2026-10-04",
+     "value": "One-time full-day clean 1,400 THB + 7% VAT",
+     "thb": 1400,
+     "unit": "visit"
+    },
+    {
+     "field": "price",
+     "quote": "Weekly (4-5 visits per month) | 3,000 THB / mo.",
+     "url": "https://www.blisscleanandcare.com/services/residential-services/recurring-cleaning",
+     "date": "2026-10-04",
+     "value": "Subscription half-day weekly 3,000 THB/month; bi-weekly 1,600 THB/month (+VAT)",
+     "thb": 3000,
+     "unit": "month"
+    },
+    {
+     "field": "price",
+     "quote": "Weekly (4-5 visits per month) | 4,000 THB / mo.",
+     "url": "https://www.blisscleanandcare.com/services/residential-services/recurring-cleaning",
+     "date": "2026-10-04",
+     "value": "Subscription full-day weekly 4,000 THB/month; bi-weekly 2,200 THB/month (+VAT)",
+     "thb": 4000,
+     "unit": "month"
+    },
+    {
+     "field": "price",
+     "quote": "Deep Clean - Base Price 7,500THB (+7% VAT)",
+     "url": "https://www.blisscleanandcare.com/services/residential-services/deep-clean-package",
+     "date": "2026-10-04",
+     "value": "Deep clean base price 7,500 THB + VAT (3-4 staff)",
+     "thb": 7500,
+     "unit": "job"
+    },
+    {
+     "field": "price",
+     "quote": "Starting at 19,500THB +7% VAT/month",
+     "url": "https://www.blisscleanandcare.com/services/residential-services/clean-and-care",
+     "date": "2026-10-04",
+     "value": "Clean + Care dedicated housekeeper from 19,500 THB/month + VAT",
+     "thb": 19500,
+     "unit": "month"
+    },
+    {
+     "field": "price",
+     "quote": "Sofas & Couches – Starting at 1,500THB + 7% VAT",
+     "url": "https://www.blisscleanandcare.com/services/speciality-services/upholstery",
+     "date": "2026-10-04",
+     "value": "Sofas from 1,500 THB, rugs from 850 THB, chairs from 1,000 THB (+VAT)",
+     "thb": 1500,
+     "unit": "unit"
+    },
+    {
+     "field": "price",
+     "quote": "Laundry: washed and hung to dry 1 load (100thb)",
+     "url": "https://www.blisscleanandcare.com/services/residential-services/one-time-cleaning",
+     "date": "2026-10-04",
+     "value": "Laundry add-on 100 THB per load",
+     "thb": 100,
+     "unit": "unit"
+    },
+    {
+     "field": "minimum",
+     "quote": "No, we do not offer hourly cleaning.",
+     "url": "https://www.blisscleanandcare.com/faqs",
+     "date": "2026-10-04",
+     "value": "No hourly cleaning; half-day minimum"
+    },
+    {
+     "field": "zones",
+     "quote": "less than 15 km from Bliss office no charge 15 - 25 km from Bliss office 300 THB per service",
+     "url": "https://www.blisscleanandcare.com/services/residential-services/one-time-cleaning",
+     "date": "2026-10-04",
+     "value": "Travel: <15 km from office free; 15-25 km 300 THB; 25-40 km 450 THB"
+    },
+    {
+     "field": "hours",
+     "quote": "Business Hours: Monday – Saturday, 8:00 AM – 5:00 PM",
+     "url": "https://www.blisscleanandcare.com/contact",
+     "date": "2026-10-04",
+     "value": "Mon-Sat 08:00-17:00"
+    },
+    {
+     "field": "booking",
+     "quote": "fill out our inquiry form below, and we’ll confirm your booking within 24 hours.",
+     "url": "https://www.blisscleanandcare.com/contact",
+     "date": "2026-10-04",
+     "value": "Web inquiry form (confirm within 24 h), phone 094-618-6650, LINE"
+    },
+    {
+     "field": "languages",
+     "quote": "A dedicated English and Thai-speaking Bliss Customer Service Representative",
+     "url": "https://www.blisscleanandcare.com/services/residential-services/clean-and-care",
+     "date": "2026-10-04",
+     "value": "English-speaking customer service; English and Thai rep for Clean + Care"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-ovt-9614c819-7775-4b70-9019-1ef078288c76",
+   "name": "Sofaservice Chiang Mai",
+   "name_th": "ซักโซฟาเชียงใหม่ by โซฟาเซอร์วิส",
+   "kind": "cleaning",
+   "province": "cm",
+   "website": "https://sofaservicechiangm.wixsite.com/-----------------by",
+   "facebook": "https://www.facebook.com/109173617977798",
+   "phone": "086-923-7254",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "บริการซักโซฟา เก้าอี้ เบาะนั่ง ที่นอน พรม ผ้าม่าน เบาะรถยนต์ คาร์ซีท",
+     "url": "https://www.facebook.com/109173617977798",
+     "date": "2026-09-05",
+     "value": "On-site cleaning of sofas, chairs, mattresses, carpets, curtains, car seats"
+    },
+    {
+     "field": "booking",
+     "quote": "สอบถามเพิ่มเติม ☎️ : 0869237254 ฟรีประเมิณราคาจากภาพถ่าย",
+     "url": "https://www.facebook.com/109173617977798",
+     "date": "2026-09-05",
+     "value": "Phone 086 923 7254; free estimate from photos; online booking page on Wix site"
+    },
+    {
+     "field": "hours",
+     "quote": "เปิดให้บริการทุก จันทร์-เสาร์ เวลา 8:00-17:30 (ปิดวันอาทิตย์)",
+     "url": "https://sofaservicechiangm.wixsite.com/-----------------by/blank-5",
+     "date": "2026-10-04",
+     "value": "Mon-Sat 08:00-17:30, closed Sunday"
+    },
+    {
+     "field": "languages",
+     "quote": "We are providing high quality of teams service who had experiences in leather and fabric furniture cleaning.",
+     "url": "https://sofaservicechiangm.wixsite.com/-----------------by",
+     "date": "2026-10-04",
+     "value": "Site text in Thai and English"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-ovt-e23eee91-9058-4af4-a06b-7b79a6e8556b",
+   "name": "BigCleaning BeNeat By.Run",
+   "kind": "cleaning",
+   "province": "cm",
+   "facebook": "https://www.facebook.com/100480182670269",
+   "phone": "092-419-8896",
+   "facts": [
+    {
+     "field": "price",
+     "quote": "บริการ Big Cleaning ราคาเริ่มต้นที่ 3,000 บาท",
+     "url": "https://www.facebook.com/100480182670269",
+     "date": "2026-10-04",
+     "value": "Big Cleaning from 3,000 THB (page intro)",
+     "thb": 3000,
+     "unit": "job"
+    },
+    {
+     "field": "price",
+     "quote": "ราคาเริ่มต้นที่ 4,000 บาท",
+     "url": "https://www.facebook.com/100480182670269",
+     "date": "2023-06-20",
+     "value": "Big Cleaning from 4,000 THB (pinned/recent post)",
+     "thb": 4000,
+     "unit": "job"
+    },
+    {
+     "field": "price",
+     "quote": "บริการ พ่นฆ่าเชื้อ ราคาเริ่มต้นที่ 2,140 บาท",
+     "url": "https://www.facebook.com/100480182670269",
+     "date": "2026-10-04",
+     "value": "Disinfection spraying from 2,140 THB",
+     "thb": 2140,
+     "unit": "job"
+    },
+    {
+     "field": "booking",
+     "quote": "ประเมินราคาฟรี ไม่มีค่าใช้จ่าย!!",
+     "url": "https://www.facebook.com/100480182670269",
+     "date": "2026-10-04",
+     "value": "Phone 092 419 8896; FB message; free estimate"
+    },
+    {
+     "field": "hours",
+     "quote": "Always open",
+     "url": "https://www.facebook.com/100480182670269",
+     "date": "2026-10-04",
+     "value": "Always open (FB page setting)"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-ovt-515916e2-8e30-4def-bffb-4d8f32574d86",
+   "name": "The Best Cleaning Co., Ltd.",
+   "name_th": "บริษัท เดอะ เบส คลีนนิ่ง จำกัด",
+   "kind": "cleaning",
+   "province": "cm",
+   "website": "https://www.thebestcleaningcm.com/",
+   "facebook": "https://www.facebook.com/644541352695603",
+   "phone": "065-428-8724",
+   "facts": [
+    {
+     "field": "price",
+     "quote": "บริการครึ่งวัน (4 ชั่วโมง) เริ่มต้นที่ 500 บาท/คน",
+     "url": "https://www.thebestcleaningcm.com/services/daily-maid",
+     "date": "2026-10-04",
+     "value": "Daily maid half-day (4 h) from 500 THB per person",
+     "thb": 500,
+     "unit": "visit"
+    },
+    {
+     "field": "price",
+     "quote": "บริการเต็มวัน (8 ชั่วโมง) เริ่มต้นที่ 900 บาท/คน",
+     "url": "https://www.thebestcleaningcm.com/services/daily-maid",
+     "date": "2026-10-04",
+     "value": "Daily maid full-day from 900 THB per person (page also says full day = 7 h)",
+     "thb": 900,
+     "unit": "visit"
+    },
+    {
+     "field": "booking",
+     "quote": "call 065-428-8724 099-444-2926",
+     "url": "https://www.thebestcleaningcm.com/services/daily-maid",
+     "date": "2026-10-04",
+     "value": "Phone 065-428-8724, 099-444-2926"
+    },
+    {
+     "field": "hours",
+     "quote": "จันทร์ - เสาร์ เวลา 8:00 น. - 17:00 น.",
+     "url": "https://www.thebestcleaningcm.com/services/daily-maid",
+     "date": "2026-10-04",
+     "value": "Mon-Sat 08:00-17:00"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-ovt-35b155f6-67ed-42f2-8b7c-92f5ab2b9fd6",
+   "name": "Pearnpit Laundry & Dry Ironing Service",
+   "kind": "laundry",
+   "province": "cm",
+   "facebook": "https://www.facebook.com/1465012580381427",
+   "phone": "053-880-042",
+   "facts": [
+    {
+     "field": "hours",
+     "quote": "เปิดบริการ จันทร์ - อาทิตย์ หยุดทุกๆ",
+     "url": "https://www.facebook.com/1465012580381427",
+     "date": "2026-10-04",
+     "value": "Open Mon-Sun (rest of text cut off on FB)"
+    },
+    {
+     "field": "zones",
+     "quote": "61/2 หมู่10 ต.ร้องวัวแดง อ.สันกำแพง",
+     "url": "https://www.facebook.com/1465012580381427",
+     "date": "2026-10-04",
+     "value": "Shop in Rong Wua Daeng, San Kamphaeng; pickup/delivery not found on the pages read"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-ovt-b3d1fc19-18f5-4e18-aa37-93a7532e8c33",
+   "name": "Mao laundry by Je Mao (Ban San Pu Loei, Doi Saket)",
+   "name_th": "เม้าท์ซักอบรีด by เจ้เม้าท์",
+   "kind": "laundry",
+   "province": "cm",
+   "facebook": "https://www.facebook.com/106961521881937",
+   "phone": "095-859-9105",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "บริการซักอบรีด ซักแห้ง เสื้อผ้า",
+     "url": "https://www.facebook.com/106961521881937",
+     "date": "2026-10-04",
+     "value": "Wash-dry-iron and dry cleaning; pickup/delivery not found on the pages read"
+    },
+    {
+     "field": "zones",
+     "quote": "บ่อหิน - สันปูเลย - ท่ารั้ว",
+     "url": "https://www.facebook.com/106961521881937",
+     "date": "2026-10-04",
+     "value": "Bo Hin - San Pu Loei - Tha Rua (Doi Saket)"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cr-ovt-6ba132bd-05a7-4050-b269-e31005917fa6",
+   "name": "Miss White Clean laundry",
+   "name_th": "มิสไวท์ คลีน ซักอบรีด",
+   "kind": "laundry",
+   "province": "cr",
+   "facebook": "https://www.facebook.com/1737164503065865",
+   "phone": "053-664-273",
+   "facts": [
+    {
+     "field": "zones",
+     "quote": "368 ม.2 ต.จันจว้าใต้ อ.แม่จัน",
+     "url": "https://www.facebook.com/1737164503065865",
+     "date": "2026-10-04",
+     "value": "Shop in Chan Chwa Tai, Mae Chan; pickup/delivery not found on the pages read"
+    },
+    {
+     "field": "hours",
+     "quote": "Always open",
+     "url": "https://www.facebook.com/1737164503065865",
+     "date": "2026-10-04",
+     "value": "Always open (FB page setting)"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cr-ovt-d522b02d-b912-4b3e-9b3f-01525333f4de",
+   "name": "Premium Build",
+   "kind": "handyman",
+   "province": "cr",
+   "facebook": "https://www.facebook.com/109121298662855",
+   "phone": "093-541-9150",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "รับเหมาต่อเติมและงานช่างครบวงจร",
+     "url": "https://www.facebook.com/109121298662855",
+     "date": "2026-10-04",
+     "value": "Extensions, carport roofs, electrical work, appliance installation, ceilings, tiling"
+    },
+    {
+     "field": "booking",
+     "quote": "คุณอาร์ม 093-541-9150",
+     "url": "https://www.facebook.com/109121298662855",
+     "date": "2026-10-04",
+     "value": "Phone 093-541-9150 (Arm); free site assessment"
+    },
+    {
+     "field": "zones",
+     "quote": "อำเภอเมืองเชียงราย, Chiang Rai",
+     "url": "https://www.facebook.com/109121298662855",
+     "date": "2026-10-04",
+     "value": "Mueang Chiang Rai"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-curated-fb-n-landscape",
+   "name": "N-Landscape",
+   "name_th": "รับออกแบบจัดสวน เชียงใหม่",
+   "kind": "garden",
+   "province": "cm",
+   "facebook": "https://www.facebook.com/N.Landscape",
+   "line": "num-sarawut",
+   "phone": "087-179-2086",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "งานดูแลสวน ตัดแต่งต้นไม้ ตัดหญ้าสนาม",
+     "url": "https://www.facebook.com/N.Landscape",
+     "date": "2026-10-03",
+     "value": "Garden design and build, sprinklers, garden care and tree trimming, lawn mowing, paving, artificial grass"
+    },
+    {
+     "field": "booking",
+     "quote": "โทร : 0871792086 หนุ่ม Line : num-sarawut",
+     "url": "https://www.facebook.com/N.Landscape",
+     "date": "2026-10-03",
+     "value": "Phone 087 179 2086 (Num); LINE num-sarawut"
+    },
+    {
+     "field": "zones",
+     "quote": "Amphoe San Sai, Thailand, Chiang Mai",
+     "url": "https://www.facebook.com/N.Landscape",
+     "date": "2026-10-04",
+     "value": "Based Amphoe San Sai"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-ovt-1671e0a7-bf62-4c67-90ca-d12db76c09f5",
+   "name": "Garden and Friends CNX",
+   "kind": "garden",
+   "province": "cm",
+   "facebook": "https://www.facebook.com/1496682723990544",
+   "phone": "089-890-7345",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "รับดูแล ตัดแต่ง จัดสวน ติดตั้งระบบสปริงเกอร์ เชียงใหม่",
+     "url": "https://www.facebook.com/1496682723990544",
+     "date": "2026-10-04",
+     "value": "Garden care and trimming, sprinkler/irrigation install, landscaping, site clearing, drainage"
+    },
+    {
+     "field": "booking",
+     "quote": "089 890 7345",
+     "url": "https://www.facebook.com/1496682723990544",
+     "date": "2026-10-04",
+     "value": "Phone 089 890 7345; gardenandfriends@yahoo.com"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-ovt-b32f2657-1594-4c09-a523-3b6111196f66",
+   "name": "Rungsit Landscape & Gardening",
+   "name_th": "หจก.รังสิทธิ์แลนด์สเคป",
+   "kind": "garden",
+   "province": "cm",
+   "website": "http://rungsitlandscape.com/",
+   "facebook": "https://www.facebook.com/755066571188944",
+   "phone": "094-984-5444",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "รับดูแลตัดแต่งสวน ตัดหญ้าสนาม",
+     "url": "http://rungsitlandscape.com/about.html",
+     "date": "2026-10-04",
+     "value": "Garden design, landscaping, sprinklers, ponds, garden maintenance and lawn cutting"
+    },
+    {
+     "field": "booking",
+     "quote": "094-984-5444",
+     "url": "http://rungsitlandscape.com/contact.html",
+     "date": "2026-10-04",
+     "value": "Phone 094-984-5444; rungsit.na@hotmail.com; web contact form"
+    },
+    {
+     "field": "languages",
+     "quote": "Landscape Maintenance",
+     "url": "http://rungsitlandscape.com/about.html",
+     "date": "2026-10-04",
+     "value": "Service list in English and Thai on site"
+    }
+   ]
+  },
+  {
+   "name": "Namo Clean & Clear",
+   "name_th": "นะโมคลีนแอนด์เคลียร์",
+   "kind": "cleaning",
+   "province": "cm",
+   "website": "https://xn----zwfkl2cqqed2egkd3d4bxa0a7cmwcec9evo0c3gqa8h.com/",
+   "line": "@namocleaning",
+   "phone": "062-926-2447",
+   "facts": [
+    {
+     "field": "price",
+     "quote": "SS 1 – 30 ตารางเมตร 650 บาท 2,600 2,400 บาท",
+     "url": "https://xn----zwfkl2cqqed2egkd3d4bxa0a7cmwcec9evo0c3gqa8h.com/",
+     "date": "2026-10-04",
+     "value": "Standard cleaning 1-30 sqm from 650 THB per visit; 4-visit package 2,400 THB",
+     "thb": 650,
+     "unit": "visit"
+    },
+    {
+     "field": "price",
+     "quote": "M 51 – 100 ตารางเมตร 1,200 บาท 4,800 4,300 บาท",
+     "url": "https://xn----zwfkl2cqqed2egkd3d4bxa0a7cmwcec9evo0c3gqa8h.com/",
+     "date": "2026-10-04",
+     "value": "Standard 51-100 sqm 1,200 THB per visit; 4-visit package 4,300 THB",
+     "thb": 1200,
+     "unit": "visit"
+    },
+    {
+     "field": "price",
+     "quote": "XXL 201 – 300 ตารางเมตร 3,000 บาท 12,000 10,800 บาท",
+     "url": "https://xn----zwfkl2cqqed2egkd3d4bxa0a7cmwcec9evo0c3gqa8h.com/",
+     "date": "2026-10-04",
+     "value": "Standard 201-300 sqm 3,000 THB per visit; 4-visit package 10,800 THB",
+     "thb": 3000,
+     "unit": "visit"
+    },
+    {
+     "field": "price",
+     "quote": "SS 1 – 30 ตร.ม. เริ่มต้น 1,200 บาท",
+     "url": "https://xn----zwfkl2cqqed2egkd3d4bxa0a7cmwcec9evo0c3gqa8h.com/",
+     "date": "2026-10-04",
+     "value": "Big Cleaning 1-30 sqm from 1,200 THB; 51-100 sqm from 3,200 THB",
+     "thb": 1200,
+     "unit": "job"
+    },
+    {
+     "field": "zones",
+     "quote": "พื้นที่เกิน 300 ตารางเมตรจะประเมินหน้างาน",
+     "url": "https://xn----zwfkl2cqqed2egkd3d4bxa0a7cmwcec9evo0c3gqa8h.com/",
+     "date": "2026-10-04",
+     "value": "Over 300 sqm quoted on site"
+    },
+    {
+     "field": "booking",
+     "quote": "LINE official : @namocleaning",
+     "url": "https://xn----zwfkl2cqqed2egkd3d4bxa0a7cmwcec9evo0c3gqa8h.com/",
+     "date": "2026-10-04",
+     "value": "LINE OA @namocleaning; phone 062-926-2447"
+    }
+   ]
+  },
+  {
+   "name": "HUG Cleansing",
+   "name_th": "ฮัคคลีนซิ่ง",
+   "kind": "cleaning",
+   "province": "cm",
+   "website": "https://www.xn--42cgi3bn5ddg5b5apt2bxce7c2m9bwf0d.com/",
+   "phone": "096-245-4144",
+   "facts": [
+    {
+     "field": "price",
+     "quote": "คุ้มค่า ราคาเหมาะสม เริ่มต้นเพียง 650.- เท่านั้น!",
+     "url": "https://www.xn--42cgi3bn5ddg5b5apt2bxce7c2m9bwf0d.com/services/daily-maid-1",
+     "date": "2026-10-04",
+     "value": "Daily maid from 650 THB",
+     "thb": 650,
+     "unit": "visit"
+    },
+    {
+     "field": "zones",
+     "quote": "เฉพาะ อำเภอเมืองเชียงใหม่ จังหวัดเชียงใหม่ เท่านั้น!",
+     "url": "https://www.xn--42cgi3bn5ddg5b5apt2bxce7c2m9bwf0d.com/services/daily-maid-1",
+     "date": "2026-10-04",
+     "value": "Mueang Chiang Mai district only"
+    },
+    {
+     "field": "hours",
+     "quote": "จันทร์ - เสาร์ 08:00-17:00 น.",
+     "url": "https://www.xn--42cgi3bn5ddg5b5apt2bxce7c2m9bwf0d.com/services/daily-maid-1",
+     "date": "2026-10-04",
+     "value": "Mon-Sat 08:00-17:00"
+    },
+    {
+     "field": "booking",
+     "quote": "call 096-245-4144 088-251-0708",
+     "url": "https://www.xn--42cgi3bn5ddg5b5apt2bxce7c2m9bwf0d.com/services/daily-maid-1",
+     "date": "2026-10-04",
+     "value": "Phone 096-245-4144, 088-251-0708; Big Cleaning priced after site visit"
+    }
+   ]
+  },
+  {
+   "name": "Pro Services Chiang Mai (cleaning)",
+   "name_th": "Pro Services-เชียงใหม่",
+   "kind": "cleaning",
+   "province": "cm",
+   "website": "https://cleaning-pro-services.net/chiangmai/index.php",
+   "phone": "081-897-0186",
+   "facts": [
+    {
+     "field": "price",
+     "quote": "บ้านเปล่า เริ่มต้น 50 ตารางเมตร ในราคา 2,500 บาท",
+     "url": "https://cleaning-pro-services.net/chiangmai/index.php",
+     "date": "2026-10-04",
+     "value": "Big Cleaning empty house from 2,500 THB (50 sqm)",
+     "thb": 2500,
+     "unit": "job"
+    },
+    {
+     "field": "price",
+     "quote": "บ้านที่มีฟอร์นิเจอร์/Built-in เริ่มต้น 60 ตารางเมตร ใน ราคา 3,600 บาท",
+     "url": "https://cleaning-pro-services.net/chiangmai/index.php",
+     "date": "2026-10-04",
+     "value": "Big Cleaning furnished house from 3,600 THB (60 sqm)",
+     "thb": 3600,
+     "unit": "job"
+    },
+    {
+     "field": "price",
+     "quote": "หลังงานก่อสร้าง เริ่มต้น 75 ตารางเมตร ในราคา 5,625",
+     "url": "https://cleaning-pro-services.net/chiangmai/index.php",
+     "date": "2026-10-04",
+     "value": "Post-construction clean from 5,625 THB (75 sqm)",
+     "thb": 5625,
+     "unit": "job"
+    },
+    {
+     "field": "minimum",
+     "quote": "ทำความสะอาดจะต้องมีขนาดตั้งแต่ 50 ตารางเมตรขึ้นไป",
+     "url": "https://cleaning-pro-services.net/chiangmai/index.php",
+     "date": "2026-10-04",
+     "value": "Minimum area 50 sqm; travel fee outside area"
+    },
+    {
+     "field": "booking",
+     "quote": "tel:0818970186",
+     "url": "https://cleaning-pro-services.net/chiangmai/index.php",
+     "date": "2026-10-04",
+     "value": "Phone 081-897-0186, 094-662-4963; LINE (Chiang Mai branch)"
+    }
+   ]
+  },
+  {
+   "name": "APN Cleaning",
+   "name_th": "เอพีเอ็น คลีนนิ่ง",
+   "kind": "cleaning",
+   "province": "cm",
+   "website": "https://apncleaningchiangmai.com/",
+   "line": "apncleaning",
+   "phone": "053-111-574",
+   "facts": [
+    {
+     "field": "price",
+     "quote": "บริการรับทำความสะอาด ทั่วเชียงใหม่ เริ่มต้นเพียง 300 บาท",
+     "url": "https://apncleaningchiangmai.com/",
+     "date": "2026-10-04",
+     "value": "Cleaning across Chiang Mai from 300 THB (post on site)",
+     "thb": 300,
+     "unit": "job"
+    },
+    {
+     "field": "zones",
+     "quote": "บริการรับทำความสะอาด ทั่วเชียงใหม่ ประเมินหน้างานฟรี",
+     "url": "https://apncleaningchiangmai.com/",
+     "date": "2026-10-04",
+     "value": "Across Chiang Mai; free site estimate; booking within 24 h"
+    },
+    {
+     "field": "booking",
+     "quote": "Line ID apncleaning",
+     "url": "https://apncleaningchiangmai.com/",
+     "date": "2026-10-04",
+     "value": "Tel 053-111-574, 093-048-7088; LINE apncleaning"
+    }
+   ]
+  },
+  {
+   "name": "CNX Cleaners",
+   "kind": "cleaning",
+   "province": "cm",
+   "website": "https://www.cnxcleaners.com/en",
+   "facts": [
+    {
+     "field": "price",
+     "quote": "Regular clean From ฿600",
+     "url": "https://www.cnxcleaners.com/en",
+     "date": "2026-10-04",
+     "value": "Regular clean from 600 THB",
+     "thb": 600,
+     "unit": "visit"
+    },
+    {
+     "field": "price",
+     "quote": "Deep clean From ฿1,350",
+     "url": "https://www.cnxcleaners.com/en",
+     "date": "2026-10-04",
+     "value": "Deep clean from 1,350 THB; move in/out from 1,350 THB",
+     "thb": 1350,
+     "unit": "job"
+    },
+    {
+     "field": "booking",
+     "quote": "Instant price calculator",
+     "url": "https://www.cnxcleaners.com/en",
+     "date": "2026-10-04",
+     "value": "Online price calculator, LINE"
+    },
+    {
+     "field": "languages",
+     "quote": "Enquiries and booking can be handled in English.",
+     "url": "https://www.cnxcleaners.com/en",
+     "date": "2026-10-04",
+     "value": "Booked in English"
+    }
+   ]
+  },
+  {
+   "name": "Khun Clean Chiang Mai",
+   "kind": "cleaning",
+   "province": "cm",
+   "website": "https://chiangmai.khunclean.com/",
+   "line": "@khunclean",
+   "facts": [
+    {
+     "field": "price",
+     "quote": "Starting price is THB 1,200 for a 1-bedroom 1-bathroom, or studio in central Chiang Mai.",
+     "url": "https://chiangmai.khunclean.com/services",
+     "date": "2026-10-04",
+     "value": "Condo cleaning from 1,200 THB (1-bed/studio, central CM)",
+     "thb": 1200,
+     "unit": "visit"
+    },
+    {
+     "field": "price",
+     "quote": "Starting price is THB 2,160 for a 1-bedroom 1-bathroom, or studio.",
+     "url": "https://chiangmai.khunclean.com/services",
+     "date": "2026-10-04",
+     "value": "Deep clean / move-out from 2,160 THB (1-bed/studio)",
+     "thb": 2160,
+     "unit": "job"
+    },
+    {
+     "field": "price",
+     "quote": "For cleaning one item: either 1 sofa, 1 set of curtains, or 1 mattress.",
+     "url": "https://chiangmai.khunclean.com/services",
+     "date": "2026-10-04",
+     "value": "Mattress, sofa or curtain set 1,920 THB per item",
+     "thb": 1920,
+     "unit": "unit"
+    },
+    {
+     "field": "price",
+     "quote": "Starting price is THB 1,900 for basic garden cleaning service.",
+     "url": "https://chiangmai.khunclean.com/services",
+     "date": "2026-10-04",
+     "value": "Gardening and landscaping from 1,900 THB",
+     "thb": 1900,
+     "unit": "job"
+    },
+    {
+     "field": "booking",
+     "quote": "@khunclean",
+     "url": "https://chiangmai.khunclean.com/services",
+     "date": "2026-10-04",
+     "value": "LINE @khunclean; web booking form"
+    },
+    {
+     "field": "languages",
+     "quote": "English and Thai speaking.",
+     "url": "https://chiangmai.khunclean.com/services",
+     "date": "2026-10-04",
+     "value": "English and Thai"
+    }
+   ]
+  },
+  {
+   "name": "CNX Cleaning",
+   "kind": "cleaning",
+   "province": "cm",
+   "website": "https://cnxcleaning.com/en/",
+   "facts": [
+    {
+     "field": "price",
+     "quote": "From 6,500 THB",
+     "url": "https://cnxcleaning.com/en/",
+     "date": "2026-10-04",
+     "value": "Kitchen reset from 1,500 THB; degreasing from 1,800 THB; big cleaning day from 6,500 THB",
+     "thb": 6500,
+     "unit": "job"
+    },
+    {
+     "field": "zones",
+     "quote": "Service area: Chiang Mai city and nearby areas.",
+     "url": "https://cnxcleaning.com/en/",
+     "date": "2026-10-04",
+     "value": "Chiang Mai city and nearby areas"
+    },
+    {
+     "field": "booking",
+     "quote": "Quotes are typically provided the same day during business hours.",
+     "url": "https://cnxcleaning.com/en/",
+     "date": "2026-10-04",
+     "value": "LINE; quote from photos, same day in business hours"
+    }
+   ]
+  },
+  {
+   "name": "Chiang Mai Decor",
+   "kind": "cleaning",
+   "province": "cm",
+   "website": "https://www.chiangmaidecor.com/",
+   "phone": "065-965-6651",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "รับทำความสะอาด เชียงใหม่ รายวัน รายเดือน BigClean อบโอโซน",
+     "url": "https://www.chiangmaidecor.com/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%97%E0%B8%B3%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%AA%E0%B8%B0%E0%B8%AD%E0%B8%B2%E0%B8%94/",
+     "date": "2026-10-04",
+     "value": "Daily/monthly cleaning, Big Clean, ozone; also tree and grass cutting, garden work"
+    },
+    {
+     "field": "hours",
+     "quote": "จันทร์ – เสาร์ 09:00 – 18:00",
+     "url": "https://www.chiangmaidecor.com/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%97%E0%B8%B3%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%AA%E0%B8%B0%E0%B8%AD%E0%B8%B2%E0%B8%94/",
+     "date": "2026-10-04",
+     "value": "Header: Mon-Sat 09:00-18:00 (footer says Mon-Fri 09:00-20:00)"
+    },
+    {
+     "field": "booking",
+     "quote": "065-965-6651 info@chiangmaidecor.com",
+     "url": "https://www.chiangmaidecor.com/%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%97%E0%B8%B3%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%AA%E0%B8%B0%E0%B8%AD%E0%B8%B2%E0%B8%94/",
+     "date": "2026-10-04",
+     "value": "Phone 065-965-6651; info@chiangmaidecor.com"
+    }
+   ]
+  },
+  {
+   "name": "WIM Cleaning",
+   "name_th": "WIM รับทำความสะอาด เชียงใหม่",
+   "kind": "cleaning",
+   "province": "cm",
+   "facebook": "https://www.facebook.com/wimcleaning",
+   "line": "https://page.line.me/ctr9659s",
+   "facts": [
+    {
+     "field": "price",
+     "quote": "฿1,000 ~",
+     "url": "https://page.line.me/ctr9659s",
+     "date": "2026-10-04",
+     "value": "LINE OA price field: from 1,000 THB",
+     "thb": 1000
+    },
+    {
+     "field": "services",
+     "quote": "บริการทำความสะอาด Big Cleaning ต้องมีการประเมินราคาหน้างาน",
+     "url": "https://page.line.me/ctr9659s",
+     "date": "2026-10-04",
+     "value": "Big Cleaning priced after site survey; resident maid price by agreement"
+    },
+    {
+     "field": "zones",
+     "quote": "Chiang Mai Hangdong 99/99 Moo1",
+     "url": "https://page.line.me/ctr9659s",
+     "date": "2026-10-04",
+     "value": "Hang Dong, Chiang Mai"
+    },
+    {
+     "field": "booking",
+     "quote": "Chat Call",
+     "url": "https://page.line.me/ctr9659s",
+     "date": "2026-10-04",
+     "value": "LINE OA chat/call"
+    }
+   ]
+  },
+  {
+   "name": "Ayasan (Chiang Mai)",
+   "kind": "cleaning",
+   "province": "cm",
+   "website": "https://www.ayasan-service.com/en/location/cleaning-service-chiang-mai",
+   "line": "@ayasan.chiangmai",
+   "facts": [
+    {
+     "field": "zones",
+     "quote": "19A/19B, Rachadamnoen Road, Si Phum Subdistrict, Mueang Chiang Mai",
+     "url": "https://www.ayasan-service.com/en/location/cleaning-service-chiang-mai",
+     "date": "2026-10-04",
+     "value": "Chiang Mai office: Rachadamnoen Rd, Si Phum, Mueang"
+    },
+    {
+     "field": "booking",
+     "quote": "Line ID : @ayasan.chiangmai",
+     "url": "https://www.ayasan-service.com/en/location/cleaning-service-chiang-mai",
+     "date": "2026-10-04",
+     "value": "LINE @ayasan.chiangmai"
+    }
+   ]
+  },
+  {
+   "name": "Nimman Laundry / Foo Foo Laundry",
+   "kind": "laundry",
+   "province": "cm",
+   "website": "https://www.nimmanlaundry.com/",
+   "phone": "083-153-5558",
+   "facts": [
+    {
+     "field": "price",
+     "quote": "ราคาเริ่มต้นเพียง 80 บาทต่อกิโลกรัม",
+     "url": "https://www.nimmanlaundry.com/",
+     "date": "2026-10-04",
+     "value": "From 80 THB/kg",
+     "thb": 80,
+     "unit": "kg"
+    },
+    {
+     "field": "price",
+     "quote": "Ironing add on 25฿/pcs.",
+     "url": "https://www.nimmanlaundry.com/pricing/",
+     "date": "2026-10-04",
+     "value": "Ironing add-on 25 THB/piece; shoes 300 THB; duvet 300 THB",
+     "thb": 25,
+     "unit": "unit"
+    },
+    {
+     "field": "minimum",
+     "quote": "For billing under ฿299 there will be a pick up fee ฿60 and a delivery fee ฿60",
+     "url": "https://www.nimmanlaundry.com/pricing/",
+     "date": "2026-10-04",
+     "value": "Orders under 299 THB pay 60 THB pickup + 60 THB delivery",
+     "thb": 60,
+     "unit": "job"
+    },
+    {
+     "field": "zones",
+     "quote": "เรายังมีบริการรับและส่งฟรีในพื้นที่เชียงใหม่",
+     "url": "https://www.nimmanlaundry.com/",
+     "date": "2026-10-04",
+     "value": "Free pickup/delivery in Chiang Mai area"
+    },
+    {
+     "field": "booking",
+     "quote": "Line/Whatsapp/Wechat: 091-969-5963 (chat only) Tel:0831535558 (call only)",
+     "url": "https://www.nimmanlaundry.com/",
+     "date": "2026-10-04",
+     "value": "LINE/WhatsApp/WeChat 091-969-5963 (chat); tel 083-153-5558"
+    },
+    {
+     "field": "hours",
+     "quote": "Open every day.",
+     "url": "https://www.nimmanlaundry.com/pricing/",
+     "date": "2026-10-04",
+     "value": "Open every day"
+    }
+   ]
+  },
+  {
+   "name": "Em's Laundry Chiang Mai",
+   "name_th": "เอม ซักอบรีดเชียงใหม่",
+   "kind": "laundry",
+   "province": "cm",
+   "website": "https://www.chiangmailaundry.com/",
+   "facts": [
+    {
+     "field": "price",
+     "quote": "Normal service: Laundry returned within 24 hours (฿80 )",
+     "url": "https://www.chiangmailaundry.com/prices-ems-laundry-chiangmai",
+     "date": "2026-10-04",
+     "value": "Normal (24 h) 80 THB/kg",
+     "thb": 80,
+     "unit": "kg"
+    },
+    {
+     "field": "price",
+     "quote": "Express service: Laundry returned same day (฿140)",
+     "url": "https://www.chiangmailaundry.com/prices-ems-laundry-chiangmai",
+     "date": "2026-10-04",
+     "value": "Express same day 140 THB/kg",
+     "thb": 140,
+     "unit": "kg"
+    },
+    {
+     "field": "minimum",
+     "quote": "฿150 minimum spend required for free pick up & return",
+     "url": "https://www.chiangmailaundry.com/prices-ems-laundry-chiangmai",
+     "date": "2026-10-04",
+     "value": "150 THB minimum for free pickup & return",
+     "thb": 150,
+     "unit": "job"
+    },
+    {
+     "field": "booking",
+     "quote": "Phone or email, you can book in seconds",
+     "url": "https://www.chiangmailaundry.com/",
+     "date": "2026-10-04",
+     "value": "Phone, email or web form"
+    },
+    {
+     "field": "languages",
+     "quote": "WE SPEAK ENGLISH AND THAI",
+     "url": "https://www.chiangmailaundry.com/",
+     "date": "2026-10-04",
+     "value": "English and Thai"
+    }
+   ]
+  },
+  {
+   "name": "N'Joy Laundry",
+   "kind": "laundry",
+   "province": "cm",
+   "website": "https://www.njoylaundry.com/",
+   "phone": "064-627-4559",
+   "facts": [
+    {
+     "field": "price",
+     "quote": "Wash(ซัก) 129 THB / kg. Iron(รีด) 69 THB / kg.",
+     "url": "https://www.njoylaundry.com/",
+     "date": "2026-10-04",
+     "value": "Express 6-7 h: wash 129 THB/kg, iron 69 THB/kg, min 3 kg",
+     "thb": 129,
+     "unit": "kg"
+    },
+    {
+     "field": "price",
+     "quote": "Wash(ซัก) 79 THB / kg. Iron 59 THB / kg.",
+     "url": "https://www.njoylaundry.com/",
+     "date": "2026-10-04",
+     "value": "24 h: wash 79 THB/kg, iron 59 THB/kg, min 4 kg",
+     "thb": 79,
+     "unit": "kg"
+    },
+    {
+     "field": "price",
+     "quote": "Wash(ซัก) 59 THB / kg. Iron(รีด) 49 THB / kg.",
+     "url": "https://www.njoylaundry.com/",
+     "date": "2026-10-04",
+     "value": "48 h: wash 59 THB/kg, iron 49 THB/kg, min 5 kg",
+     "thb": 59,
+     "unit": "kg"
+    },
+    {
+     "field": "minimum",
+     "quote": "Weight minimum 3 Kg.",
+     "url": "https://www.njoylaundry.com/",
+     "date": "2026-10-04",
+     "value": "3 / 4 / 5 kg by speed"
+    },
+    {
+     "field": "zones",
+     "quote": "รับส่งผ้าฟรีในพื้นที่จังหวัดเชียงใหม่",
+     "url": "https://www.njoylaundry.com/",
+     "date": "2026-10-04",
+     "value": "Free pickup/delivery in service area in Chiang Mai province"
+    },
+    {
+     "field": "booking",
+     "quote": "ติดต่อ คุณ JOY โทร 0646274559",
+     "url": "https://www.njoylaundry.com/",
+     "date": "2026-10-04",
+     "value": "Phone 064-627-4559 (Joy); LINE; email"
+    }
+   ]
+  },
+  {
+   "name": "HappyWash Laundry & Cleaning",
+   "kind": "laundry",
+   "province": "cm",
+   "website": "https://www.happywash.co/",
+   "line": "@happywash88",
+   "facts": [
+    {
+     "field": "price",
+     "quote": "ซักอบรีด เริ่มต้น 12 บ. /ชิ้น",
+     "url": "https://www.happywash.co/",
+     "date": "2026-10-04",
+     "value": "Wash-dry-iron from 12 THB/piece",
+     "thb": 12,
+     "unit": "unit"
+    },
+    {
+     "field": "price",
+     "quote": "รายเดือน เริ่มต้น 500 บ. / เดือน",
+     "url": "https://www.happywash.co/",
+     "date": "2026-10-04",
+     "value": "Monthly home pickup package from 500 THB/month",
+     "thb": 500,
+     "unit": "month"
+    },
+    {
+     "field": "price",
+     "quote": "ผ้านวม เริ่มต้น 120 บ. / ตามขนาด",
+     "url": "https://www.happywash.co/",
+     "date": "2026-10-04",
+     "value": "Duvets from 120 THB",
+     "thb": 120,
+     "unit": "unit"
+    },
+    {
+     "field": "zones",
+     "quote": "ครอบคลุมพื้นที่ ตัวเมืองเชียงใหม่",
+     "url": "https://www.happywash.co/",
+     "date": "2026-10-04",
+     "value": "Chiang Mai city"
+    },
+    {
+     "field": "hours",
+     "quote": "เปิดทุกวัน 8 โมงเช้า ถึง 1 ทุ่ม",
+     "url": "https://www.happywash.co/",
+     "date": "2026-10-04",
+     "value": "Daily 08:00-19:00"
+    },
+    {
+     "field": "booking",
+     "quote": "@happywash88",
+     "url": "https://www.happywash.co/",
+     "date": "2026-10-04",
+     "value": "LINE @happywash88; phone"
+    }
+   ]
+  },
+  {
+   "name": "Royal Laundry Chiang Mai",
+   "kind": "laundry",
+   "province": "cm",
+   "website": "https://laundryroyalchiangmai.com/en/",
+   "facts": [
+    {
+     "field": "price",
+     "quote": "Washing monthly package - pick up and delivery included ... 30 Thb 360",
+     "url": "https://laundryroyalchiangmai.com/en/",
+     "date": "2026-10-04",
+     "value": "Monthly package incl. pickup/delivery: 30 pieces 360 THB, 50 pieces 600 THB, 100 pieces 1,200 THB",
+     "thb": 360,
+     "unit": "month"
+    },
+    {
+     "field": "price",
+     "quote": "In case of delivery, add 150 baht starting (depending on the distance).",
+     "url": "https://laundryroyalchiangmai.com/en/",
+     "date": "2026-10-04",
+     "value": "Delivery otherwise from 150 THB depending on distance",
+     "thb": 150,
+     "unit": "job"
+    },
+    {
+     "field": "hours",
+     "quote": "Mon to Fri: 8.00-20.00",
+     "url": "https://laundryroyalchiangmai.com/en/",
+     "date": "2026-10-04",
+     "value": "Mon-Fri 08:00-20:00 (page also says open 7 days)"
+    },
+    {
+     "field": "zones",
+     "quote": "537/4 ม.5ตำบลสันผีเสื้อ อำเภอเมือง เชียงใหม่",
+     "url": "https://laundryroyalchiangmai.com/en/",
+     "date": "2026-10-04",
+     "value": "Chiang Mai city; shop San Phi Suea"
+    }
+   ]
+  },
+  {
+   "name": "Chiang Mai Air Care",
+   "name_th": "เชียงใหม่แอร์แคร์",
+   "kind": "handyman",
+   "province": "cm",
+   "website": "https://www.chiangmaiaircare.com/",
+   "facts": [
+    {
+     "field": "price",
+     "quote": "9,000 BTU 550.- | 700.-",
+     "url": "https://www.chiangmaiaircare.com/%E0%B8%A5%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%A3%E0%B9%8C/",
+     "date": "2026-10-04",
+     "value": "Wall aircon 9,000-12,000 BTU clean 550 THB (700 with disinfectant)",
+     "thb": 550,
+     "unit": "unit"
+    },
+    {
+     "field": "price",
+     "quote": "18,000 BTU 650.- | 800.-",
+     "url": "https://www.chiangmaiaircare.com/%E0%B8%A5%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%A3%E0%B9%8C/",
+     "date": "2026-10-04",
+     "value": "Wall aircon 18,000-25,000 BTU 650 THB",
+     "thb": 650,
+     "unit": "unit"
+    },
+    {
+     "field": "price",
+     "quote": "13,000 BTU 1,200.- | 1,600.-",
+     "url": "https://www.chiangmaiaircare.com/%E0%B8%A5%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%A3%E0%B9%8C/",
+     "date": "2026-10-04",
+     "value": "Ceiling/floor units 13,000-25,000 BTU 1,200 THB; 35,000-45,000 BTU 1,800 THB",
+     "thb": 1200,
+     "unit": "unit"
+    },
+    {
+     "field": "zones",
+     "quote": "เนื่องจากข้อจำกับเรื่องระยะทางและสถานที่ กรุณาโทรสอบถามทางร้านล่วงหน้าก่อนค่ะ",
+     "url": "https://www.chiangmaiaircare.com/%E0%B8%A5%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%A3%E0%B9%8C/",
+     "date": "2026-10-04",
+     "value": "All of Chiang Mai; call ahead because of distance limits"
+    }
+   ]
+  },
+  {
+   "name": "Pro Fresh Care (ช่างแอร์เชียงใหม่)",
+   "name_th": "โปรเฟรชแคร์",
+   "kind": "handyman",
+   "province": "cm",
+   "website": "https://xn--72cahb0jef1en2cxb8ik9a5dn3d.com/",
+   "phone": "065-365-7673",
+   "facts": [
+    {
+     "field": "price",
+     "quote": "500 บาท / เครื่อง 9,000–18,000 BTU · รับประกัน 30 วัน",
+     "url": "https://xn--72cahb0jef1en2cxb8ik9a5dn3d.com/",
+     "date": "2026-10-04",
+     "value": "Aircon clean 500 THB/unit (9,000-18,000 BTU), 30-day warranty; title says from 450 THB",
+     "thb": 500,
+     "unit": "unit"
+    },
+    {
+     "field": "price",
+     "quote": "2,300–2,500 บาท / เครื่อง ถอดล้าง 100%",
+     "url": "https://xn--72cahb0jef1en2cxb8ik9a5dn3d.com/",
+     "date": "2026-10-04",
+     "value": "Full strip-down clean 2,300-2,500 THB/unit",
+     "thb": 2300,
+     "unit": "unit"
+    },
+    {
+     "field": "price",
+     "quote": "9k-12k BTU 3,000.- / 13k-24k BTU 3,500.-",
+     "url": "https://xn--72cahb0jef1en2cxb8ik9a5dn3d.com/",
+     "date": "2026-10-04",
+     "value": "Install 9k-12k BTU 3,000 THB; 13k-24k 3,500 THB",
+     "thb": 3000,
+     "unit": "unit"
+    },
+    {
+     "field": "zones",
+     "quote": "ไม่มีค่าเดินทางเพิ่มในพื้นที่บริการ",
+     "url": "https://xn--72cahb0jef1en2cxb8ik9a5dn3d.com/",
+     "date": "2026-10-04",
+     "value": "No travel fee inside service area"
+    },
+    {
+     "field": "booking",
+     "quote": "ส่งรูปให้ช่างประเมินฟรี",
+     "url": "https://xn--72cahb0jef1en2cxb8ik9a5dn3d.com/",
+     "date": "2026-10-04",
+     "value": "Phone 065-365-7673; LINE; send photos for free estimate"
+    }
+   ]
+  },
+  {
+   "name": "Airfix Service",
+   "kind": "handyman",
+   "province": "cm",
+   "website": "https://www.airfixservice.com/",
+   "line": "@airfixcm",
+   "phone": "095-650-3385",
+   "facts": [
+    {
+     "field": "price",
+     "quote": "ล้างแอร์ เชียงใหม่ เริ่มต้น 450 บาท ออกใบกำกับภาษีได้",
+     "url": "https://www.airfixservice.com/%E0%B8%A5%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88",
+     "date": "2026-10-04",
+     "value": "Aircon cleaning from 450 THB (page title)",
+     "thb": 450,
+     "unit": "unit"
+    },
+    {
+     "field": "zones",
+     "quote": "ในพื้นที่จังหวัดเชียงใหม่",
+     "url": "https://www.airfixservice.com/",
+     "date": "2026-10-04",
+     "value": "Chiang Mai province; office Hang Dong"
+    },
+    {
+     "field": "booking",
+     "quote": "@airfixcm",
+     "url": "https://www.airfixservice.com/",
+     "date": "2026-10-04",
+     "value": "LINE @airfixcm; 095-650-3385"
+    }
+   ]
+  },
+  {
+   "name": "DD Air Service",
+   "name_th": "ดีดีแอร์เซอร์วิส",
+   "kind": "handyman",
+   "province": "cm",
+   "website": "https://www.ddairservice.com/",
+   "phone": "088-414-1774",
+   "facts": [
+    {
+     "field": "price",
+     "quote": "ล้างแอร์เชียงใหม่ ราคา 500 บาท",
+     "url": "https://www.ddairservice.com/%E0%B9%81%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99/%E0%B8%A5%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88-500-%E0%B8%9A%E0%B8%B2%E0%B8%97/48.html",
+     "date": "2026-10-04",
+     "value": "Aircon cleaning 500 THB",
+     "thb": 500,
+     "unit": "unit"
+    },
+    {
+     "field": "booking",
+     "quote": "สนใจติดต่อ 088-4141774,091-6372388",
+     "url": "https://www.ddairservice.com/%E0%B9%81%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99/%E0%B8%A5%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88-500-%E0%B8%9A%E0%B8%B2%E0%B8%97/48.html",
+     "date": "2026-10-04",
+     "value": "088-414-1774, 091-637-2388"
+    }
+   ]
+  },
+  {
+   "name": "E-Fix Services",
+   "kind": "handyman",
+   "province": "cm",
+   "website": "https://efix.in.th/",
+   "line": "@efix",
+   "phone": "093-161-5000",
+   "facts": [
+    {
+     "field": "price",
+     "quote": "08.00 – 17.00 น. ราคา เริ่มต้น ที่ 550 ราคา เริ่มต้น ที่ 1,100",
+     "url": "https://efix.in.th/services/",
+     "date": "2026-10-04",
+     "value": "Scheduled call-out 08:00-17:00 from 550 THB; urgent from 1,100 THB",
+     "thb": 550,
+     "unit": "visit"
+    },
+    {
+     "field": "price",
+     "quote": "17.01 – 21.00 น. ราคา เริ่มต้น ที่ 880",
+     "url": "https://efix.in.th/services/",
+     "date": "2026-10-04",
+     "value": "17:01-21:00 from 880 / 1,320 THB; 21:01-07:59 from 1,100 / 1,760 THB",
+     "thb": 880,
+     "unit": "visit"
+    },
+    {
+     "field": "minimum",
+     "quote": "ในอัตราเริ่มต้นที่ 330 บาท",
+     "url": "https://efix.in.th/services/",
+     "date": "2026-10-04",
+     "value": "Cancellation after technician leaves: from 330 THB",
+     "thb": 330,
+     "unit": "visit"
+    },
+    {
+     "field": "price",
+     "quote": "350 บาท/เครื่อง สำหรับแอร์ที่มีขนาดไม่เกิน 12,000 btu",
+     "url": "https://efix.in.th/promotion_feb64/",
+     "date": "2021-02",
+     "value": "Aircon cleaning promo (Feb 2021, 2+ units, Mueang): 350 THB up to 12,000 BTU",
+     "thb": 350,
+     "unit": "unit"
+    },
+    {
+     "field": "zones",
+     "quote": "ในพื้นที่ อำเภอเมือง จังหวัดเชียงใหม่ อำเภอเมือง จังหวัดลำพูน และพื้นที่ใกล้เคียง",
+     "url": "https://efix.in.th/services/",
+     "date": "2026-10-04",
+     "value": "Mueang Chiang Mai, Mueang Lamphun and nearby; grass cutting in Mueang CM and nearby"
+    },
+    {
+     "field": "services",
+     "quote": "งานตัดหญ้า ตัดแต่งต้นไม้ ดูแลสวน",
+     "url": "https://efix.in.th/services/",
+     "date": "2026-10-04",
+     "value": "Electrical, plumbing, pumps, aircon, grass cutting/tree trimming, cleaning"
+    },
+    {
+     "field": "booking",
+     "quote": "Lind ID : @efix",
+     "url": "https://efix.in.th/services/",
+     "date": "2026-10-04",
+     "value": "Phone 093-161-5000; LINE @efix"
+    },
+    {
+     "field": "hours",
+     "quote": "ทุกวัน จันทร์ – เสาร์ เรามีพนักงานประสานงานพร้อมรับการติดต่อ",
+     "url": "https://efix.in.th/",
+     "date": "2026-10-04",
+     "value": "Coordinators Mon-Sat (home page)"
+    }
+   ]
+  },
+  {
+   "name": "Top Repairs CNX",
+   "kind": "handyman",
+   "province": "cm",
+   "website": "https://www.toprepairscnx.com/en",
+   "line": "@toprepairscnx",
+   "phone": "+66 93 298 8075",
+   "facts": [
+    {
+     "field": "price",
+     "quote": "General Repairs ... Starting from ฿ 500",
+     "url": "https://www.toprepairscnx.com/en",
+     "date": "2026-10-04",
+     "value": "Electrical, AC, CCTV, general repairs each from 500 THB",
+     "thb": 500,
+     "unit": "job"
+    },
+    {
+     "field": "zones",
+     "quote": "Chiang Mai City, Hang Dong, San Sai, Mae Rim, San Kamphaeng, Lamphun",
+     "url": "https://www.toprepairscnx.com/en",
+     "date": "2026-10-04",
+     "value": "Chiang Mai City, Hang Dong, San Sai, Mae Rim, San Kamphaeng, Lamphun"
+    },
+    {
+     "field": "hours",
+     "quote": "Mon-Sun: 8:00 - 20:00",
+     "url": "https://www.toprepairscnx.com/en",
+     "date": "2026-10-04",
+     "value": "Mon-Sun 08:00-20:00"
+    },
+    {
+     "field": "booking",
+     "quote": "Book online or message us on LINE for a fast, free estimate.",
+     "url": "https://www.toprepairscnx.com/en",
+     "date": "2026-10-04",
+     "value": "Online booking; LINE @toprepairscnx; phone"
+    },
+    {
+     "field": "languages",
+     "quote": "Trusted Handyman in Chiang Mai & Lamphun",
+     "url": "https://www.toprepairscnx.com/en",
+     "date": "2026-10-04",
+     "value": "English site"
+    }
+   ]
+  },
+  {
+   "name": "Expat Homes (maintenance department)",
+   "kind": "handyman",
+   "province": "cm",
+   "website": "https://homeinchiangmai.com/maintenance/",
+   "facts": [
+    {
+     "field": "price",
+     "quote": "350 Per Man HR* + Materials",
+     "url": "https://homeinchiangmai.com/maintenance/",
+     "date": "2026-10-04",
+     "value": "Non-clients 350 THB per man-hour + materials",
+     "thb": 350,
+     "unit": "hour"
+    },
+    {
+     "field": "price",
+     "quote": "225 Per Man HR* + Materials",
+     "url": "https://homeinchiangmai.com/maintenance/",
+     "date": "2026-10-04",
+     "value": "Lease clients 225 THB per man-hour + materials",
+     "thb": 225,
+     "unit": "hour"
+    },
+    {
+     "field": "minimum",
+     "quote": "Minimum ฿400 labor charge per visit",
+     "url": "https://homeinchiangmai.com/maintenance/",
+     "date": "2026-10-04",
+     "value": "Minimum 400 THB labour per visit (non-clients); 300 THB (clients)",
+     "thb": 400,
+     "unit": "visit"
+    },
+    {
+     "field": "languages",
+     "quote": "English speaking and translation available",
+     "url": "https://homeinchiangmai.com/maintenance/",
+     "date": "2026-10-04",
+     "value": "English speaking and translation"
+    }
+   ]
+  },
+  {
+   "name": "Aunt Service (plumbing and electrical Chiang Mai)",
+   "name_th": "ช่างประปาและไฟฟ้าเชียงใหม่",
+   "kind": "handyman",
+   "province": "cm",
+   "facebook": "https://www.facebook.com/Aunt.Service/",
+   "facts": [
+    {
+     "field": "price",
+     "quote": "ราคาเริ่มต้น ฿1,000",
+     "url": "https://fastwork.co/user/auntservice/plumbing-37436317",
+     "date": "2026-10-04",
+     "value": "Fastwork listing: from 1,000 THB",
+     "thb": 1000,
+     "unit": "job"
+    },
+    {
+     "field": "zones",
+     "quote": "จังหวัดเชียงใหม่ โซน เมืองเชียงใหม่",
+     "url": "https://fastwork.co/user/auntservice/plumbing-37436317",
+     "date": "2026-10-04",
+     "value": "Mueang Chiang Mai zone"
+    },
+    {
+     "field": "hours",
+     "quote": "Always open",
+     "url": "https://www.facebook.com/Aunt.Service/",
+     "date": "2026-10-04",
+     "value": "Always open (FB page setting)"
+    },
+    {
+     "field": "booking",
+     "quote": "Online booking · Reservations",
+     "url": "https://www.facebook.com/Aunt.Service/",
+     "date": "2026-10-04",
+     "value": "Fastwork quote request; FB online booking"
+    }
+   ]
+  },
+  {
+   "name": "CM Garden (Uncle Suchat)",
+   "name_th": "ลุงสุชาติ",
+   "kind": "garden",
+   "province": "cm",
+   "website": "https://www.cmgarden.com/",
+   "phone": "086-168-5047",
+   "facts": [
+    {
+     "field": "price",
+     "quote": "รับตัดหญ้าแบบรายครั้ง ... ค่าบริการเริ่มต้น: 500 บาท",
+     "url": "https://www.cmgarden.com/",
+     "date": "2026-10-04",
+     "value": "Grass cutting per visit from 500 THB",
+     "thb": 500,
+     "unit": "visit"
+    },
+    {
+     "field": "price",
+     "quote": "รับตัดต้นไม้ ตัดกิ่งไม้ (รายครั้ง) ... ค่าบริการเริ่มต้น: 300 บาท",
+     "url": "https://www.cmgarden.com/",
+     "date": "2026-10-04",
+     "value": "Tree/branch cutting per visit from 300 THB; hedge shaping from 700 THB",
+     "thb": 300,
+     "unit": "visit"
+    },
+    {
+     "field": "price",
+     "quote": "รับดูแลสวนครบวงจร (รายเดือน) ... ค่าบริการเริ่มต้น: 1,500 บาท",
+     "url": "https://www.cmgarden.com/",
+     "date": "2026-10-04",
+     "value": "Full garden care monthly from 1,500 THB",
+     "thb": 1500,
+     "unit": "month"
+    },
+    {
+     "field": "price",
+     "quote": "บริการรดน้ำรายเดือน ... ค่าบริการเริ่มต้น: 1,000 บาท",
+     "url": "https://www.cmgarden.com/",
+     "date": "2026-10-04",
+     "value": "Monthly watering from 1,000 THB",
+     "thb": 1000,
+     "unit": "month"
+    },
+    {
+     "field": "zones",
+     "quote": "ให้บริการเฉพาะพื้นที่ อ.แม่ริม จ.เชียงใหม่ เท่านั้น",
+     "url": "https://www.cmgarden.com/",
+     "date": "2026-10-04",
+     "value": "Mae Rim only: Huai Sai, Mae Raem, Rim Tai, Rim Nuea, San Pong, Mae Sa, Don Kaeo, Mueang Kaeo"
+    },
+    {
+     "field": "booking",
+     "quote": "โทร. 086-168-5047",
+     "url": "https://www.cmgarden.com/",
+     "date": "2026-10-04",
+     "value": "Phone 086-168-5047; book ahead"
+    }
+   ]
+  },
+  {
+   "name": "BT Garden (Chiang Rai tree cutting)",
+   "kind": "garden",
+   "province": "cr",
+   "website": "https://btgarden.com/%E0%B8%95%E0%B8%B1%E0%B8%94%E0%B8%95%E0%B9%89%E0%B8%99%E0%B9%84%E0%B8%A1%E0%B9%89%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B8%A3%E0%B8%B2%E0%B8%A2-2/",
+   "line": "@111uarpe",
+   "phone": "099-502-4978",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "รับจ้างตัดหญ้า ตัดแต่งกิ่งต้นไม้ ปรับพื้นที่ให้น่าใช้งาน",
+     "url": "https://btgarden.com/%E0%B8%95%E0%B8%B1%E0%B8%94%E0%B8%95%E0%B9%89%E0%B8%99%E0%B9%84%E0%B8%A1%E0%B9%89%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B8%A3%E0%B8%B2%E0%B8%A2-2/",
+     "date": "2026-10-04",
+     "value": "Tree cutting with haul-away, grass cutting, branch trimming, garden landscaping"
+    },
+    {
+     "field": "zones",
+     "quote": "ยินดีดำเนินการให้ทั่วไทย",
+     "url": "https://btgarden.com/%E0%B8%95%E0%B8%B1%E0%B8%94%E0%B8%95%E0%B9%89%E0%B8%99%E0%B9%84%E0%B8%A1%E0%B9%89%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B8%A3%E0%B8%B2%E0%B8%A2-2/",
+     "date": "2026-10-04",
+     "value": "Chiang Rai landing page; says it works nationwide"
+    },
+    {
+     "field": "booking",
+     "quote": "โทร 099-502-4978 ไลน์ @111uarpe",
+     "url": "https://btgarden.com/%E0%B8%95%E0%B8%B1%E0%B8%94%E0%B8%95%E0%B9%89%E0%B8%99%E0%B9%84%E0%B8%A1%E0%B9%89%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B8%A3%E0%B8%B2%E0%B8%A2-2/",
+     "date": "2026-10-04",
+     "value": "Phone 099-502-4978; LINE @111uarpe"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-curated-fb-fthandymanchiangmai",
+   "name": "FT Handyman & Renovation",
+   "kind": "handyman",
+   "province": "cm",
+   "website": "http://www.fthomesolution.com/",
+   "facebook": "https://www.facebook.com/fthandymanchiangmai",
+   "phone": "098-582-9241",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "FT Home Solution : Property Maintenance, Renovatin and Home Repair Services in Chiang Mai",
+     "url": "https://www.facebook.com/fthandymanchiangmai",
+     "date": "2026-10-04",
+     "value": "Property maintenance, renovation and home repair"
+    },
+    {
+     "field": "booking",
+     "quote": "098 582 9241",
+     "url": "https://www.facebook.com/fthandymanchiangmai",
+     "date": "2026-10-04",
+     "value": "Phone 098 582 9241"
+    },
+    {
+     "field": "hours",
+     "quote": "Always open",
+     "url": "https://www.facebook.com/fthandymanchiangmai",
+     "date": "2026-10-04",
+     "value": "Always open (FB page setting)"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-curated-home-15545",
+   "name": "ทักษิณแอร์เซ็นเตอร์ (ฟ้าฮ่าม)",
+   "kind": "handyman",
+   "province": "cm",
+   "website": "http://www.taksingroup.com/",
+   "phone": "053-345057,084-880-0086,087-1859992",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "จำหน่ายแอร์เชียงใหม่ ล้างแอร์เชียงใหม่ ซ่อมแอร์เชียงใหม่",
+     "url": "http://www.taksingroup.com/",
+     "date": "2026-10-04",
+     "value": "Aircon sales, cleaning, repair; branches Mae Jo, Fa Ham, Mae Rim (and Pai)"
+    },
+    {
+     "field": "booking",
+     "quote": "ทักษิณแอร์เซ็นเตอร์ (ฟ้าฮ่าม) 78/1 ม.2 ต.ฟ้าฮ่าม อ.เมือง จ.เชียงใหม่ โทร 053-345057",
+     "url": "http://www.taksingroup.com/",
+     "date": "2026-10-04",
+     "value": "Fa Ham branch 053-345057"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-curated-home-15980",
+   "name": "ต๊ะอิเล็กทรอนิกส์ ซ่อมเครื่องใช้ไฟฟ้า",
+   "kind": "handyman",
+   "province": "cm",
+   "website": "https://www.facebook.com/ต๊ะอิเล็กทรอนิกส์-415693652572374/",
+   "facebook": "https://www.facebook.com/415693652572374",
+   "phone": "093-394-4661",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "ร้านซ่อมเครื่องใช้ไฟฟ้า LED-TV ตู้เย็น ตู้แช่ เครื่องซักผ้า เครื่องเสียง พัดลม ไมโคเวพ และรับงานนอกสถานที่",
+     "url": "https://www.facebook.com/ต๊ะอิเล็กทรอนิกส์-415693652572374/",
+     "date": "2026-10-04",
+     "value": "ร้านซ่อมเครื่องใช้ไฟฟ้า LED-TV ตู้เย็น ตู้แช่ เครื่องซักผ้า เครื่องเสียง พัดลม ไมโคเวพ และรับงานนอก"
+    },
+    {
+     "field": "booking",
+     "quote": "093 394 4661",
+     "url": "https://www.facebook.com/ต๊ะอิเล็กทรอนิกส์-415693652572374/",
+     "date": "2026-10-04",
+     "value": "Phone 093 394 4661"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-curated-home-18973",
+   "name": "วัฒนาแอร์เซอร์วิส",
+   "kind": "handyman",
+   "province": "cm",
+   "website": "https://www.facebook.com/Watanaaironline053",
+   "phone": "081-530-1956,089-192-0855",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "จำหน่าย ติดตั้ง ล้าง ซ่อม ย้าย เครื่?",
+     "url": "https://www.facebook.com/Watanaaironline053",
+     "date": "2026-10-04",
+     "value": "จำหน่าย ติดตั้ง ล้าง ซ่อม ย้าย เครื่?"
+    },
+    {
+     "field": "booking",
+     "quote": "081 530 1956",
+     "url": "https://www.facebook.com/Watanaaironline053",
+     "date": "2026-10-04",
+     "value": "Phone 081 530 1956"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-curated-home-20705",
+   "name": "วาทิตย์ธรรมช่าง",
+   "kind": "handyman",
+   "province": "cm",
+   "website": "https://www.facebook.com/pages/category/Business-Service/แอร์บ้านราคาถูก-รับงานติดตั้ง-568684516616658/",
+   "phone": "053-282-369,064-915-3269",
+   "facts": [
+    {
+     "field": "booking",
+     "quote": "081 926 1388",
+     "url": "https://www.facebook.com/pages/category/Business-Service/แอร์บ้านราคาถูก-รับงานติดตั้ง-568684516616658/",
+     "date": "2026-10-04",
+     "value": "Phone 081 926 1388"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-curated-home-28990",
+   "name": "ศูนย์บริการ ฟูจิตสึ เชียงใหม่ ฟูจิตซึ เจเนอรัล  fujitsu",
+   "kind": "handyman",
+   "province": "cm",
+   "website": "https://www.facebook.com/เชียงใหม่-พีเอสแอร์-จำกัด-Chiang-Mai-PS-Air-103246508450440/",
+   "phone": "053-308-900,,081-716-9518",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "ติดตั้งแอร์ ซ่อมแอร์ ล้างแอร์ ด้วยท?",
+     "url": "https://www.facebook.com/เชียงใหม่-พีเอสแอร์-จำกัด-Chiang-Mai-PS-Air-103246508450440/",
+     "date": "2026-10-04",
+     "value": "ติดตั้งแอร์ ซ่อมแอร์ ล้างแอร์ ด้วยท?"
+    },
+    {
+     "field": "booking",
+     "quote": "053 308 900",
+     "url": "https://www.facebook.com/เชียงใหม่-พีเอสแอร์-จำกัด-Chiang-Mai-PS-Air-103246508450440/",
+     "date": "2026-10-04",
+     "value": "Phone 053 308 900"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-curated-home-3485",
+   "name": "สยามแอร์เอ็นจิเนียริ่ง",
+   "kind": "handyman",
+   "province": "cm",
+   "website": "https://www.facebook.com/siamairengineering/",
+   "facebook": "https://www.facebook.com/1630741277176453",
+   "phone": "053-213-297,053-218-397,084-704-20367",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "ศูนย์บริการ จำหน่าย ล้าง ซ่อม ย้ายและติดตั้งเครื่องปรับอากาศทุกชนิด ประสบการณ์กว่า 40 ปี",
+     "url": "https://www.facebook.com/siamairengineering/",
+     "date": "2026-10-04",
+     "value": "ศูนย์บริการ จำหน่าย ล้าง ซ่อม ย้ายและติดตั้งเครื่องปรับอากาศทุกชนิด ประสบการณ์กว่า 40 ปี"
+    },
+    {
+     "field": "booking",
+     "quote": "053 213 297",
+     "url": "https://www.facebook.com/siamairengineering/",
+     "date": "2026-10-04",
+     "value": "Phone 053 213 297"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-curated-home-38728",
+   "name": "กองทองแอร์",
+   "kind": "handyman",
+   "province": "cm",
+   "website": "https://www.facebook.com/p/กองทองแอร์-100063456463363",
+   "phone": "053-816-749,081-950-7952,081-288-9019",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "ขาย-ติดตั้ง-ซ่อม-ล้าง เครื่องปรับอากาศ",
+     "url": "https://www.facebook.com/p/กองทองแอร์-100063456463363",
+     "date": "2026-10-04",
+     "value": "ขาย-ติดตั้ง-ซ่อม-ล้าง เครื่องปรับอากาศ"
+    },
+    {
+     "field": "booking",
+     "quote": "053 141 779",
+     "url": "https://www.facebook.com/p/กองทองแอร์-100063456463363",
+     "date": "2026-10-04",
+     "value": "Phone 053 141 779"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-curated-home-4495",
+   "name": "ธีรุจ ซ่อมตู้เย็น ตู้แช่ เครื่องซักผ้า ซ่อมเครื่องใช้ไฟฟ้า",
+   "kind": "handyman",
+   "province": "cm",
+   "website": "https://www.facebook.com/Thuanrit",
+   "phone": "089-756-3337",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "ซ่อม เครื่องใช้ไฟฟ้า ตู้เย็น พัดลม เครื่องซักผ้า ตู้แช่ ทีวี เตารีด ฯลฯ",
+     "url": "https://www.facebook.com/Thuanrit",
+     "date": "2026-10-04",
+     "value": "ซ่อม เครื่องใช้ไฟฟ้า ตู้เย็น พัดลม เครื่องซักผ้า ตู้แช่ ทีวี เตารีด ฯลฯ"
+    },
+    {
+     "field": "booking",
+     "quote": "093 929 4164",
+     "url": "https://www.facebook.com/Thuanrit",
+     "date": "2026-10-04",
+     "value": "Phone 093 929 4164"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-curated-home-6027",
+   "name": "เชียงใหม่ พี.เอส.แอร์",
+   "kind": "handyman",
+   "province": "cm",
+   "website": "https://www.facebook.com/เชียงใหม่-พีเอสแอร์-276703722856686/",
+   "facebook": "https://www.facebook.com/103246508450440",
+   "phone": "053-308-900,053-308-901,053-308-902,081-960-1410",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "ติดตั้งแอร์ ซ่อมแอร์ ล้างแอร์ ด้วยท?",
+     "url": "https://www.facebook.com/103246508450440",
+     "date": "2026-10-04",
+     "value": "ติดตั้งแอร์ ซ่อมแอร์ ล้างแอร์ ด้วยท?"
+    },
+    {
+     "field": "booking",
+     "quote": "053 308 900",
+     "url": "https://www.facebook.com/103246508450440",
+     "date": "2026-10-04",
+     "value": "Phone 053 308 900"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-curated-home-9894",
+   "name": "เชียงใหม่ เพียวแอร์",
+   "kind": "handyman",
+   "province": "cm",
+   "website": "https://www.facebook.com/Chiangmai.PureAir.Service",
+   "facebook": "https://www.facebook.com/373925372755144",
+   "phone": "053-444-007,085-031-1488",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "- รับติดตั้ง ซ่อม ย้าย ล้าง เครื่องปร?",
+     "url": "https://www.facebook.com/Chiangmai.PureAir.Service",
+     "date": "2026-10-04",
+     "value": "- รับติดตั้ง ซ่อม ย้าย ล้าง เครื่องปร?"
+    },
+    {
+     "field": "booking",
+     "quote": "053 444 007",
+     "url": "https://www.facebook.com/Chiangmai.PureAir.Service",
+     "date": "2026-10-04",
+     "value": "Phone 053 444 007"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-ovt-49df16a8-bcd6-46cb-b61d-24e13486a683",
+   "name": "ร้านแอร์เชียงดาวเซอร์วิส Electrician - Air Service",
+   "name_th": "ร้านแอร์เชียงดาวเซอร์วิส Electrician - Air Service",
+   "kind": "handyman",
+   "province": "cm",
+   "facebook": "https://www.facebook.com/113724623619022",
+   "phone": "+66933076537",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "👉จำหน่าย ติดตั้ง ย้าย ล้าง เครื่องปรับอากาศ",
+     "url": "https://www.facebook.com/113724623619022",
+     "date": "2026-10-04",
+     "value": "👉จำหน่าย ติดตั้ง ย้าย ล้าง เครื่องปรับอากาศ"
+    },
+    {
+     "field": "booking",
+     "quote": "093 307 6537",
+     "url": "https://www.facebook.com/113724623619022",
+     "date": "2026-10-04",
+     "value": "Phone 093 307 6537"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-ovt-5b8c5c3f-6725-43f0-a5ca-11cbc551d492",
+   "name": "ร้าน เคแอร์ เซอร์วิส",
+   "name_th": "ร้าน เคแอร์ เซอร์วิส",
+   "kind": "handyman",
+   "province": "cm",
+   "facebook": "https://www.facebook.com/1207564735967259",
+   "phone": "+66957790364",
+   "facts": [
+    {
+     "field": "booking",
+     "quote": "095 779 0364",
+     "url": "https://www.facebook.com/1207564735967259",
+     "date": "2026-10-04",
+     "value": "Phone 095 779 0364"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-ovt-5bc3773c-afc8-40d9-8605-e3b8fa477fef",
+   "name": "แอร์บ้านเชียงใหม่",
+   "name_th": "แอร์บ้านเชียงใหม่",
+   "kind": "handyman",
+   "province": "cm",
+   "facebook": "https://www.facebook.com/109034945038613",
+   "phone": "+66634524649",
+   "facts": [
+    {
+     "field": "booking",
+     "quote": "063 452 4649",
+     "url": "https://www.facebook.com/109034945038613",
+     "date": "2026-10-04",
+     "value": "Phone 063 452 4649"
+    },
+    {
+     "field": "booking",
+     "quote": "LINE : 0634524649",
+     "url": "https://www.facebook.com/109034945038613",
+     "date": "2026-10-04",
+     "value": "LINE 0634524649"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-ovt-5d644000-c9cd-444a-8c03-7a77d07afb4f",
+   "name": "P.K.Air Service",
+   "kind": "handyman",
+   "province": "cm",
+   "facebook": "https://www.facebook.com/403663693551990",
+   "phone": "+6653838216",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "รับติดตั้ง ซ่อม ล้าง เครื่องปรับอาก?",
+     "url": "https://www.facebook.com/403663693551990",
+     "date": "2026-10-04",
+     "value": "รับติดตั้ง ซ่อม ล้าง เครื่องปรับอาก?"
+    },
+    {
+     "field": "booking",
+     "quote": "053 838 216",
+     "url": "https://www.facebook.com/403663693551990",
+     "date": "2026-10-04",
+     "value": "Phone 053 838 216"
+    },
+    {
+     "field": "booking",
+     "quote": "Line ID : @tasakiair",
+     "url": "https://www.facebook.com/403663693551990",
+     "date": "2026-10-04",
+     "value": "LINE @tasakiair"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-ovt-6eae3c79-32ee-426e-befb-f42e7b6fa5b9",
+   "name": "บริษัทแอร์เซอร์วิสเชียงใหม่จำกัด",
+   "name_th": "บริษัทแอร์เซอร์วิสเชียงใหม่จำกัด",
+   "kind": "handyman",
+   "province": "cm",
+   "website": "https://xn--72cfc4gddb6a1annc7gqa1ngh4c1fyce.com/",
+   "facebook": "https://www.facebook.com/100454331490881",
+   "phone": "+66613275802",
+   "facts": [
+    {
+     "field": "price",
+     "quote": "ค่าบริการล้างแอร์ติดผนัง ตัวละ 650 บาท หาก 2 ตัวขึ้นไป เครื่องละ 500 บาท (9000-12000 บีทียู)",
+     "url": "https://xn--72cfc4gddb6a1annc7gqa1ngh4c1fyce.com/",
+     "date": "2026-10-04",
+     "value": "Wall aircon cleaning 650 THB for one unit; 500 THB each for 2+ (9,000-12,000 BTU)",
+     "thb": 650,
+     "unit": "unit"
+    },
+    {
+     "field": "price",
+     "quote": "ค่าบริการล้างแอร์ Celling Type เริ่มต้นเครื่องละ 1,200 บาท",
+     "url": "https://xn--72cfc4gddb6a1annc7gqa1ngh4c1fyce.com/",
+     "date": "2026-10-04",
+     "value": "Ceiling-type aircon cleaning from 1,200 THB",
+     "thb": 1200,
+     "unit": "unit"
+    },
+    {
+     "field": "price",
+     "quote": "รับติดตั้งเครื่องทำน้ำอุ่น ราคาเริ่มต้น 800 บาท(มีเมนต์ให้เรียบร้อยแล้ว)",
+     "url": "https://xn--72cfc4gddb6a1annc7gqa1ngh4c1fyce.com/",
+     "date": "2026-10-04",
+     "value": "Water-heater installation from 800 THB (wiring ready)",
+     "thb": 800,
+     "unit": "job"
+    },
+    {
+     "field": "hours",
+     "quote": "เปิดทุกวันเวลา 8.00น.-18.00น.",
+     "url": "https://xn--72cfc4gddb6a1annc7gqa1ngh4c1fyce.com/",
+     "date": "2026-10-04",
+     "value": "Open daily 08:00-18:00"
+    },
+    {
+     "field": "booking",
+     "quote": "Tel. 061-0547568,061-3275802",
+     "url": "https://xn--72cfc4gddb6a1annc7gqa1ngh4c1fyce.com/",
+     "date": "2026-10-04",
+     "value": "Tel 061-054-7568, 061-327-5802"
+    },
+    {
+     "field": "services",
+     "quote": "จำหน่ายแอร์บ้านราคาถูก ติดตั้ง ซ่อมแอร์ ล้างแอร์ รับซื้อแอร์เก่า แอร์มือสอง",
+     "url": "https://www.facebook.com/100454331490881",
+     "date": "2026-10-04",
+     "value": "จำหน่ายแอร์บ้านราคาถูก ติดตั้ง ซ่อมแอร์ ล้างแอร์ รับซื้อแอร์เก่า แอร์มือสอง"
+    },
+    {
+     "field": "booking",
+     "quote": "061 327 5802",
+     "url": "https://www.facebook.com/100454331490881",
+     "date": "2026-10-04",
+     "value": "Phone 061 327 5802"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-ovt-730a86de-7943-467e-96da-d2c1293895a6",
+   "name": "อาร์ทคูลเซอร์วิส แอร์ เอ็นจิเนียริ่ง",
+   "name_th": "อาร์ทคูลเซอร์วิส แอร์ เอ็นจิเนียริ่ง",
+   "kind": "handyman",
+   "province": "cm",
+   "facebook": "https://www.facebook.com/230207933785437",
+   "phone": "+66899973332",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "บริการซ่อม ย้าย ล้าง ติดตั้ง จำหน่ายเครื่องปรับอากาศ",
+     "url": "https://www.facebook.com/230207933785437",
+     "date": "2026-10-04",
+     "value": "บริการซ่อม ย้าย ล้าง ติดตั้ง จำหน่ายเครื่องปรับอากาศ"
+    },
+    {
+     "field": "booking",
+     "quote": "089 997 3332",
+     "url": "https://www.facebook.com/230207933785437",
+     "date": "2026-10-04",
+     "value": "Phone 089 997 3332"
+    },
+    {
+     "field": "hours",
+     "quote": "Always open",
+     "url": "https://www.facebook.com/230207933785437",
+     "date": "2026-10-04",
+     "value": "Always open (FB page setting)"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-ovt-7c37ccde-fb25-4738-b413-711bb3c74a4c",
+   "name": "เจษฎา แอร์เซอร์วิส Jatsada Air Service",
+   "name_th": "เจษฎา แอร์เซอร์วิส Jatsada Air Service",
+   "kind": "handyman",
+   "province": "cm",
+   "facebook": "https://www.facebook.com/2195286007455518",
+   "phone": "+66633244691",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "บริการ จำหน่าย ซ่อม ติดตั้ง",
+     "url": "https://www.facebook.com/2195286007455518",
+     "date": "2026-10-04",
+     "value": "บริการ จำหน่าย ซ่อม ติดตั้ง"
+    },
+    {
+     "field": "booking",
+     "quote": "063 324 4691",
+     "url": "https://www.facebook.com/2195286007455518",
+     "date": "2026-10-04",
+     "value": "Phone 063 324 4691"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-ovt-85e68cdc-19b8-494c-988f-18531ea4f937",
+   "name": "กล้องวงจรปิด ระบบไฟฟ้า แอร์เชียงใหม่:LNB-Tech CCTv&Satellite Service",
+   "name_th": "กล้องวงจรปิด ระบบไฟฟ้า แอร์เชียงใหม่:LNB-Tech CCTv&Satellite Service",
+   "kind": "handyman",
+   "province": "cm",
+   "facebook": "https://www.facebook.com/121366604700252",
+   "phone": "+66948251166",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "จำหน่ายและติดตั้งอุปกรณ์รับสัญญาน?",
+     "url": "https://www.facebook.com/121366604700252",
+     "date": "2026-10-04",
+     "value": "จำหน่ายและติดตั้งอุปกรณ์รับสัญญาน?"
+    },
+    {
+     "field": "booking",
+     "quote": "094 825 1166",
+     "url": "https://www.facebook.com/121366604700252",
+     "date": "2026-10-04",
+     "value": "Phone 094 825 1166"
+    },
+    {
+     "field": "hours",
+     "quote": "Always open",
+     "url": "https://www.facebook.com/121366604700252",
+     "date": "2026-10-04",
+     "value": "Always open (FB page setting)"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-ovt-930cbed4-01f6-4f23-8afe-c2e6cb0aeaff",
+   "name": "มีเดชแอร์",
+   "name_th": "มีเดชแอร์",
+   "kind": "handyman",
+   "province": "cm",
+   "facebook": "https://www.facebook.com/799124460204588",
+   "phone": "+66831524520",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "ซ่อม,ติดตั้ง แอร์บ้าน แอร์รถยนต์ เดิ",
+     "url": "https://www.facebook.com/799124460204588",
+     "date": "2026-10-04",
+     "value": "ซ่อม,ติดตั้ง แอร์บ้าน แอร์รถยนต์ เดิ"
+    },
+    {
+     "field": "booking",
+     "quote": "083 152 4520",
+     "url": "https://www.facebook.com/799124460204588",
+     "date": "2026-10-04",
+     "value": "Phone 083 152 4520"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-ovt-a58aa5a8-19a2-4664-b811-ca77e9d81ac0",
+   "name": "เชียงใหม่แอร์ถูก",
+   "name_th": "เชียงใหม่แอร์ถูก",
+   "kind": "handyman",
+   "province": "cm",
+   "facebook": "https://www.facebook.com/255736214617878",
+   "phone": "+66840432912",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "แอร์บ้าน แอร์ถูก ติดตั้งแอร์ ซ่อมแอ?",
+     "url": "https://www.facebook.com/255736214617878",
+     "date": "2026-10-04",
+     "value": "แอร์บ้าน แอร์ถูก ติดตั้งแอร์ ซ่อมแอ?"
+    },
+    {
+     "field": "booking",
+     "quote": "084 043 2912",
+     "url": "https://www.facebook.com/255736214617878",
+     "date": "2026-10-04",
+     "value": "Phone 084 043 2912"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-ovt-ba7116f4-73f8-401f-8309-cb2adf96f168",
+   "name": "นพรัตน์แอร์เซนเตอร์",
+   "name_th": "นพรัตน์แอร์เซนเตอร์",
+   "kind": "handyman",
+   "province": "cm",
+   "facebook": "https://www.facebook.com/422354021670503",
+   "phone": "+66801291539",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "รับซื้อ ขาย ติดตั้ง ซ่อมแอร์ทุกชนิด และเครื่องใช้ไฟฟ้า ราคากันเอง",
+     "url": "https://www.facebook.com/422354021670503",
+     "date": "2026-10-04",
+     "value": "รับซื้อ ขาย ติดตั้ง ซ่อมแอร์ทุกชนิด และเครื่องใช้ไฟฟ้า ราคากันเอง"
+    },
+    {
+     "field": "booking",
+     "quote": "080 129 1539",
+     "url": "https://www.facebook.com/422354021670503",
+     "date": "2026-10-04",
+     "value": "Phone 080 129 1539"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-ovt-c277150b-5a38-4de4-9704-fc2dfbd8a71c",
+   "name": "ที.เอ็ม.อะไหล่แอร์แอนด์เซอร์วิส",
+   "name_th": "ที.เอ็ม.อะไหล่แอร์แอนด์เซอร์วิส",
+   "kind": "handyman",
+   "province": "cm",
+   "facebook": "https://www.facebook.com/105687214444020",
+   "phone": "+66856767879",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "ที.เอ็ม.อะไหล่แอร์ จำหน่ายแอร์ใหม่แ?",
+     "url": "https://www.facebook.com/105687214444020",
+     "date": "2026-10-04",
+     "value": "ที.เอ็ม.อะไหล่แอร์ จำหน่ายแอร์ใหม่แ?"
+    },
+    {
+     "field": "booking",
+     "quote": "085 676 7879",
+     "url": "https://www.facebook.com/105687214444020",
+     "date": "2026-10-04",
+     "value": "Phone 085 676 7879"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-ovt-d2d5e35b-9963-45da-a12c-c8d604778bf2",
+   "name": "P cooling air and service",
+   "kind": "handyman",
+   "province": "cm",
+   "facebook": "https://www.facebook.com/1650832748337684",
+   "phone": "+66804519155",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "ขายปลีก ขายส่ง และ บริการเซอร์วิส",
+     "url": "https://www.facebook.com/1650832748337684",
+     "date": "2026-10-04",
+     "value": "ขายปลีก ขายส่ง และ บริการเซอร์วิส"
+    },
+    {
+     "field": "booking",
+     "quote": "080 451 9155",
+     "url": "https://www.facebook.com/1650832748337684",
+     "date": "2026-10-04",
+     "value": "Phone 080 451 9155"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-ovt-d60f48d9-3cac-47ad-8046-7b2cfbf78184",
+   "name": "ทักษิณ แอร์เซ็นเตอร์",
+   "name_th": "ทักษิณ แอร์เซ็นเตอร์",
+   "kind": "handyman",
+   "province": "cm",
+   "website": "http://www.taksingroup.com/",
+   "facebook": "https://www.facebook.com/1559426127633903",
+   "phone": "+6653247527",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "จำหน่ายแอร์เชียงใหม่ ล้างแอร์เชียงใหม่ ซ่อมแอร์เชียงใหม่",
+     "url": "http://www.taksingroup.com/",
+     "date": "2026-10-04",
+     "value": "Aircon sales, cleaning, repair (Taksin group site)"
+    },
+    {
+     "field": "services",
+     "quote": "บริการ จำหน่าย และติดตั้ง",
+     "url": "https://www.facebook.com/1559426127633903",
+     "date": "2026-10-04",
+     "value": "บริการ จำหน่าย และติดตั้ง"
+    },
+    {
+     "field": "booking",
+     "quote": "053 855 257",
+     "url": "https://www.facebook.com/1559426127633903",
+     "date": "2026-10-04",
+     "value": "Phone 053 855 257"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-ovt-d8ad0eed-69a2-4456-9c7f-7c8160f8e0fa",
+   "name": "ซ่อมมอเตอร์,ปั๊มน้ำ,ไดโว่ สันกำแพง -เชียงใหม่",
+   "name_th": "ซ่อมมอเตอร์,ปั๊มน้ำ,ไดโว่ สันกำแพง -เชียงใหม่",
+   "kind": "handyman",
+   "province": "cm",
+   "website": "https://sites.google.com/view/motivetorservice",
+   "facebook": "https://www.facebook.com/794194414010761",
+   "phone": "+66970324265",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "บริการซ่อมนอกสถานที่",
+     "url": "https://sites.google.com/view/motivetorservice",
+     "date": "2026-10-04",
+     "value": "Water-pump repair, on-site repair"
+    },
+    {
+     "field": "services",
+     "quote": "รับซ่อมมอเตอร์อุตสาหกรรม บริการพันขดลวดทองแดง",
+     "url": "https://www.facebook.com/794194414010761",
+     "date": "2026-10-04",
+     "value": "รับซ่อมมอเตอร์อุตสาหกรรม บริการพันขดลวดทองแดง"
+    },
+    {
+     "field": "booking",
+     "quote": "097 032 4265",
+     "url": "https://www.facebook.com/794194414010761",
+     "date": "2026-10-04",
+     "value": "Phone 097 032 4265"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cm-ovt-ecc48a4f-b26b-444e-a23e-fa1edfc4d58a",
+   "name": "CMWashing ล้างเครื่องซักผ้า ซ่อมเครื่องซักผ้า เชียงใหม่",
+   "name_th": "CMWashing ล้างเครื่องซักผ้า ซ่อมเครื่องซักผ้า เชียงใหม่",
+   "kind": "handyman",
+   "province": "cm",
+   "facebook": "https://www.facebook.com/109551123832932",
+   "phone": "+66648831128",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "บริการซ่อม/ล้างเครื่องซักผ้าฝาหน้า ฝาบน แอร์บ้าน เครื่องทำน้ำอุ่นและเครื่องใช้ไฟฟ้า อื่นๆ ฯลฯ",
+     "url": "https://www.facebook.com/109551123832932",
+     "date": "2026-10-04",
+     "value": "บริการซ่อม/ล้างเครื่องซักผ้าฝาหน้า ฝาบน แอร์บ้าน เครื่องทำน้ำอุ่นและเครื่องใช้ไฟฟ้า อื่นๆ ฯลฯ"
+    },
+    {
+     "field": "booking",
+     "quote": "064 883 1128",
+     "url": "https://www.facebook.com/109551123832932",
+     "date": "2026-10-04",
+     "value": "Phone 064 883 1128"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cr-ovt-10d6c002-73a2-47cd-978a-a77077abfdd0",
+   "name": "เชียงรายแอร์แคร์",
+   "name_th": "เชียงรายแอร์แคร์",
+   "kind": "handyman",
+   "province": "cr",
+   "website": "https://surl.li/vzeseo",
+   "facebook": "https://www.facebook.com/100921338319202",
+   "phone": "+66835654445",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "บริการ เครื่องปรับอากาศ ครบวงจร",
+     "url": "https://www.facebook.com/100921338319202",
+     "date": "2026-10-04",
+     "value": "บริการ เครื่องปรับอากาศ ครบวงจร"
+    },
+    {
+     "field": "booking",
+     "quote": "083 565 4445",
+     "url": "https://www.facebook.com/100921338319202",
+     "date": "2026-10-04",
+     "value": "Phone 083 565 4445"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cr-ovt-4fb97e3f-277f-40da-b3a8-f6bd511c6438",
+   "name": "ภูเมศแอร์ อ.เวียงชัย",
+   "name_th": "ภูเมศแอร์ อ.เวียงชัย",
+   "kind": "handyman",
+   "province": "cr",
+   "website": "http://www.xn--x3ccgtz3e5bk5h.com/",
+   "facebook": "https://www.facebook.com/706886526023560",
+   "phone": "+66642624995",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "จำหน่าย ติดตั้ง ซ่อม ย้าย ล้าง แอร์บ?",
+     "url": "https://www.facebook.com/706886526023560",
+     "date": "2026-10-04",
+     "value": "จำหน่าย ติดตั้ง ซ่อม ย้าย ล้าง แอร์บ?"
+    },
+    {
+     "field": "booking",
+     "quote": "064 262 4995",
+     "url": "https://www.facebook.com/706886526023560",
+     "date": "2026-10-04",
+     "value": "Phone 064 262 4995"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cr-ovt-82d2fe7c-4bcc-4d9b-a164-b7e5b8723c66",
+   "name": "Trd แอร์เซอร์วิสเชียงราย",
+   "name_th": "Trd แอร์เซอร์วิสเชียงราย",
+   "kind": "handyman",
+   "province": "cr",
+   "facebook": "https://www.facebook.com/241246352413746",
+   "phone": "+66825151791",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "จำหน่าย ติดตั้ง ย้าย ล้าง ซ่อมบำรุงแอร์บ้าน สำนักงาน โดยช่างผู้ชำนาญการ",
+     "url": "https://www.facebook.com/241246352413746",
+     "date": "2026-10-04",
+     "value": "จำหน่าย ติดตั้ง ย้าย ล้าง ซ่อมบำรุงแอร์บ้าน สำนักงาน โดยช่างผู้ชำนาญการ"
+    },
+    {
+     "field": "booking",
+     "quote": "082 515 1791",
+     "url": "https://www.facebook.com/241246352413746",
+     "date": "2026-10-04",
+     "value": "Phone 082 515 1791"
+    },
+    {
+     "field": "hours",
+     "quote": "Always open",
+     "url": "https://www.facebook.com/241246352413746",
+     "date": "2026-10-04",
+     "value": "Always open (FB page setting)"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cr-ovt-8a586756-5275-4348-8c70-ea0766b5d0f1",
+   "name": "ร้านดีเอ็นแอร์แม่สรวยเซอร์วิส",
+   "name_th": "ร้านดีเอ็นแอร์แม่สรวยเซอร์วิส",
+   "kind": "handyman",
+   "province": "cr",
+   "facebook": "https://www.facebook.com/2442117042511126",
+   "phone": "+66941102375",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "จำหน่ายและติดตั้งเครื่องปรับอากาศทุกยี่ห้อ ราคากันเอง❄️",
+     "url": "https://www.facebook.com/2442117042511126",
+     "date": "2026-10-04",
+     "value": "จำหน่ายและติดตั้งเครื่องปรับอากาศทุกยี่ห้อ ราคากันเอง❄️"
+    },
+    {
+     "field": "booking",
+     "quote": "094 110 2375",
+     "url": "https://www.facebook.com/2442117042511126",
+     "date": "2026-10-04",
+     "value": "Phone 094 110 2375"
+    },
+    {
+     "field": "hours",
+     "quote": "Always open",
+     "url": "https://www.facebook.com/2442117042511126",
+     "date": "2026-10-04",
+     "value": "Always open (FB page setting)"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cr-ovt-90b47eac-28f3-4a64-a422-762cf252b3b8",
+   "name": "เชียงรายนอร์ทเทิร์นแอร์",
+   "name_th": "เชียงรายนอร์ทเทิร์นแอร์",
+   "kind": "handyman",
+   "province": "cr",
+   "website": "http://www.airbancr.com/",
+   "facebook": "https://www.facebook.com/407749012901397",
+   "phone": "+66869129345",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "ติดตั้งแอร์เก่า ย้ายแอร์ ล้างแอร์ รายปี บริการเติมน้ำยาแอร์ ซ่อมแอร์รั่ว ในพื้นที่จ.เชียงราย",
+     "url": "http://www.airbancr.com/",
+     "date": "2026-10-04",
+     "value": "Aircon install, cleaning, refill, repair in Chiang Rai province"
+    },
+    {
+     "field": "booking",
+     "quote": "ติดต่อเบอร์โทร 086-9129345 ID Line : out_site",
+     "url": "http://www.airbancr.com/",
+     "date": "2026-10-04",
+     "value": "Phone 086-912-9345; LINE out_site"
+    },
+    {
+     "field": "services",
+     "quote": "จำหน่ายแอร์บ้านราคาถูกทั้งแอร์ใหม่ พร้อมติดตั้ง",
+     "url": "https://www.facebook.com/407749012901397",
+     "date": "2026-10-04",
+     "value": "จำหน่ายแอร์บ้านราคาถูกทั้งแอร์ใหม่ พร้อมติดตั้ง"
+    },
+    {
+     "field": "booking",
+     "quote": "086 912 9345",
+     "url": "https://www.facebook.com/407749012901397",
+     "date": "2026-10-04",
+     "value": "Phone 086 912 9345"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cr-ovt-b09b046d-fa7d-4a5d-96cb-afc2b4e47a1c",
+   "name": "พีดีแอร์คอนซิสเต็ม",
+   "name_th": "พีดีแอร์คอนซิสเต็ม",
+   "kind": "handyman",
+   "province": "cr",
+   "facebook": "https://www.facebook.com/1549399621993878",
+   "phone": "+66946152228",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "จำหน่าย-ติดตั้ง-ซ่อม-ย้าย-ล้าง-เติมน?",
+     "url": "https://www.facebook.com/1549399621993878",
+     "date": "2026-10-04",
+     "value": "จำหน่าย-ติดตั้ง-ซ่อม-ย้าย-ล้าง-เติมน?"
+    },
+    {
+     "field": "booking",
+     "quote": "094 615 2228",
+     "url": "https://www.facebook.com/1549399621993878",
+     "date": "2026-10-04",
+     "value": "Phone 094 615 2228"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cr-ovt-be691e9c-b6d4-4d82-9b4f-09cd518f208d",
+   "name": "อินดี้แอร์ แอร์บ้านเชียงของ",
+   "name_th": "อินดี้แอร์ แอร์บ้านเชียงของ",
+   "kind": "handyman",
+   "province": "cr",
+   "facebook": "https://www.facebook.com/109594418519812",
+   "phone": "+66998314987",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "📦จำหน่ายติดตั้งแอร์บ้าน แอร์รถ",
+     "url": "https://www.facebook.com/109594418519812",
+     "date": "2026-10-04",
+     "value": "📦จำหน่ายติดตั้งแอร์บ้าน แอร์รถ"
+    },
+    {
+     "field": "booking",
+     "quote": "099 831 4987",
+     "url": "https://www.facebook.com/109594418519812",
+     "date": "2026-10-04",
+     "value": "Phone 099 831 4987"
+    },
+    {
+     "field": "hours",
+     "quote": "Always open",
+     "url": "https://www.facebook.com/109594418519812",
+     "date": "2026-10-04",
+     "value": "Always open (FB page setting)"
+    }
+   ]
+  },
+  {
+   "motdang_id": "cr-ovt-f7be83f9-0db0-4b82-a1fb-d852d1e67985",
+   "name": "ห้างหุ้นส่วนจำกัด แสนดีแอร์ เซอร์วิส",
+   "name_th": "ห้างหุ้นส่วนจำกัด แสนดีแอร์ เซอร์วิส",
+   "kind": "handyman",
+   "province": "cr",
+   "website": "http://www.sandeeair.com/",
+   "facebook": "https://www.facebook.com/1397688893840383",
+   "phone": "+6653717317",
+   "facts": [
+    {
+     "field": "services",
+     "quote": "จำหน่าย ติดตั้ง ซ่อม เครื่องปรับอาก?",
+     "url": "https://www.facebook.com/1397688893840383",
+     "date": "2026-10-04",
+     "value": "จำหน่าย ติดตั้ง ซ่อม เครื่องปรับอาก?"
+    },
+    {
+     "field": "booking",
+     "quote": "053 717 317",
+     "url": "https://www.facebook.com/1397688893840383",
+     "date": "2026-10-04",
+     "value": "Phone 053 717 317"
+    },
+    {
+     "field": "hours",
+     "quote": "Always open",
+     "url": "https://www.facebook.com/1397688893840383",
+     "date": "2026-10-04",
+     "value": "Always open (FB page setting)"
+    }
+   ]
+  }
+ ],
+ "misfiled": [
+  "cm-curated-home-10106",
+  "cm-curated-home-10512",
+  "cm-curated-home-12517",
+  "cm-curated-home-13180",
+  "cm-curated-home-1388",
+  "cm-curated-home-15091",
+  "cm-curated-home-1519",
+  "cm-curated-home-15568",
+  "cm-curated-home-16266",
+  "cm-curated-home-17174",
+  "cm-curated-home-26937",
+  "cm-curated-home-27166",
+  "cm-curated-home-28125",
+  "cm-curated-home-28607",
+  "cm-curated-home-29648",
+  "cm-curated-home-30782",
+  "cm-curated-home-31060",
+  "cm-curated-home-32189",
+  "cm-curated-home-3241",
+  "cm-curated-home-35989",
+  "cm-curated-home-38782",
+  "cm-curated-home-40828",
+  "cm-curated-home-41440",
+  "cm-curated-home-4961",
+  "cm-curated-home-4967",
+  "cm-curated-home-5200",
+  "cm-curated-home-7761",
+  "cm-curated-home-7881",
+  "cm-curated-home-8581",
+  "cm-curated-home-8617",
+  "cm-curated-home-8645",
+  "cm-curated-home-8870",
+  "cm-curated-home-9774",
+  "cm-osm-node-13600539514",
+  "cm-osm-node-8972390778",
+  "cm-osm-way-423030639",
+  "cm-ovt-06db0674-1b39-4df4-9ba5-cf943a6cf3a4",
+  "cm-ovt-079f60ba-e52c-43d0-8720-c5c93cbd7430",
+  "cm-ovt-237a7bd4-22d9-43de-ae4c-05007a8ebdcd",
+  "cm-ovt-381cef8e-9f23-48ac-bf7c-264b577cd0fa",
+  "cm-ovt-39630f39-8082-465f-8128-cbc02059eae4",
+  "cm-ovt-4792dc28-a280-4105-b4a4-8a948e8bb5dd",
+  "cm-ovt-4b65e40a-6e11-4f90-a2fb-dbbd5b87df61",
+  "cm-ovt-4eb084e9-d91e-46a7-8e01-9ea873ce3e3e",
+  "cm-ovt-4f983e61-ede7-477a-ae88-cb91143a686b",
+  "cm-ovt-56a18ac1-3284-4d03-ba0a-cabda927c363",
+  "cm-ovt-69692d0b-c93c-4d2e-8c2d-e255e3dfb3d4",
+  "cm-ovt-696b327a-1644-4ac5-a649-51048d3802f1",
+  "cm-ovt-6dd5919f-0108-4f3b-b30b-a3e2c9ed0ec5",
+  "cm-ovt-6f2a86a9-e3c4-4aef-a842-09176ee321bc",
+  "cm-ovt-808b4e62-ee35-4b89-ae79-d699fbe17552",
+  "cm-ovt-89668177-b352-4a79-b26e-e7a9b23ced3c",
+  "cm-ovt-8fc450f4-2e96-4999-9d4f-802178cde267",
+  "cm-ovt-92032e33-11dc-46fe-bf09-5a70bb7021f3",
+  "cm-ovt-9332c0f3-81b4-4bbb-a74d-c9debe2f987f",
+  "cm-ovt-9ef06fb5-1708-4562-a410-8a9dfca370e8",
+  "cm-ovt-b82bf59c-7464-4334-a866-611731975549",
+  "cm-ovt-bed5099a-0563-47ea-8567-bb24f32ea858",
+  "cm-ovt-c051be0c-a977-49e5-ab4a-abcbcb9b5ed8",
+  "cm-ovt-c4d60327-df18-4d4a-a9c9-794b86f75f53",
+  "cm-ovt-c6a01d2a-4a9f-43de-ae27-45c68ce909bf",
+  "cm-ovt-c7785d25-2e69-49a5-918d-c90ea0fa2f80",
+  "cm-ovt-c98eb268-7e71-4911-be11-20d332fec583",
+  "cm-ovt-cce588e7-a606-4fd5-b6f4-f75c4a1f081c",
+  "cm-ovt-d05c2ee6-78de-4a64-bd2f-2561ca8228c6",
+  "cm-ovt-d73c5e65-c99f-4c45-96db-517a853a2c0c",
+  "cm-ovt-e80c7e64-9fb0-4392-850f-0481059cabf4",
+  "cm-ovt-e9a27318-2b35-49eb-8224-85aaf6180d58",
+  "cm-ovt-efccd875-b9f7-4a1f-adf0-a846e7a8a546",
+  "cm-ovt-f3746764-9499-4425-ac0b-2299a0af0dcf",
+  "cm-ovt-f59a5835-5d8d-4fb5-b592-4817d2efc1b9",
+  "cm-ovt-f83ced46-37c8-43bd-ab95-665d63ccc761",
+  "cm-ovt-fb7184ef-95ce-43b3-a684-d490600c60d6",
+  "cm-ovt-fbc04a9b-4dc0-4859-9872-1c85cbe2737c",
+  "cm-ovt-fc202983-a938-4a6b-921e-cc0449cab835",
+  "cm-ovt-fd463f2b-c649-4a2a-a968-d6a39d913949",
+  "cr-osm-way-1232062459",
+  "cr-osm-way-1232062464",
+  "cr-ovt-1bab838f-3f38-4bc5-a230-39cc24321662",
+  "cr-ovt-1ef92079-b4dd-46dc-96dc-2b9180b98d97",
+  "cr-ovt-2b97d162-b803-4af8-892e-9264961a6434",
+  "cr-ovt-31015936-a168-4970-96ea-2286e00f8b1f",
+  "cr-ovt-3a63cccb-b40e-48e0-918b-5c91f73de36a",
+  "cr-ovt-505218e1-2da6-4029-8c93-7d69990e45c8",
+  "cr-ovt-53478dd8-fa9c-4900-bdfa-2815f5afaec0",
+  "cr-ovt-54cbcc7a-2566-4f07-b389-0f300c978400",
+  "cr-ovt-5af19fb1-d67a-40a7-a69d-87e67e74d270",
+  "cr-ovt-606fd381-31a0-4cba-b6d3-a263837ada62",
+  "cr-ovt-6cae5b1b-12cc-4526-8ee7-f1e65a81c606",
+  "cr-ovt-70a26331-5094-4f7a-aacc-12fd6ec2ccce",
+  "cr-ovt-74074f3d-4908-4a33-acbb-e165b13faff6",
+  "cr-ovt-9158abc6-87b7-4537-8a8c-43a71a89221f",
+  "cr-ovt-9a574665-1a8b-40f1-840a-48af70c86c9a",
+  "cr-ovt-a3d12699-c378-4cf8-a7b5-27d1f66bf805",
+  "cr-ovt-a518741a-3f49-44ed-8f1f-aed234f1d71a",
+  "cr-ovt-b13e1de6-dd2d-48aa-a0ad-459f618ba7cc",
+  "cr-ovt-c737e784-eb3c-4b2c-b7b5-c8db7ebdcb88",
+  "cr-ovt-c89b32a9-9144-4f96-9bdf-54b78e7f0fc0",
+  "cr-ovt-cdc35eb1-fe88-413b-956c-304b427dd30b",
+  "cr-ovt-daed5f62-6ffc-40ce-a32f-45b3d83ccfb2",
+  "cr-ovt-db016e6e-ead5-49c4-85ec-e1fa74b2c2fb",
+  "cr-ovt-f30f5c9c-c774-48f7-a928-8018f8893a94",
+  "cr-ovt-f9b218d6-0615-4ddc-8000-0f2ecaace49d",
+  "cr-ovt-fd754509-f6eb-4a9f-9f05-fb3d0613aab9"
+ ],
+ "platforms": [
+  {
+   "name": "bTaskee",
+   "kind": "cleaning",
+   "website": "https://www.btaskee.com/th-TH/",
+   "serves_cm": "yes (stated for home cleaning)",
+   "serves_cr": "not stated",
+   "facts": [
+    {
+     "field": "zones",
+     "value": "Home cleaning covers Bangkok and nearby, Rayong, Chonburi, Chiang Mai, Ayutthaya (Chiang Rai not listed)",
+     "thb": null,
+     "unit": null,
+     "quote": "bTaskee provides home cleaning services covering the following areas: ... Chiang Mai, and Phra Nakhon Si Ayutthaya.",
+     "url": "https://www.btaskee.com/en-TH/faqs/",
+     "date": "2026-10-04"
+    },
+    {
+     "field": "price",
+     "value": "Home cleaning 600 THB / 2 h (~35 sqm); 750 THB / 3 h; 950 THB / 4 h (national list, no CM-specific price shown)",
+     "thb": 600,
+     "unit": "visit",
+     "quote": "600 บาท 2 ชั่วโมง เหมาะสำหรับ 2 ห้อง ขนาดประมาณ 35 ตร.ม.",
+     "url": "https://www.btaskee.com/th-TH/home-cleaning/",
+     "date": "2026-10-04"
+    },
+    {
+     "field": "price",
+     "value": "Choose-your-maid add-on 30 THB",
+     "thb": 30,
+     "unit": "job",
+     "quote": "โดยมีค่าบริการเพิ่มเติม 30 บาท",
+     "url": "https://www.btaskee.com/th-TH/home-cleaning/",
+     "date": "2026-10-04"
+    },
+    {
+     "field": "price",
+     "value": "Deep cleaning 1,920 THB (3 h, 60 sqm, 2 maids) up to 11,008 THB (8 h)",
+     "thb": 1920,
+     "unit": "job",
+     "quote": "1,920 บาท 3 ชั่วโมง 60 ตร.ม. แม่บ้าน 2 ท่าน",
+     "url": "https://www.btaskee.com/th-TH/big-cleaning/",
+     "date": "2026-10-04"
+    },
+    {
+     "field": "price",
+     "value": "Aircon cleaning wall 9,000-18,000 BTU 660 THB (area coverage for aircon not stated)",
+     "thb": 660,
+     "unit": "unit",
+     "quote": "แอร์แบบติดผนัง 9,000 – 18,000 BTU 660 บาท",
+     "url": "https://www.btaskee.com/th-TH/air-conditioner-cleaning/",
+     "date": "2026-10-04"
+    },
+    {
+     "field": "price",
+     "value": "Sofa cleaning 1,300 THB (1-2 seats) to 1,900 THB (6+ seats)",
+     "thb": 1300,
+     "unit": "unit",
+     "quote": "1,300฿ / 1 - 2 ที่นั่ง",
+     "url": "https://www.btaskee.com/th-TH/upholstery-cleaning/",
+     "date": "2026-10-04"
+    },
+    {
+     "field": "booking",
+     "value": "App only",
+     "thb": null,
+     "unit": null,
+     "quote": "จองบริการแม่บ้านทำความสะอาดรายชั่วโมงผ่านแอปพลิเคชันได้ง่าย ๆ ภายใน 1 นาที",
+     "url": "https://www.btaskee.com/th-TH/home-cleaning/",
+     "date": "2026-10-04"
+    }
+   ]
+  },
+  {
+   "name": "BeNeat",
+   "kind": "cleaning",
+   "website": "https://www.beneat.co/",
+   "serves_cm": "not verified on its own pages",
+   "serves_cr": "not verified",
+   "facts": [],
+   "note": "beneat.co renders by script; only the title was readable. A Socialgiver listing \"2 hrs. Cleaning service (Provide services only in Chiang Mai)\" exists (m.socialgiver.com/shop/beneat-cnx-2hrs/) but did not load. CM price not found on the pages read."
+  },
+  {
+   "name": "Seekster",
+   "kind": "cleaning/handyman",
+   "website": "https://seekster.co/",
+   "serves_cm": "not verified",
+   "serves_cr": "not verified",
+   "facts": [],
+   "note": "seekster.co returned HTTP 402; nothing readable."
+  },
+  {
+   "name": "HomePro services",
+   "kind": "handyman/cleaning",
+   "website": "https://www.homepro.co.th/c/SER0301",
+   "serves_cm": "not stated on page read",
+   "serves_cr": "not stated on page read",
+   "facts": [
+    {
+     "field": "price",
+     "value": "Wall aircon cleaning 650 THB list, 630.50 THB final price shown",
+     "thb": 650,
+     "unit": "unit",
+     "quote": "ล้างแอร์ติดผนัง ... ฿ 650 ราคาสุดท้าย* ฿ 630.50",
+     "url": "https://www.homepro.co.th/c/SER0301",
+     "date": "2026-10-04"
+    }
+   ],
+   "note": "Page does not say which provinces are served; refers to hotline 1284."
+  },
+  {
+   "name": "Fastwork",
+   "kind": "marketplace",
+   "website": "https://fastwork.co/",
+   "serves_cm": "yes (seller listings)",
+   "serves_cr": "yes (seller listings)",
+   "facts": [
+    {
+     "field": "price",
+     "value": "CR aircon clean/repair seller: from 800 THB; areas Mueang, Pa Daet, Mae Lao, Wiang Chai, Phan",
+     "thb": 800,
+     "unit": "job",
+     "quote": "ราคาเริ่มต้น ฿800",
+     "url": "https://fastwork.co/user/d7sl6wkd/aircon-cleaning-97156694",
+     "date": "2026-10-04"
+    },
+    {
+     "field": "price",
+     "value": "CM plumbing/electrical seller (Aunt Service): from 1,000 THB",
+     "thb": 1000,
+     "unit": "job",
+     "quote": "ราคาเริ่มต้น ฿1,000",
+     "url": "https://fastwork.co/user/auntservice/plumbing-37436317",
+     "date": "2026-10-04"
+    }
+   ],
+   "note": "Freelance marketplace; sellers may be individuals. Two garden-seller pages in CM/CR returned 404."
+  },
+  {
+   "name": "Kaidee",
+   "kind": "classifieds",
+   "website": "https://www.kaidee.com/",
+   "serves_cm": "not verified",
+   "serves_cr": "not verified",
+   "facts": [],
+   "note": "Listing kaidee.com/product-132392915 (grass cutting, Saraphi/San Kamphaeng) returned an empty page; not readable."
+  }
+ ]
+}

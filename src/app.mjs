@@ -13,7 +13,7 @@ import {
   listWorkers, getWorker, createListing, findByEditToken, updateListing, removeListing,
   setListingStatus, listByStatus, countAttempt, sha256, logEvent, screenHistory,
   addPhoto, listPhotos, getPhoto, deletePhoto, setPhotoStatus, heldPhotos, photosNear,
-  listShops, countShops, shopsCompact,
+  listShops, countShops, shopsCompact, listBusinesses,
 } from './repo.mjs'
 import { exifBlock, readExif, nearestZone, km } from './lib/exif.mjs'
 import { screen, rules } from './lib/screen.mjs'
@@ -28,6 +28,8 @@ import { profileBody } from './pages/profile.mjs'
 import { joinBody, doneBody, editBody, removedBody, adminBody } from './pages/listing.mjs'
 import { readListingForm, valuesFromWorker } from './lib/listing.mjs'
 import { html } from './lib/html.mjs'
+import { readInputs, minimumPay } from './lib/wage.mjs'
+import { wageBody, agreementBody } from './pages/tools.mjs'
 
 const DAILY_SENDS = 5 // join-form sends per connection per 24 h
 
@@ -94,8 +96,11 @@ export function createApp(getDb) {
     const known = (ctx.config.categories || []).some((k) => k.key === filters.category)
     const shopCounts = await countShops(ctx.db, ctx.operatorId, filters.zone || null)
     const shops = known ? await listShops(ctx.db, ctx.operatorId, { category: filters.category, zone: filters.zone }) : []
+    // Nobody listed yet: the businesses that state their own prices lead the page, every work type.
+    const businesses = known ? await listBusinesses(ctx.db, ctx.operatorId, { category: filters.category, zone: filters.zone })
+      : !filters.category && workers.length === 0 ? await listBusinesses(ctx.db, ctx.operatorId, { zone: filters.zone }, 12) : []
     return render(c, {
-      title: ctx.t('dir.title', { city: '' }).trim(), body: directoryBody(ctx, workers, { shops, shopCounts }),
+      title: ctx.t('dir.title', { city: '' }).trim(), body: directoryBody(ctx, workers, { shops, shopCounts, businesses }),
       canonical: filtered ? null : '/', description: ctx.config.selfListing ? ctx.t('dir.lede') : null,
     })
   })
@@ -132,6 +137,29 @@ export function createApp(getDb) {
     const ctx = c.get('ctx')
     const body = html`<h1>${ctx.t('page.privacy.title')}</h1><p>${ctx.t('legal.notEmployer')}</p>`
     return render(c, { title: ctx.t('page.privacy.title'), body })
+  })
+
+  // ── free tools: minimum-pay arithmetic and the printable agreement ───────
+  app.get('/wage', async (c) => {
+    const ctx = c.get('ctx')
+    const inp = readInputs(ctx.query)
+    const filled = Object.keys(ctx.query).some((k) => ['area', 'basis', 'days', 'hours', 'pay'].includes(k))
+    return render(c, {
+      title: ctx.t('wage.title'), body: wageBody(ctx, inp, minimumPay(inp)),
+      canonical: filled ? null : '/wage', description: ctx.t('wage.lede'),
+    })
+  })
+
+  app.get('/agreement', async (c) => {
+    const ctx = c.get('ctx')
+    const inp = readInputs(ctx.query)
+    const filled = Object.keys(ctx.query).some((k) => ['area', 'basis', 'days', 'hours', 'pay'].includes(k))
+    return render(c, {
+      title: 'หนังสือสัญญาจ้างแรงงานในงานบ้าน · Household Employment Agreement',
+      body: agreementBody(ctx, inp, minimumPay(inp)),
+      canonical: filled ? null : '/agreement', description: ctx.t('agr.lede'),
+      robots: filled ? 'noindex' : null,
+    })
   })
 
   // ── self-listing ──────────────────────────────────────────────────────────
