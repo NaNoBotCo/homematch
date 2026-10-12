@@ -123,7 +123,7 @@ export function compose({ kind, config, operatorId, events, counts, from, to, ad
   return { subject, text: lines.join('\n') }
 }
 
-async function send(env, subject, text) {
+export async function send(env, subject, text) {
   if (!env.RESEND_KEY || !env.ALERT_TO || !env.ALERT_FROM) return { ok: false, why: 'mail not configured' }
   const r = await fetch('https://api.resend.com/emails', {
     method: 'POST',

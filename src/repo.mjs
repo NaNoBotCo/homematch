@@ -355,3 +355,21 @@ export async function shopsCompact(db, operatorId, category) {
     operatorId, category)
   return rows.map((r) => [r.url, r.name_th, r.name_en, r.lat, r.lon, r.phone, r.zone, r.pickup])
 }
+
+/** A confirmed payment (0010). Returns the browser token, or null when the slip already paid. */
+export async function recordPayment(db, operatorId, { kind, amount, booking = null, transRef, days = null }) {
+  const dup = await db.get('SELECT id FROM payment WHERE operator_id=? AND trans_ref=?', operatorId, transRef)
+  if (dup) return null
+  const token = newToken()
+  const exp = days ? new Date(Date.now() + days * 86400000).toISOString().slice(0, 19).replace('T', ' ') : null
+  await db.run(`INSERT INTO payment(id, operator_id, kind, amount, booking, trans_ref, token_hash, created_at, expires_at)
+    VALUES (?,?,?,?,?,?,?,?,?)`, randomUUID(), operatorId, kind, amount, booking, transRef, sha256(token), now(), exp)
+  return token
+}
+/** True when `token` is a payment of `kind` that has not run out. */
+export async function paidWith(db, operatorId, kind, token) {
+  if (!token) return false
+  const r = await db.get(`SELECT expires_at FROM payment WHERE operator_id=? AND kind=? AND token_hash=?`,
+    operatorId, kind, sha256(token))
+  return !!r && (!r.expires_at || r.expires_at > now())
+}
