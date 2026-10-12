@@ -18,6 +18,7 @@ const ENV = {
   BASE_PATH: process.env.BASE_PATH || '',
   ADMIN_KEY: process.env.ADMIN_KEY || '',
   SESSION_SECRET: process.env.SESSION_SECRET || 'dev',
+  PROMPTPAY_ID: process.env.PROMPTPAY_ID || '',
 }
 
 if (!existsSync(DB_PATH)) {
