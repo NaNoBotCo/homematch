@@ -232,5 +232,12 @@
       "cr": "https://motdang.net/cr/repair/home/"
     }
   },
-  "roadGraph": "https://motdang.net/data/road_graph.json"
+  "roadGraph": "https://motdang.net/data/road_graph.json",
+  "prices": {
+    "agreement": 100,
+    "subscription": 1000,
+    "pack": 2000,
+    "referralPct": 15
+  },
+  "lineOa": "@964yxgnk"
 }

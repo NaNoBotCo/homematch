@@ -30,6 +30,8 @@ import { readListingForm, valuesFromWorker } from './lib/listing.mjs'
 import { html } from './lib/html.mjs'
 import { readInputs, minimumPay } from './lib/wage.mjs'
 import { wageBody, agreementBody } from './pages/tools.mjs'
+import { payBody, payBox } from './pages/pay.mjs'
+import { KINDS as PAY_KINDS } from './lib/pay.mjs'
 
 const DAILY_SENDS = 5 // join-form sends per connection per 24 h
 
@@ -156,9 +158,19 @@ export function createApp(getDb) {
     const filled = Object.keys(ctx.query).some((k) => ['area', 'basis', 'days', 'hours', 'pay'].includes(k))
     return render(c, {
       title: 'หนังสือสัญญาจ้างแรงงานในงานบ้าน · Household Employment Agreement',
-      body: agreementBody(ctx, inp, minimumPay(inp)),
+      body: html`${payBox(ctx, c.env && c.env.PROMPTPAY_ID, 'agreement', null, 'MD-AGREEMENT')}${agreementBody(ctx, inp, minimumPay(inp))}`,
       canonical: filled ? null : '/agreement', description: ctx.t('agr.lede'),
       robots: filled ? 'noindex' : null,
+    })
+  })
+
+  // ── paying Mot Dang: one QR with the exact amount (Nan 2026-10-12) ───────
+  app.get('/pay', async (c) => {
+    const ctx = c.get('ctx')
+    const kind = PAY_KINDS.includes(ctx.query.for) ? ctx.query.for : 'agreement'
+    return render(c, {
+      title: ctx.t('pay.title'), body: payBody(ctx, c.env && c.env.PROMPTPAY_ID, kind, ctx.query.amount),
+      canonical: null, robots: 'noindex',
     })
   })
 
