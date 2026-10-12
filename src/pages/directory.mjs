@@ -77,12 +77,14 @@ ${ctx.config.roadGraph || shops.length ? html`<p class="near"><button class="btn
   ${chipRow(base, t, t('dir.filter.engagement'), query, 'engagement', engOpts)}
   ${config.showTiers !== false ? chipRow(base, t, t('dir.filter.tier'), query, 'tier', tierOpts) : ''}
 </section>
+${workers.length === 0 ? html`${businessSection(ctx, businesses)}
+${shopSection(ctx, shops, shopCounts)}` : ''}
 <p aria-live="polite" class="muted"><strong>${count}</strong></p>
 ${workers.length === 0
   ? html`<div class="wcard"><p>${t('dir.empty')}</p><p class="muted">${t('dir.emptyHint')}</p></div>`
-  : html`<ul class="card-list" id="people">${workers.map((w) => workerCard(ctx, w, labels))}</ul>`}
+  : html`<ul class="card-list" id="people">${workers.map((w) => workerCard(ctx, w, labels))}</ul>
 ${businessSection(ctx, businesses)}
-${shopSection(ctx, shops, shopCounts)}
+${shopSection(ctx, shops, shopCounts)}`}
 ${shelves}
 ${raw(NEAR_JS(ctx))}
 `

@@ -328,8 +328,10 @@ export async function listShops(db, operatorId, { category, zone }, limit = 30) 
 /** Businesses in a work type that state their own prices or terms (0009),
  *  facts parsed. Zone-filtered rows keep the province-wide ones (zone NULL). */
 export async function listBusinesses(db, operatorId, { category, zone }, limit = 40) {
-  const where = ['operator_id=?', 'category=?', 'facts IS NOT NULL']
-  const params = [operatorId, category]
+  // No work type: every type's businesses, for a board with nobody on it yet.
+  const where = ['operator_id=?', 'facts IS NOT NULL']
+  const params = [operatorId]
+  if (category) { where.push('category=?'); params.push(category) }
   if (zone) { where.push('(zone=? OR (zone IS NULL AND province=?))'); params.push(zone, zone === 'chiang-rai' ? 'cr' : 'cm') }
   const rows = await db.all(`SELECT * FROM shop WHERE ${where.join(' AND ')} ORDER BY rank DESC, name_th LIMIT ?`, ...params, limit)
   return rows.map((r) => {

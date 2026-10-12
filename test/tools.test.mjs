@@ -125,3 +125,18 @@ test('businesses strand: a shop row with stated facts shows its price, words, pa
   const cr = await get(a, '/?category=housekeeper&zone=chiang-rai')
   assert.equal(cr.doc.querySelectorAll('.bizlist li').length, 0, 'a CM business stays off the Chiang Rai view')
 })
+
+test('an empty board leads with businesses, every work type, above the nobody-yet note', async () => {
+  const db = freshDb()
+  const config = JSON.parse(readFileSync(join(ROOT, 'tenants', 'motdang.json'), 'utf8'))
+  await makeOperator(db, 'motdang', { hostname: HOST, config })
+  await syncTaxonomy(db, 'motdang', config)
+  const facts = [{ field: 'price', thb: 500, unit: 'visit', quote: 'ครั้งละ 500 บาท', url: 'https://grass.example/', date: '2026-10-04' }]
+  await db.run(`INSERT INTO shop(id, operator_id, category, name_th, url, province, source, facts)
+    VALUES ('web-g','motdang','gardener','ตัดหญ้าเอ็กซ์','https://grass.example/','cm','web',?)`, JSON.stringify(facts))
+  const { doc } = await get(createApp(() => db), '/')
+  const biz = doc.querySelector('.bizlist')
+  assert.ok(biz && /ตัดหญ้าเอ็กซ์/.test(biz.textContent), 'a gardener shows with no work type chosen')
+  const empty = doc.querySelector('.wcard')
+  assert.ok(biz.compareDocumentPosition(empty) & 4, 'businesses come before the empty note')
+})

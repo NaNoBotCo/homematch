@@ -96,7 +96,9 @@ export function createApp(getDb) {
     const known = (ctx.config.categories || []).some((k) => k.key === filters.category)
     const shopCounts = await countShops(ctx.db, ctx.operatorId, filters.zone || null)
     const shops = known ? await listShops(ctx.db, ctx.operatorId, { category: filters.category, zone: filters.zone }) : []
-    const businesses = known ? await listBusinesses(ctx.db, ctx.operatorId, { category: filters.category, zone: filters.zone }) : []
+    // Nobody listed yet: the businesses that state their own prices lead the page, every work type.
+    const businesses = known ? await listBusinesses(ctx.db, ctx.operatorId, { category: filters.category, zone: filters.zone })
+      : !filters.category && workers.length === 0 ? await listBusinesses(ctx.db, ctx.operatorId, { zone: filters.zone }, 12) : []
     return render(c, {
       title: ctx.t('dir.title', { city: '' }).trim(), body: directoryBody(ctx, workers, { shops, shopCounts, businesses }),
       canonical: filtered ? null : '/', description: ctx.config.selfListing ? ctx.t('dir.lede') : null,

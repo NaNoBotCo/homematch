@@ -17,10 +17,13 @@ Which records count:
   laundry      sub laundry AND a pickup/delivery facet or wording
   handyperson  repair/home, or sub handyman
 """
-import json, math, re, sys
+import json, math, os, re, sys
 from pathlib import Path
 
 MD = Path.home() / "Developer/claude code projects/mot-dang"
+# The built site's data files. The build runs on motdang-build since 2026-10-05, so the
+# Mac may hold no docs/: MD_DOCS_DATA names a folder of the published <prov>-<shelf>.geojson.
+DOCS_DATA = Path(os.environ.get("MD_DOCS_DATA") or MD / "docs/data")
 ROOT = Path(__file__).resolve().parent.parent
 TENANT = json.loads((ROOT / "tenants/motdang.json").read_text())
 ZONES = [(z["key"], z["center"]) for z in TENANT["zones"] if z.get("center")]
@@ -75,7 +78,7 @@ def zone_of(lat, lon):
 
 def slugs(prov):
     out = {}
-    for f in (MD / "docs/data").glob(f"{prov}-*.geojson"):
+    for f in DOCS_DATA.glob(f"{prov}-*.geojson"):
         try:
             for ft in json.loads(f.read_text())["features"]:
                 p = ft["properties"]
