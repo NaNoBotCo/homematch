@@ -11,7 +11,7 @@ import { resolveTenant } from './lib/tenant.mjs'
 import { makeT, registerOverride } from './i18n/index.mjs'
 import {
   listWorkers, getWorker, createListing, findByEditToken, updateListing, removeListing,
-  setListingStatus, listByStatus, countAttempt, sha256, logEvent, screenHistory,
+  setListingStatus, listByStatus, countAttempt, sha256, logEvent, screenHistory, recordPayment, paidWith,
   addPhoto, listPhotos, getPhoto, deletePhoto, setPhotoStatus, heldPhotos, photosNear,
   listShops, countShops, shopsCompact, listBusinesses,
 } from './repo.mjs'
@@ -30,8 +30,10 @@ import { readListingForm, valuesFromWorker } from './lib/listing.mjs'
 import { html } from './lib/html.mjs'
 import { readInputs, minimumPay } from './lib/wage.mjs'
 import { wageBody, agreementBody } from './pages/tools.mjs'
-import { payBody, payBox } from './pages/pay.mjs'
-import { KINDS as PAY_KINDS } from './lib/pay.mjs'
+import { payBody, payBox, paidBody } from './pages/pay.mjs'
+import { KINDS as PAY_KINDS, priceOf } from './lib/pay.mjs'
+import { slipOn, checkSlip } from './lib/slip.mjs'
+import { send as sendMail } from './digest.mjs'
 
 const DAILY_SENDS = 5 // join-form sends per connection per 24 h
 
@@ -156,9 +158,19 @@ export function createApp(getDb) {
     const ctx = c.get('ctx')
     const inp = readInputs(ctx.query)
     const filled = Object.keys(ctx.query).some((k) => ['area', 'basis', 'days', 'hours', 'pay'].includes(k))
+    const pay = payEnv(c)
+    // With the slip check on, the agreement opens once its ฿100 is confirmed (Nan 2026-10-12:
+    // "payment should be automatic, not optional").
+    const paid = pay.slip && await paidWith(ctx.db, ctx.operatorId, 'agreement', paidCookie(c, 'agreement'))
+    const sp = new URL(c.req.url).searchParams
+    sp.delete('err')
+    const back = `${ctx.base}/agreement${sp.toString() ? '?' + sp : ''}`
     return render(c, {
       title: 'หนังสือสัญญาจ้างแรงงานในงานบ้าน · Household Employment Agreement',
-      body: html`${payBox(ctx, c.env && c.env.PROMPTPAY_ID, 'agreement', null, 'MD-AGREEMENT')}${agreementBody(ctx, inp, minimumPay(inp))}`,
+      body: pay.slip && !paid
+        ? html`<h1>หนังสือสัญญาจ้างแรงงานในงานบ้าน<br><span style="font-weight:400">Household Employment Agreement</span></h1>
+<p class="muted">${ctx.t('agr.lede')}</p>${payBox(ctx, pay, 'agreement', null, 'MD-AGREEMENT', { back, err: ctx.query.err })}`
+        : html`${paid ? '' : payBox(ctx, pay, 'agreement', null, 'MD-AGREEMENT')}${agreementBody(ctx, inp, minimumPay(inp))}`,
       canonical: filled ? null : '/agreement', description: ctx.t('agr.lede'),
       robots: filled ? 'noindex' : null,
     })
@@ -169,9 +181,43 @@ export function createApp(getDb) {
     const ctx = c.get('ctx')
     const kind = PAY_KINDS.includes(ctx.query.for) ? ctx.query.for : 'agreement'
     return render(c, {
-      title: ctx.t('pay.title'), body: payBody(ctx, c.env && c.env.PROMPTPAY_ID, kind, ctx.query.amount),
+      title: ctx.t('pay.title'), body: payBody(ctx, payEnv(c), kind, ctx.query.amount, { err: ctx.query.err, back: '' }),
       canonical: null, robots: 'noindex',
     })
+  })
+
+  // The slip, checked with SlipOK. A confirmed slip records the payment, mails Nan,
+  // and sends the payer on to what they paid for (or a paid page for an invoice).
+  app.post('/pay/verify', async (c) => {
+    const ctx = c.get('ctx')
+    const body = await c.req.parseBody()
+    const kind = PAY_KINDS.includes(body.for) ? body.for : null
+    const back = String(body.back || '')
+    const safeBack = back.startsWith(ctx.base + '/') && !back.startsWith('//') ? back : ''
+    const amount = body.amount ? Math.round(Number(body.amount)) : null
+    const baht = kind && priceOf(ctx.config, kind, amount)
+    const retry = (why) => {
+      const to = safeBack || `${ctx.base}/pay?for=${kind || 'agreement'}${amount ? '&amount=' + amount : ''}`
+      return c.redirect(to + (to.includes('?') ? '&' : '?') + 'err=' + why, 303)
+    }
+    if (!kind || !baht) return retry('unread')
+    const r = await checkSlip(c.env || {}, body.slip, baht)
+    if (!r.ok) {
+      await logEvent(ctx.db, ctx.operatorId, 'pay-refused', { ipHash: ipHash(c), detail: { kind, why: r.why } })
+      return retry(r.why)
+    }
+    const days = { agreement: 30, subscription: 31 }[kind] || null
+    const token = await recordPayment(ctx.db, ctx.operatorId, { kind, amount: baht, booking: kind === 'referral' ? amount : null, transRef: r.transRef, days })
+    if (!token) return retry('used')
+    await logEvent(ctx.db, ctx.operatorId, 'paid', { ipHash: ipHash(c), detail: { kind, amount: baht } })
+    const mailed = sendMail(c.env || {}, `Paid: ฿${baht} · ${kind}`,
+      `฿${baht} for ${kind}${amount && kind === 'referral' ? ` (${ctx.config.prices.referralPct}% of a ฿${amount} booking)` : ''}.\nBank reference ${r.transRef}.\nConfirmed by SlipOK.`)
+    try { c.executionCtx.waitUntil(mailed) } catch { await mailed }
+    if (days) {
+      c.header('Set-Cookie', `paid_${kind}=${token}; Path=${ctx.base || '/'}; Max-Age=${days * 86400}; HttpOnly; SameSite=Lax; Secure`, { append: true })
+    }
+    if (safeBack) return c.redirect(safeBack, 303)
+    return render(c, { title: ctx.t('pay.paidTitle'), body: paidBody(ctx, kind, baht), robots: 'noindex' })
   })
 
   // ── self-listing ──────────────────────────────────────────────────────────
@@ -633,4 +679,14 @@ async function sampleCard(c, ctx) {
   const png = await drawCard(env.BROWSER, cardHtml(facts, null))
   await env.MEDIA.put(key, png, { httpMetadata: { contentType: 'image/png' } })
   return png
+}
+
+/** What the pay pages need from the Worker's env. */
+function payEnv(c) {
+  const env = c.env || {}
+  return { payeeId: env.PROMPTPAY_ID || '', slip: slipOn(env) }
+}
+function paidCookie(c, kind) {
+  const m = new RegExp(`(?:^|;\\s*)paid_${kind}=([A-Za-z0-9_-]+)`).exec(c.req.header('cookie') || '')
+  return m ? m[1] : ''
 }
